@@ -1,0 +1,11 @@
+@use "../../variables";
+
+input {
+  width: 95%;
+  padding: 1rem 0.5rem;
+  margin-top: 1rem;
+  border: none;
+  font-size: 1.5rem;
+  color: variables.$base_color;
+  border-bottom: variables.$base_border;
+}

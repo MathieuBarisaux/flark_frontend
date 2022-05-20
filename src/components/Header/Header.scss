@@ -1,0 +1,143 @@
+@use "../../variables";
+
+header {
+  min-width: 200px;
+  width: 13%;
+  max-width: 280px;
+  padding-left: 2rem;
+  height: 100vh;
+  background-color: variables.$overlay_background;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: variables.$attenuated_color;
+  transition-duration: 0.4s;
+
+  &:hover {
+    .Header__cross {
+      opacity: 1;
+      transition-duration: 0.4s;
+    }
+  }
+
+  p {
+    width: fit-content;
+    transition: 0.4s;
+  }
+}
+
+.Header__cross {
+  cursor: pointer;
+  position: absolute;
+  top: 1.5rem;
+  right: 0.5rem;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px variables.$attenuated_color solid;
+  opacity: 0;
+  transition-duration: 0.4s;
+  transform: translate(-50%);
+
+  i {
+    font-size: 1.5rem;
+  }
+}
+
+.Header__logo {
+  margin-top: 6rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  color: variables.$base_color;
+
+  p {
+    margin-left: 1rem;
+    font-size: 2rem;
+    font-family: "Roboto Mono";
+  }
+}
+
+nav {
+  margin-top: 3rem;
+}
+
+.Header__NavElement {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  p {
+    margin-left: 1rem;
+  }
+
+  &:hover {
+    color: variables.$base_color;
+  }
+}
+
+.Header__NavElement--help {
+  margin-top: auto;
+  margin-bottom: 6rem;
+}
+
+/* Variants */
+
+.Header__NavElement--isActive {
+  div {
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: variables.$focus_color;
+    color: variables.$overlay_background;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+  }
+
+  p {
+    color: variables.$base_color;
+    font-weight: bold;
+  }
+}
+
+.Header--isClose {
+  align-items: center;
+  border-right: variables.$base_border;
+  min-width: auto;
+  min-width: 70px;
+  width: 5%;
+  max-width: 70px;
+  padding: 0;
+  transition: 0.3s;
+
+  p {
+    width: 0;
+    max-width: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Header__cross {
+    width: 40px;
+    height: 40px;
+    right: 50%;
+    transform: rotate(180deg) translate(-50%);
+    opacity: 1;
+  }
+}

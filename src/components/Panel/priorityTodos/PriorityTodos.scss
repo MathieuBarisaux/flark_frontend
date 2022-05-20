@@ -1,0 +1,44 @@
+@use "../../../variables";
+
+.PriorityTodos {
+  border-top: variables.$base_border;
+  margin-top: 1rem;
+  padding-top: 1rem;
+
+  h3 {
+    font-size: 1.2rem;
+    width: fit-content;
+    border-radius: 10px;
+  }
+
+  h4 {
+    margin-top: 0.2rem;
+    color: variables.$attenuated_color;
+  }
+}
+
+.PriorityTodos__todoContainer {
+  margin-top: 1.6rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  div {
+    p:first-child {
+      color: variables.$attenuated_color;
+    }
+  }
+}
+
+.fa-check-circle {
+  font-size: 0.8rem;
+  color: #74c77b;
+}
+
+.fa-circle-notch {
+  font-size: 0.8rem;
+  color: #ff8546;
+}
+
+/* Variants */

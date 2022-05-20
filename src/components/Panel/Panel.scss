@@ -1,0 +1,112 @@
+@use "../../variables";
+
+.Panel {
+  height: 100vh;
+  max-height: 100vh;
+  min-width: 310px;
+  width: 21%;
+  max-width: 320px;
+  background-color: variables.$overlay_background;
+  padding: 0rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.Panel__userInfos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+
+  .Panel__userInfos--left {
+    display: flex;
+
+    img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    p {
+      margin-left: 1rem;
+      font-size: 1.4rem;
+    }
+  }
+
+  @keyframes openUserMenu {
+    0% {
+      max-height: 0;
+    }
+    100% {
+      max-height: 400%;
+    }
+  }
+
+  .Panel__userInfos--right {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+    background-color: aqua;
+
+    &:hover {
+      ul {
+        animation: openUserMenu 0.6s forwards;
+      }
+    }
+
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: variables.$base_border;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+
+      i {
+        font-size: 1.4rem;
+        color: variables.$attenuated_color;
+      }
+    }
+
+    ul {
+      top: 2.6rem;
+      right: 0;
+      position: absolute;
+      background-color: variables.$overlay_background;
+      box-shadow: 0 4px 10px rgb(0, 0, 0, 0.1);
+      border-radius: 10px;
+      max-height: 0;
+      overflow: hidden;
+
+      p {
+        background-color: #eb2a2a;
+        padding: 0.5rem 2rem;
+        margin: 2rem 1rem;
+        border-radius: 10px;
+        color: #fff;
+      }
+    }
+  }
+}
+
+/* Calendar */
+
+.sdp {
+  margin-top: 2rem !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  margin: auto;
+}
+
+.sdp--square-btn {
+  box-shadow: none !important;
+  color: variables.$base_color !important;
+}
+
+.sdp--date-btn__selected {
+  background-color: variables.$focus_color !important;
+  color: #fff !important;
+}
