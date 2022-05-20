@@ -1,11 +1,15 @@
 import "./Header.scss";
 
+import { Link, useLocation } from "react-router-dom";
+
 import { useState } from "react";
 
 const Header = (props) => {
-  const [headerIsClose, setHeaderIsClose] = useState(false);
-
   const { pageUser, setPageUser } = props;
+
+  const { pathname } = useLocation();
+
+  const [headerIsClose, setHeaderIsClose] = useState(false);
 
   return (
     <header className={headerIsClose === true ? "Header--isClose" : ""}>
@@ -22,21 +26,20 @@ const Header = (props) => {
       </div>
 
       <nav>
-        <div
-          className={
-            pageUser === "Dashboard"
-              ? "Header__NavElement Header__NavElement--isActive"
-              : "Header__NavElement"
-          }
-          onClick={() => {
-            setPageUser("Dashboard");
-          }}
-        >
-          <div>
-            <i className="fas fa-home"></i>
+        <Link to={"/"}>
+          <div
+            className={
+              pathname === "/"
+                ? "Header__NavElement Header__NavElement--isActive"
+                : "Header__NavElement"
+            }
+          >
+            <div>
+              <i className="fas fa-home"></i>
+            </div>
+            <p>Dashboard</p>
           </div>
-          <p>Dashboard</p>
-        </div>
+        </Link>
 
         <div
           className={
