@@ -47,9 +47,6 @@ const Header = (props) => {
               ? "Header__NavElement Header__NavElement--isActive"
               : "Header__NavElement"
           }
-          onClick={() => {
-            setPageUser("AllTasks");
-          }}
         >
           <div>
             <i className="fas fa-tasks"></i>
@@ -63,9 +60,6 @@ const Header = (props) => {
               ? "Header__NavElement Header__NavElement--isActive"
               : "Header__NavElement"
           }
-          onClick={() => {
-            setPageUser("Statistics");
-          }}
         >
           <div>
             <i className="fas fa-chart-pie"></i>
