@@ -76,12 +76,14 @@ const CategoryFormUpdate = (props) => {
 
   return (
     <div className="CategoryForm">
-      <i
-        className="fas fa-times"
+      <div
+        className="CategoryForm__close"
         onClick={() => {
           setOpenCategoryFormUpdate(false);
         }}
-      ></i>
+      >
+        <i className="fas fa-times"></i>
+      </div>
       <form onSubmit={updateCategory}>
         <div className="CategoryForm__input">
           <input

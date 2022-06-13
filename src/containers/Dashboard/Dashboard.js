@@ -30,7 +30,10 @@ const Dashboard = (props) => {
       {isLoading ? (
         <LoadScreen />
       ) : (
-        <Categories allCategories={allCategories} />
+        <>
+          <h2>What's up, ?USER?</h2>
+          <Categories allCategories={allCategories} />
+        </>
       )}
     </div>
   );

@@ -2,4 +2,14 @@
   width: 100%;
   padding-top: 7rem;
   position: relative;
+
+  > h2 {
+    display: none;
+
+    @media screen and (max-width: 900px) {
+      display: block;
+      padding-left: 1rem;
+      font-size: 2rem;
+    }
+  }
 }

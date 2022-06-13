@@ -70,12 +70,14 @@ const CategoryForm = (props) => {
 
   return (
     <div className="CategoryForm">
-      <i
-        className="fas fa-times"
+      <div
+        className="CategoryForm__close"
         onClick={() => {
           setOpenCategoryForm(false);
         }}
-      ></i>
+      >
+        <i className="fas fa-times"></i>
+      </div>
       <form onSubmit={submitNewCategory}>
         <div className="CategoryForm__input">
           <input
@@ -124,7 +126,9 @@ const CategoryForm = (props) => {
             onChange={catchChangeColor}
           />
         </div>
-        <button type="submit">Add new category</button>
+        <button type="submit">
+          Add new category <i className="fas fa-plus"></i>
+        </button>
       </form>
     </div>
   );
