@@ -9,8 +9,8 @@ import axios from "axios";
 const Alert = (props) => {
   const {
     setAlertDeleteCategorie,
-    targetCategorieID,
-    targetCategoryName,
+    updateId,
+    updateName,
     refreshAllCategories,
     setRefreshAllCategories,
     refreshAllTasks,
@@ -20,13 +20,13 @@ const Alert = (props) => {
   const deleteCategory = async () => {
     try {
       await axios.delete(
-        `http://localhost:3001/category/delete?category_id=${targetCategorieID}`
+        `http://localhost:3001/category/delete?category_id=${updateId}`
       );
 
       setRefreshAllCategories(!refreshAllCategories);
       setRefreshAllTasks(!refreshAllTasks);
     } catch (error) {
-      console.log(error.response);
+      console.log(error);
     }
   };
 
@@ -35,7 +35,7 @@ const Alert = (props) => {
       <div className="Alert__container">
         <p>
           Are your sure you want to delete this category
-          <em> "{targetCategoryName}" </em>
+          <em> "{updateName}" </em>
           and all the task it contains ?
         </p>
         <p>If you delete this, you can't recover it.</p>

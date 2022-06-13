@@ -9,10 +9,11 @@ const InputText = (props) => {
 
   return (
     <input
-      type={type}
-      placeholder={placeholder}
+      type={type ? type : "text"}
+      placeholder={placeholder && placeholder}
       value={value}
       onChange={handleValue}
+      className={"InputText"}
     />
   );
 };

@@ -1,7 +1,7 @@
 import "./UserManagement.scss";
 
 // ** Dependancies **
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // ** Picture **
 import robot from "../../img/Saly-26.svg";
@@ -16,7 +16,7 @@ const UserManagement = (props) => {
 
   const naviguate = useNavigate();
 
-  // Redirection if token
+  // Redirection auto if token
   useEffect(() => {
     if (bearerToken) {
       naviguate("/");

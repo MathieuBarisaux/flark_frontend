@@ -3,7 +3,7 @@
 .Categories__newCategory {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-size: 1.5rem;
 
   @media screen and (max-width: 900px) {
@@ -43,122 +43,5 @@
 
   &::-webkit-scrollbar {
     display: none;
-  }
-}
-
-.Category {
-  background: linear-gradient(
-    310deg,
-    rgba(0, 0, 0, 0) 50%,
-    rgba(255, 255, 255, 0.2) 100%
-  );
-  flex-shrink: 0;
-  width: 150px;
-  height: 190px;
-  padding: 1.2rem;
-  border-radius: 15px;
-  color: #fff;
-  position: relative;
-  margin-right: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-
-  @media screen and (max-width: 900px) {
-    max-width: 120px;
-    height: 150px;
-  }
-
-  &:hover {
-    width: 170px;
-    background: linear-gradient(
-      310deg,
-      rgba(0, 0, 0, 0) 50%,
-      rgba(255, 255, 255, 0.4) 100%
-    );
-    transition: 0.3s;
-  }
-
-  > i {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    font-size: 6rem;
-    opacity: 0.4;
-
-    @media screen and (max-width: 900px) {
-      font-size: 4rem;
-    }
-  }
-
-  p {
-    &:nth-child(2) {
-      font-weight: bold;
-      font-size: 2rem;
-    }
-
-    &:nth-child(3) {
-      opacity: 0.8;
-      font-size: 1.3rem;
-    }
-  }
-}
-
-@keyframes isOpen {
-  0% {
-    max-height: 0;
-  }
-  100% {
-    max-height: 200%;
-  }
-}
-
-.Category__tools {
-  position: absolute;
-  padding: 0.5rem;
-  top: 0rem;
-  right: 0rem;
-  font-size: 1.4rem;
-  display: flex;
-  align-items: flex-end;
-  transition: 0.3s;
-
-  > i {
-    padding: 1rem 1rem 0rem 1rem;
-  }
-
-  &:hover {
-    ul {
-      animation: isOpen forwards 0.4s;
-    }
-  }
-
-  ul {
-    top: 1.3rem;
-    position: absolute;
-    margin-right: 1.3rem;
-    background-color: variables.$overlay_background;
-    right: 1rem;
-    list-style: none;
-    z-index: 2;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    max-height: 0;
-    overflow-y: hidden;
-
-    li {
-      white-space: nowrap;
-      color: variables.$attenuated_color;
-      font-size: 1rem;
-      padding: 1rem;
-
-      &:hover {
-        color: variables.$base_color;
-        background-color: variables.$base_background;
-      }
-
-      i {
-        margin-right: 1rem;
-      }
-    }
   }
 }

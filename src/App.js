@@ -21,20 +21,14 @@ import Dashboard from "./containers/Dashboard/Dashboard";
 function App() {
   const [tokenChange, setTokenChange] = useState(false);
   const [bearerToken, setBearerToken] = useState(null);
-  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     const checkCookieToken = Cookie.get("token");
-    const checkCookieUserId = Cookie.get("userId");
 
     if (checkCookieToken) {
       setBearerToken(checkCookieToken);
     } else {
       setBearerToken(null);
-    }
-
-    if (checkCookieUserId) {
-      setUserId(checkCookieUserId);
     }
   }, [tokenChange]);
 
@@ -50,9 +44,12 @@ function App() {
   useEffect(() => {
     const callServerForAllCategories = async () => {
       try {
+        setAllCategoriesLoading(true);
         const response = await axios.get("http://localhost:3001/category/read");
+
         setAllCategories(response.data);
         setAllCategoriesLoading(true);
+        setAllCategoriesLoading(false);
       } catch (error) {
         console.log(error.response);
       }
@@ -73,6 +70,9 @@ function App() {
                 bearerToken={bearerToken}
                 tokenChange={tokenChange}
                 allCategories={allCategories}
+                refreshAllCategories={refreshAllCategories}
+                setRefreshAllCategories={setRefreshAllCategories}
+                allCategoriesLoading={allCategoriesLoading}
               />
             }
           />

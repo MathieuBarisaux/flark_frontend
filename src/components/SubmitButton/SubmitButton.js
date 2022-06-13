@@ -1,7 +1,7 @@
 import "./SubmitButton.scss";
 
 const SubmitButton = (props) => {
-  const { title, onclick, color } = props;
+  const { title, onclick, color, icon } = props;
 
   return (
     <button
@@ -19,7 +19,7 @@ const SubmitButton = (props) => {
           : null
       }
     >
-      {title}
+      {title} {icon && <i className={`${icon}`}></i>}
     </button>
   );
 };

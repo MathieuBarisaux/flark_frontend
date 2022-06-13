@@ -1,9 +1,12 @@
 import "./CategoryForm.scss";
 
-import { useState } from "react";
+// ** Dependencies **
 import axios from "axios";
 
-import iconsList from "../../assets/data/icons.json";
+// ** Components **
+import InputText from "../InputText/InputText";
+import SubmitButton from "../SubmitButton/SubmitButton";
+import IconPicker from "../IconPicker/IconPicker";
 
 const CategoryFormUpdate = (props) => {
   const {
@@ -19,17 +22,7 @@ const CategoryFormUpdate = (props) => {
     updateId,
   } = props;
 
-  const [iconSelector, setIconSelector] = useState(false);
-
-  const catchChangeName = (event) => {
-    const newValue = event.target.value;
-    setUpdateName(newValue);
-  };
-
-  const catchChangeColor = (event) => {
-    const newValue = event.target.value;
-    setUpdateColor(newValue);
-  };
+  /********************* Functions ***********************/
 
   const updateCategory = async (event) => {
     event.preventDefault();
@@ -47,32 +40,7 @@ const CategoryFormUpdate = (props) => {
     setRefreshAllCategories(!refreshAllCategories);
   };
 
-  const catchSearchIcon = (event) => {
-    setIconSelector(false);
-    const newValue = event.target.value;
-    setUpdateIcon(newValue);
-  };
-
-  let iconToSelect = [];
-  const searchIcon = () => {
-    iconToSelect = [];
-
-    if (updateIcon.length >= 2) {
-      for (let i = 0; i < iconsList.length; i++) {
-        if (
-          iconsList[i].l.toLowerCase().indexOf(updateIcon.toLowerCase()) !== -1
-        ) {
-          if (iconSelector === false) {
-            iconToSelect.push(iconsList[i]);
-          }
-        }
-      }
-    } else {
-      iconToSelect = [];
-    }
-
-    return iconToSelect;
-  };
+  /********************* Component ***********************/
 
   return (
     <div className="CategoryForm">
@@ -84,55 +52,25 @@ const CategoryFormUpdate = (props) => {
       >
         <i className="fas fa-times"></i>
       </div>
+
       <form onSubmit={updateCategory}>
         <div className="CategoryForm__input">
-          <input
-            type="text"
-            name="updateName"
+          <InputText
             placeholder="New category"
             value={updateName}
-            onChange={catchChangeName}
+            setValue={setUpdateName}
           />
 
-          <div className="CategoryForm__iconPicker">
-            <div className="CategoryForm__iconPicker--input">
-              <p>Add an icon :</p>
-              <input
-                type="text"
-                placeholder="Search"
-                name="CategoryIcon"
-                autoComplete="off"
-                onChange={catchSearchIcon}
-              />
-              <div>
-                <i className={`fa ${updateIcon}`}></i>
-              </div>
-            </div>
-            <div className="CategoryForm__iconPicker--suggestion">
-              {searchIcon().map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    onClick={() => {
-                      setUpdateIcon(item.c);
-                      setIconSelector(true);
-                    }}
-                  >
-                    <i className={`fa ${item.c}`}></i>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <IconPicker inputIcon={updateIcon} setInputIcon={setUpdateIcon} />
 
-          <input
+          <InputText
             type="color"
-            name="category_color"
             value={updateColor}
-            onChange={catchChangeColor}
+            setValue={setUpdateColor}
           />
         </div>
-        <button type="submit">Modify category</button>
+
+        <SubmitButton title="Update category" />
       </form>
     </div>
   );

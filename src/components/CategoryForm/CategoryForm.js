@@ -1,30 +1,28 @@
 import "./CategoryForm.scss";
 
+// ** Hooks **
 import { useState } from "react";
+
+// ** Dependencies **
 import axios from "axios";
 
-import iconsList from "../../assets/data/icons.json";
+// ** Components **
+import InputText from "../InputText/InputText";
+import SubmitButton from "../SubmitButton/SubmitButton";
+import IconPicker from "../IconPicker/IconPicker";
 
 const CategoryForm = (props) => {
   const { setOpenCategoryForm, refreshAllCategories, setRefreshAllCategories } =
     props;
 
+  // States for form
   const [categoryName, setCategoryName] = useState("");
   const [categoryColor, setCategoryColor] = useState("#7E54F9");
-  const [categoryIconSearch, setCategoryIconSearch] = useState("");
   const [categoryIcon, setCategoryIcon] = useState("");
-  const [iconSelector, setIconSelector] = useState(false);
 
-  const catchChangeName = (event) => {
-    const newValue = event.target.value;
-    setCategoryName(newValue);
-  };
+  /********************* Functions ***********************/
 
-  const catchChangeColor = (event) => {
-    const newValue = event.target.value;
-    setCategoryColor(newValue);
-  };
-
+  // Create new category
   const submitNewCategory = async (event) => {
     event.preventDefault();
 
@@ -39,34 +37,7 @@ const CategoryForm = (props) => {
     setRefreshAllCategories(!refreshAllCategories);
   };
 
-  const catchSearchIcon = (event) => {
-    setIconSelector(false);
-    const newValue = event.target.value;
-    setCategoryIconSearch(newValue);
-  };
-
-  let iconToSelect = [];
-  const searchIcon = () => {
-    iconToSelect = [];
-
-    if (categoryIconSearch.length >= 2) {
-      for (let i = 0; i < iconsList.length; i++) {
-        if (
-          iconsList[i].l
-            .toLowerCase()
-            .indexOf(categoryIconSearch.toLowerCase()) !== -1
-        ) {
-          if (iconSelector === false) {
-            iconToSelect.push(iconsList[i]);
-          }
-        }
-      }
-    } else {
-      iconToSelect = [];
-    }
-
-    return iconToSelect;
-  };
+  /********************* Component ***********************/
 
   return (
     <div className="CategoryForm">
@@ -80,55 +51,22 @@ const CategoryForm = (props) => {
       </div>
       <form onSubmit={submitNewCategory}>
         <div className="CategoryForm__input">
-          <input
-            type="text"
-            name="categoryName"
+          <InputText
             placeholder="New category"
             value={categoryName}
-            onChange={catchChangeName}
+            setValue={setCategoryName}
           />
 
-          <div className="CategoryForm__iconPicker">
-            <div className="CategoryForm__iconPicker--input">
-              <p>Add an icon :</p>
-              <input
-                type="text"
-                placeholder="Search"
-                name="CategoryIcon"
-                autoComplete="off"
-                onChange={catchSearchIcon}
-              />
-              <div>
-                <i className={`fa ${categoryIcon}`}></i>
-              </div>
-            </div>
-            <div className="CategoryForm__iconPicker--suggestion">
-              {searchIcon().map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    onClick={() => {
-                      setCategoryIcon(item.c);
-                      setIconSelector(true);
-                    }}
-                  >
-                    <i className={`fa ${item.c}`}></i>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <IconPicker inputIcon={categoryIcon} setInputIcon={setCategoryIcon} />
 
-          <input
+          <InputText
             type="color"
-            name="category_color"
             value={categoryColor}
-            onChange={catchChangeColor}
+            setValue={setCategoryColor}
           />
         </div>
-        <button type="submit">
-          Add new category <i className="fas fa-plus"></i>
-        </button>
+
+        <SubmitButton icon={"fas fa-plus"} title="Add new category" />
       </form>
     </div>
   );

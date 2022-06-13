@@ -8,14 +8,19 @@ import Categories from "../../components/Categories/Categories";
 import { useNavigate } from "react-router-dom";
 
 // ** Hooks **
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Dashboard = (props) => {
-  const { bearerToken, tokenChange, allCategories } = props;
+  const {
+    bearerToken,
+    tokenChange,
+    allCategories,
+    refreshAllCategories,
+    setRefreshAllCategories,
+    allCategoriesLoading,
+  } = props;
 
   const naviguate = useNavigate();
-
-  const [isLoading, setIsLoading] = useState(false);
 
   // Redirection if token
   useEffect(() => {
@@ -27,12 +32,16 @@ const Dashboard = (props) => {
 
   return (
     <div className="Dashboard">
-      {isLoading ? (
+      {allCategoriesLoading ? (
         <LoadScreen />
       ) : (
         <>
           <h2>What's up, ?USER?</h2>
-          <Categories allCategories={allCategories} />
+          <Categories
+            allCategories={allCategories}
+            setRefreshAllCategories={setRefreshAllCategories}
+            refreshAllCategories={refreshAllCategories}
+          />
         </>
       )}
     </div>

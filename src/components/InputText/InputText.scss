@@ -1,6 +1,6 @@
 @use "../../variables";
 
-input {
+.InputText {
   width: 95%;
   padding: 1rem 0.5rem;
   margin-top: 1rem;
@@ -8,4 +8,8 @@ input {
   font-size: 1.5rem;
   color: variables.$base_color;
   border-bottom: variables.$base_border;
+
+  &::placeholder {
+    color: variables.$attenuated_color;
+  }
 }

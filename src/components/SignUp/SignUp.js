@@ -10,7 +10,7 @@ import InputText from "../InputText/InputText";
 // ** Dependancies **
 import axios from "axios";
 import Cookie from "js-cookie";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignUp = (props) => {
   const { tokenChange, setTokenChange } = props;
