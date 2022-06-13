@@ -1,11 +1,16 @@
-import axios from "axios";
 import "./Alert.scss";
+
+// ** Components **
+import SubmitButton from "../SubmitButton/SubmitButton";
+
+// ** Dependencies **
+import axios from "axios";
 
 const Alert = (props) => {
   const {
     setAlertDeleteCategorie,
     targetCategorieID,
-    targetCategorieName,
+    targetCategoryName,
     refreshAllCategories,
     setRefreshAllCategories,
     refreshAllTasks,
@@ -26,23 +31,30 @@ const Alert = (props) => {
   };
 
   return (
-    <div className="Alert">
-      <p>
-        Are your sure you want to delete this category
-        <em> "{targetCategorieName}" </em>
-        and all the task it contains ?
-      </p>
-      <p>If you delete this, you can't recover it.</p>
-      <div className="Alert__btns">
-        <button
-          onClick={() => {
-            deleteCategory();
-            setAlertDeleteCategorie(false);
-          }}
-        >
-          Yes
-        </button>
-        <button onClick={() => setAlertDeleteCategorie(false)}>No</button>
+    <div className="Alert" onClick={() => setAlertDeleteCategorie(false)}>
+      <div className="Alert__container">
+        <p>
+          Are your sure you want to delete this category
+          <em> "{targetCategoryName}" </em>
+          and all the task it contains ?
+        </p>
+        <p>If you delete this, you can't recover it.</p>
+        <div className="Alert__btns">
+          <SubmitButton
+            title={"Yes"}
+            onclick={() => {
+              deleteCategory();
+              setAlertDeleteCategorie(false);
+            }}
+            color={"red"}
+          />
+
+          <SubmitButton
+            title={"No"}
+            onclick={() => setAlertDeleteCategorie(false)}
+            color={"purple"}
+          />
+        </div>
       </div>
     </div>
   );

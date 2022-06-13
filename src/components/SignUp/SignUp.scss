@@ -97,7 +97,7 @@
   }
 
   button {
-    width: 40%;
+    width: 100%;
     position: absolute;
     top: 150%;
     left: 50%;
@@ -105,7 +105,7 @@
 
     @media screen and (max-width: 900px) {
       top: 140%;
-      width: 80%;
+      width: 100%;
     }
   }
 

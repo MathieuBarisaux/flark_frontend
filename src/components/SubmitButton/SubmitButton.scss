@@ -1,28 +1,48 @@
 @use "/src/variables";
 
-@keyframes neonEffect {
+@keyframes neonEffectPurple {
   0% {
-    box-shadow: 0 3px 6px rgba(95, 44, 246, 0.5);
+    box-shadow: 0 2px 4px rgba(95, 44, 246, 0.4);
   }
   50% {
-    box-shadow: 0 5px 10px rgba(95, 44, 246, 0.5);
+    box-shadow: 0 4px 8px rgba(95, 44, 246, 0.4);
   }
   100% {
-    box-shadow: 0 3px 6px rgba(95, 44, 246, 0.5);
+    box-shadow: 0 2px 4px rgba(95, 44, 246, 0.4);
   }
 }
 
-button {
+@keyframes neonEffectRed {
+  0% {
+    box-shadow: 0 2px 4px rgba(247, 73, 70, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 8px rgba(247, 73, 70, 0.4);
+  }
+  100% {
+    box-shadow: 0 2px 4px rgba(247, 73, 70, 0.4);
+  }
+}
+
+.SubmitButton {
   margin-top: 2rem;
   width: fit-content;
   border: none;
-  background-color: variables.$focus_color;
+
   color: #fff;
   padding: 1rem;
   font-weight: bold;
   font-size: 1rem;
   border-radius: 30px;
-  box-shadow: 0 3px 6px rgba(95, 44, 246, 0.5);
   cursor: pointer;
-  animation: neonEffect 2s infinite;
+
+  &--purple {
+    background-color: variables.$focus_color;
+    animation: neonEffectPurple 2s infinite;
+  }
+
+  &--red {
+    background-color: #f74946;
+    animation: neonEffectRed 2s infinite;
+  }
 }

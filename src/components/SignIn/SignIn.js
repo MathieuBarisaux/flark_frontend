@@ -17,6 +17,7 @@ const SignIn = (props) => {
 
   const navigate = useNavigate();
 
+  // States form
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -64,13 +65,15 @@ const SignIn = (props) => {
         value={email}
         setValue={setEmail}
       />
+
       <InputText
         type={"password"}
         placeholder={"Password"}
         value={password}
         setValue={setPassword}
       />
-      <SubmitButton title={"Connect"} />
+
+      <SubmitButton title={"Connect"} color={"purple"} />
       {errorMessage && <p>{errorMessage}</p>}
 
       <Link to={"/signup"}>
