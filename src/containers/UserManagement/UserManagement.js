@@ -29,26 +29,9 @@ const UserManagement = (props) => {
       <div className="UserManagement__left">
         <h2>{type === "signup" ? "Sign up" : "Sign in"}</h2>
 
-        <div>
-          <img src={robot} alt="Blocknote 3D" />
-          <p>Keep calm & priorise your task... easly.</p>
-        </div>
+        <img src={robot} alt="Robot 3D" />
 
-        <Link to={type === "signup" ? "/signin" : "/signup"}>
-          <div className="UserManagement__left__link">
-            {type === "signup" ? (
-              <p>
-                Have an account ? <strong>Login</strong>
-              </p>
-            ) : (
-              <p>
-                Don't have an account ? <strong>Signup</strong>
-              </p>
-            )}
-
-            <p></p>
-          </div>
-        </Link>
+        <p>Keep calm & priorise your task... easly.</p>
       </div>
 
       <div className="UserManagement__right">
@@ -64,6 +47,8 @@ const UserManagement = (props) => {
         ) : (
           <SignIn tokenChange={tokenChange} setTokenChange={setTokenChange} />
         )}
+
+        <p className="UserManagement__copyright">© Flark 2022</p>
       </div>
     </div>
   );

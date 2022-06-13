@@ -10,6 +10,7 @@ import InputText from "../InputText/InputText";
 // ** Dependancies **
 import axios from "axios";
 import Cookie from "js-cookie";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = (props) => {
   const { tokenChange, setTokenChange } = props;
@@ -68,6 +69,11 @@ const SignUp = (props) => {
 
   return (
     <div className="SignUp">
+      <div className="SignUp__welcome">
+        <h2>Welcome</h2>
+        <h3>Please enter your informations to create your account</h3>
+      </div>
+
       <form onSubmit={handleSubmit}>
         <div className="SignUp__inputs">
           {step === 0 && (
@@ -136,6 +142,12 @@ const SignUp = (props) => {
             <p className="SignUp__error">Error : {errorMessage}</p>
           )}
         </div>
+
+        <Link to={"/signin"}>
+          <p className="SignUp__link">
+            Have an account ? <strong>Login</strong>
+          </p>
+        </Link>
       </form>
     </div>
   );

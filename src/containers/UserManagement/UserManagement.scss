@@ -7,6 +7,12 @@
   padding: 2rem;
   display: flex;
 
+  @media screen and (max-width: 900px) {
+    padding: 0;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
   &__left {
     box-sizing: border-box;
     padding: 2rem;
@@ -18,67 +24,27 @@
     background: linear-gradient(145deg, #662fff, #5628dd);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    position: relative;
+    justify-content: space-around;
     color: #fff;
+
+    @media screen and (max-width: 900px) {
+      display: none;
+    }
 
     h2 {
       font-weight: bold;
       font-size: 3rem;
     }
 
-    > img {
-      align-self: center;
-      margin: auto;
-      position: absolute;
-    }
-
     p {
       text-align: center;
       color: #fff;
+      font-size: 2rem;
     }
 
-    &__logo {
-      display: flex;
-      color: #fff;
-      font-size: 3rem;
-
-      i {
-        margin-right: 1rem;
-      }
-    }
-
-    > div:nth-child(2) {
-      img {
-        width: 100%;
-        margin: auto;
-      }
-
-      p {
-        text-align: center;
-        color: #fff;
-        font-size: 2rem;
-      }
-    }
-
-    &__link {
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(10.5px);
-      -webkit-backdrop-filter: blur(10.5px);
-      border: 1px solid rgba(255, 255, 255, 0.19);
-      border-radius: 10px;
-      padding: 1rem 2rem;
-      width: 70%;
-      border-radius: 25px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      cursor: pointer;
-
-      p:nth-child(2) {
-        font-weight: bold;
-      }
+    img {
+      width: 100%;
     }
   }
 
@@ -89,7 +55,16 @@
     background-color: variables.$overlay_background;
     border-radius: 0 25px 25px 0;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
-    padding: 15% 15%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      border-radius: initial;
+      padding: 2rem;
+    }
 
     &__logo {
       display: flex;
@@ -107,6 +82,7 @@
         align-items: center;
         justify-content: center;
         color: #fff;
+        background-color: #662fff;
       }
 
       p {
@@ -117,12 +93,19 @@
     .SignUp,
     .SignIn {
       height: 60%;
+      width: 80%;
       display: flex;
       align-items: center;
 
-      h2 {
-        font-size: 2rem;
+      @media screen and (max-width: 900px) {
+        width: 100%;
       }
     }
+  }
+
+  &__copyright {
+    color: variables.$attenuated_color;
+    font-size: 0.7rem;
+    align-self: flex-end;
   }
 }

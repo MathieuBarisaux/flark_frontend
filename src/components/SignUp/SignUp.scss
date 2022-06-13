@@ -7,7 +7,7 @@
   }
   100% {
     opacity: 1;
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
 }
 
@@ -32,11 +32,33 @@
 }
 
 .SignUp {
-  margin: auto;
+  margin-right: 1rem;
+
+  &__welcome {
+    width: 90%;
+    position: absolute;
+    top: 25%;
+    word-wrap: break-word;
+
+    h2 {
+      align-self: flex-start;
+      font-size: 3rem;
+    }
+
+    h3 {
+      align-self: flex-start;
+      margin: 1rem 0;
+      font-weight: normal;
+      color: variables.$attenuated_color;
+    }
+  }
 
   &__inputs {
-    margin-top: 3rem;
     position: relative;
+
+    @media screen and (max-width: 900px) {
+      margin-top: 2rem;
+    }
 
     p {
       font-size: 1.5rem;
@@ -80,6 +102,11 @@
     top: 150%;
     left: 50%;
     transform: translate(-50%, 0%);
+
+    @media screen and (max-width: 900px) {
+      top: 140%;
+      width: 80%;
+    }
   }
 
   &__error {
@@ -92,5 +119,19 @@
     transform: translate(-50%, 0%);
     font-size: 1.2rem !important;
     animation: openError 0.4s !important;
+  }
+
+  &__link {
+    position: absolute;
+    bottom: 5rem;
+    color: variables.$attenuated_color;
+
+    @media screen and (max-width: 900px) {
+      bottom: 2rem;
+    }
+
+    strong {
+      color: variables.$focus_color;
+    }
   }
 }

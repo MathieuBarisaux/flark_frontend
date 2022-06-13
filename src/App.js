@@ -2,6 +2,7 @@ import "./App.scss";
 
 // ** Dependancies **
 import Cookie from "js-cookie";
+import axios from "axios";
 
 // ** Hooks **
 import { useEffect, useState } from "react";
@@ -34,10 +35,30 @@ function App() {
 
     if (checkCookieUserId) {
       setUserId(checkCookieUserId);
-    } else {
-      setBearerToken(null);
     }
   }, [tokenChange]);
+
+  const [taskFormOpen, setTaskFormOpen] = useState(false);
+
+  const [allCategories, setAllCategories] = useState([]);
+  const [allCategoriesLoading, setAllCategoriesLoading] = useState(false);
+
+  const [refreshAllCategories, setRefreshAllCategories] = useState(false);
+
+  /* Call to server to access all categories */
+  //! CHANGE BACK FOR USER !!!!!
+  useEffect(() => {
+    const callServerForAllCategories = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/category/read");
+        setAllCategories(response.data);
+        setAllCategoriesLoading(true);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+    callServerForAllCategories();
+  }, [refreshAllCategories]);
 
   return (
     <div className="App">
@@ -48,7 +69,11 @@ function App() {
           <Route
             path="/"
             element={
-              <Dashboard bearerToken={bearerToken} tokenChange={tokenChange} />
+              <Dashboard
+                bearerToken={bearerToken}
+                tokenChange={tokenChange}
+                allCategories={allCategories}
+              />
             }
           />
 

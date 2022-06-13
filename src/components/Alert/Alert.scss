@@ -1,0 +1,60 @@
+@use "/src/variables";
+
+.Alert {
+  position: absolute;
+  width: 40%;
+  height: fit-content;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: variables.$overlay_background;
+  box-shadow: 0 5px 30px rgb(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  > i {
+    position: absolute;
+    font-size: 1.5rem;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    &:nth-child(2) {
+      font-weight: normal;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: variables.$attenuated_color;
+    }
+  }
+
+  &__btns {
+    margin-top: 2rem;
+    align-self: flex-end;
+
+    button {
+      border: none;
+      font-size: 1.1rem;
+      margin: 0 1rem;
+      color: #fff;
+      padding: 0.3rem 2rem;
+      border-radius: 15px;
+      cursor: pointer;
+
+      &:first-child {
+        background-color: #f74946;
+        box-shadow: 0px 4px 8px rgba(247, 73, 70, 0.2);
+      }
+
+      &:last-child {
+        color: variables.$base_color;
+      }
+    }
+  }
+}

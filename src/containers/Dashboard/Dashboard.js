@@ -2,6 +2,7 @@ import "./Dashboard.scss";
 
 // ** Components **
 import LoadScreen from "../../components/LoadScreen/LoadScreen";
+import Categories from "../../components/Categories/Categories";
 
 // ** Dependancies **
 import { useNavigate } from "react-router-dom";
@@ -10,11 +11,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Dashboard = (props) => {
-  const { bearerToken, tokenChange } = props;
+  const { bearerToken, tokenChange, allCategories } = props;
 
   const naviguate = useNavigate();
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Redirection if token
   useEffect(() => {
@@ -26,7 +27,11 @@ const Dashboard = (props) => {
 
   return (
     <div className="Dashboard">
-      {isLoading ? <LoadScreen /> : <div>lol</div>}
+      {isLoading ? (
+        <LoadScreen />
+      ) : (
+        <Categories allCategories={allCategories} />
+      )}
     </div>
   );
 };

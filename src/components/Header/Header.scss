@@ -15,6 +15,10 @@ header {
   color: variables.$attenuated_color;
   transition-duration: 0.4s;
 
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+
   &:hover {
     .Header__cross {
       opacity: 1;
@@ -139,5 +143,23 @@ nav {
     right: 50%;
     transform: rotate(180deg) translate(-50%);
     opacity: 1;
+  }
+}
+
+// Mobile header
+
+.MobileHeader {
+  display: none;
+
+  @media screen and (max-width: 900px) {
+    display: block;
+    position: fixed;
+    font-size: 2rem;
+    margin-top: 2rem;
+    padding: 1rem;
+
+    > i {
+      color: variables.$attenuated_color;
+    }
   }
 }

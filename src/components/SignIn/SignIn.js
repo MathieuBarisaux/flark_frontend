@@ -2,7 +2,7 @@ import "./SignIn.scss";
 
 // ** Hooks **
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // ** Dependancies **
 import axios from "axios";
@@ -21,7 +21,8 @@ const SignIn = (props) => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = async (event) => {
+  // SignIn function
+  const handleSubmitForSigIn = async (event) => {
     event.preventDefault();
     setErrorMessage("");
 
@@ -39,7 +40,7 @@ const SignIn = (props) => {
 
         if (response.status === 200) {
           Cookie.set("token", response.data.token, { expires: 360 });
-          Cookie.set("userId", response.data.id);
+          Cookie.set("userId", response.data.id, { expires: 360 });
 
           setTokenChange(!tokenChange);
           navigate("/");
@@ -54,7 +55,9 @@ const SignIn = (props) => {
   };
 
   return (
-    <form className="SignIn" onSubmit={handleSubmit}>
+    <form className="SignIn" onSubmit={handleSubmitForSigIn}>
+      <h2>Welcome back</h2>
+      <h3>Please enter your informations</h3>
       <InputText
         type={"email"}
         placeholder={"Your email"}
@@ -69,6 +72,12 @@ const SignIn = (props) => {
       />
       <SubmitButton title={"Connect"} />
       {errorMessage && <p>{errorMessage}</p>}
+
+      <Link to={"/signup"}>
+        <p className="SignIn__link">
+          Don't have an account ? <strong>Sign up</strong>
+        </p>
+      </Link>
     </form>
   );
 };
