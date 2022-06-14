@@ -1,0 +1,137 @@
+@use "/src/variables";
+
+.AllTasks {
+  box-sizing: border-box;
+  padding: 0 2rem;
+  padding-top: 4rem;
+  max-height: 100vh;
+  width: 100%;
+  padding-top: 7rem;
+  overflow-y: scroll;
+
+  @media screen and (max-width: 900px) {
+    overflow-y: initial;
+    padding: 0;
+    padding-top: 6.5rem;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__infos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: variables.$overlay_background;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+
+    @media screen and (max-width: 900px) {
+      background-color: transparent;
+      padding: 0.5rem 0;
+      padding-left: 1rem;
+      border-radius: 0;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    > div {
+      @media screen and (max-width: 900px) {
+        padding: 1rem;
+        background-color: variables.$overlay_background;
+        border-radius: 15px;
+        width: 6rem;
+        height: 6rem;
+        flex-shrink: 0;
+        margin-right: 1rem;
+      }
+
+      p:first-child {
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+
+      p:nth-child(2) {
+        color: variables.$attenuated_color;
+        display: flex;
+        align-items: center;
+
+        @media screen and (max-width: 900px) {
+          font-size: 0.8rem;
+        }
+
+        i {
+          margin-left: 0.5rem;
+          font-size: 0.5rem;
+        }
+      }
+    }
+
+    &--border {
+      width: 2px;
+      height: 2.5rem;
+      background-color: #e2daf0;
+
+      @media screen and (max-width: 900px) {
+        display: none;
+      }
+    }
+  }
+
+  &__title {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    div {
+      display: flex;
+      align-items: flex-end;
+      cursor: pointer;
+
+      p {
+        margin-left: 1rem;
+        color: variables.$attenuated_color;
+      }
+
+      > div {
+        align-items: center;
+        justify-content: center;
+        background-color: variables.$focus_color;
+        color: #fff;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+
+        > i {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0rem;
+
+    @media screen and (max-width: 900px) {
+      padding: 0 1rem;
+    }
+
+    > div {
+      padding: 1rem;
+    }
+  }
+}

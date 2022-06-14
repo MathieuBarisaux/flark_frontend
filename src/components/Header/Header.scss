@@ -76,6 +76,7 @@ nav {
   display: flex;
   align-items: center;
   cursor: pointer;
+  color: variables.$attenuated_color;
 
   p {
     margin-left: 1rem;
@@ -152,11 +153,13 @@ nav {
   display: none;
 
   @media screen and (max-width: 900px) {
-    display: block;
-    position: fixed;
+    box-sizing: border-box;
+    display: flex;
+    position: absolute;
     font-size: 1.8rem;
-    margin-top: 2rem;
-    padding: 1rem;
+    padding: 3rem 0rem 0rem 1rem;
+    background-color: variables.$base_background;
+    width: 100%;
 
     > i {
       color: variables.$attenuated_color;

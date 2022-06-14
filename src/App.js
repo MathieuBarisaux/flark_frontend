@@ -13,10 +13,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // ** Components **
 import Header from "./components/Header/Header";
 import Panel from "./components/Panel/Panel";
+import TaskForm from "./components/TaskForm/TaskForm";
 
 // ** Containers **
 import UserManagement from "./containers/UserManagement/UserManagement";
 import Dashboard from "./containers/Dashboard/Dashboard";
+import AllTasks from "./containers/AllTasks/AllTasks";
 
 function App() {
   const [tokenChange, setTokenChange] = useState(false);
@@ -31,8 +33,6 @@ function App() {
       setBearerToken(null);
     }
   }, [tokenChange]);
-
-  const [taskFormOpen, setTaskFormOpen] = useState(false);
 
   const [allCategories, setAllCategories] = useState([]);
   const [allCategoriesLoading, setAllCategoriesLoading] = useState(false);
@@ -57,6 +57,42 @@ function App() {
     callServerForAllCategories();
   }, [refreshAllCategories]);
 
+  // ** TASKS GESTION **
+  const [allTasks, setAllStasks] = useState("");
+  const [refreshAllTasks, setRefreshAllTasks] = useState(false);
+
+  const [taskFormOpen, setTaskFormOpen] = useState(false);
+
+  useEffect(() => {
+    const callServerForAllTasks = async () => {
+      try {
+        const responses = await axios.get("http://localhost:3001/todo/read");
+        setAllStasks(responses.data);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+    callServerForAllTasks();
+  }, [refreshAllTasks]);
+
+  let urgentTasks = [];
+  let importantTasks = [];
+  let urgentImportantTasks = [];
+  let otherTasks = [];
+  for (let i = 0; i < allTasks.length; i++) {
+    const actualTask = allTasks[i];
+
+    if (actualTask.urgent === true && actualTask.important === true) {
+      urgentImportantTasks.push(actualTask);
+    } else if (actualTask.urgent === true && actualTask.important === false) {
+      urgentTasks.push(actualTask);
+    } else if (actualTask.urgent === false && actualTask.important === true) {
+      importantTasks.push(actualTask);
+    } else {
+      otherTasks.push(actualTask);
+    }
+  }
+
   return (
     <div className="App">
       <Router>
@@ -73,6 +109,23 @@ function App() {
                 refreshAllCategories={refreshAllCategories}
                 setRefreshAllCategories={setRefreshAllCategories}
                 allCategoriesLoading={allCategoriesLoading}
+              />
+            }
+          />
+
+          <Route
+            path="/allTasks"
+            element={
+              <AllTasks
+                urgentTasks={urgentTasks}
+                urgentImportantTasks={urgentImportantTasks}
+                importantTasks={importantTasks}
+                otherTasks={otherTasks}
+                refreshAllCategories={refreshAllCategories}
+                setRefreshAllCategories={setRefreshAllCategories}
+                refreshAllTasks={refreshAllTasks}
+                setRefreshAllTasks={setRefreshAllTasks}
+                setTaskFormOpen={setTaskFormOpen}
               />
             }
           />
@@ -100,6 +153,16 @@ function App() {
             }
           />
         </Routes>
+
+        {/* Set modales */}
+        {taskFormOpen && (
+          <TaskForm
+            setTaskFormOpen={setTaskFormOpen}
+            allCategories={allCategories}
+          />
+        )}
+
+        {/* Set panel */}
 
         {bearerToken && (
           <Panel tokenChange={tokenChange} setTokenChange={setTokenChange} />
