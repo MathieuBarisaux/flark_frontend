@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // ** Components **
 import Header from "./components/Header/Header";
+import HeaderMobile from "./components/HeaderMobile/HeaderMobile";
 import Panel from "./components/Panel/Panel";
 import TaskForm from "./components/TaskForm/TaskForm";
 
@@ -96,7 +97,11 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {bearerToken && <Header />}
+        {bearerToken && (
+          <>
+            <Header /> <HeaderMobile />
+          </>
+        )}
 
         <Routes>
           <Route
@@ -109,6 +114,7 @@ function App() {
                 refreshAllCategories={refreshAllCategories}
                 setRefreshAllCategories={setRefreshAllCategories}
                 allCategoriesLoading={allCategoriesLoading}
+                setTaskFormOpen={setTaskFormOpen}
               />
             }
           />

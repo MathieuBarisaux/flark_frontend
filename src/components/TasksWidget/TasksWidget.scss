@@ -10,6 +10,7 @@
   border-radius: 20px;
   position: relative;
   background-color: variables.$overlay_background;
+  box-shadow: variables.$base_shadow;
 
   @media screen and (max-width: 900px) {
     flex-direction: column;

@@ -1,0 +1,22 @@
+@use "/src/variables";
+
+.NewTaskButton {
+  position: absolute;
+  bottom: 3rem;
+  right: 2rem;
+  width: 70px;
+  height: 70px;
+  background-color: variables.$focus_color;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: changeSizeNewTask 5s infinite;
+  cursor: pointer;
+
+  i {
+    font-size: 2rem;
+    color: variables.$overlay_background;
+    animation: rotateIconNewTask 5s infinite;
+  }
+}

@@ -1,0 +1,102 @@
+@use "../../variables";
+
+@keyframes openMobileHeader {
+  0% {
+    left: -100vh;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+.MobileHeader {
+  display: none;
+
+  @media screen and (max-width: 900px) {
+    box-sizing: border-box;
+    display: flex;
+    position: absolute;
+    font-size: 1.8rem;
+    padding: 3rem 0rem 0rem 1rem;
+    background-color: variables.$base_background;
+    width: 100%;
+    z-index: 1;
+
+    > i {
+      color: variables.$attenuated_color;
+    }
+  }
+
+  &__nav {
+    box-sizing: border-box;
+    background-color: variables.$overlay_background;
+    box-shadow: 6px 0px 30px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    width: 80%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    padding: 2rem;
+    border-radius: 0 30px 30px 0;
+    display: flex;
+    flex-direction: column;
+    animation: openMobileHeader 0.3s;
+    justify-content: space-between;
+
+    &__top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    &__picture {
+      height: 93px;
+      width: 93px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid variables.$focus_color;
+      border-radius: 50%;
+
+      img {
+        height: 88px;
+        width: 88px;
+        border-radius: 50%;
+      }
+    }
+
+    &__close {
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: variables.$base_border;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    nav {
+      margin-top: 0rem;
+
+      p {
+        font-size: 1.5rem;
+      }
+
+      i {
+        font-size: 1.4rem;
+      }
+
+      .Header__NavElement {
+        margin-top: 2.5rem;
+      }
+    }
+
+    .Header__logo {
+      border-top: 2px solid variables.$focus_color;
+      padding-top: 2rem;
+    }
+  }
+}

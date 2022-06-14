@@ -10,6 +10,7 @@
   padding: 0rem 2rem;
   display: flex;
   flex-direction: column;
+  box-shadow: variables.$base_shadow;
 
   @media screen and (max-width: 900px) {
     display: none;
@@ -21,6 +22,7 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 3rem;
+  margin-bottom: 1.5rem;
 
   .Panel__userInfos--left {
     display: flex;

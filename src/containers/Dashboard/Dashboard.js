@@ -3,6 +3,7 @@ import "./Dashboard.scss";
 // ** Components **
 import LoadScreen from "../../components/LoadScreen/LoadScreen";
 import Categories from "../../components/Categories/Categories";
+import NewTaskButton from "../../components/NewTaskButton/NewTaskButton";
 
 // ** Dependancies **
 import { useNavigate } from "react-router-dom";
@@ -18,6 +19,7 @@ const Dashboard = (props) => {
     refreshAllCategories,
     setRefreshAllCategories,
     allCategoriesLoading,
+    setTaskFormOpen,
   } = props;
 
   const naviguate = useNavigate();
@@ -42,6 +44,8 @@ const Dashboard = (props) => {
             setRefreshAllCategories={setRefreshAllCategories}
             refreshAllCategories={refreshAllCategories}
           />
+
+          <NewTaskButton setTaskFormOpen={setTaskFormOpen} />
         </>
       )}
     </div>

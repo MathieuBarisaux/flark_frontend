@@ -14,6 +14,7 @@ header {
   font-size: 1.3rem;
   color: variables.$attenuated_color;
   transition-duration: 0.4s;
+  box-shadow: variables.$base_shadow;
 
   @media screen and (max-width: 900px) {
     display: none;
@@ -144,25 +145,5 @@ nav {
     right: 50%;
     transform: rotate(180deg) translate(-50%);
     opacity: 1;
-  }
-}
-
-// Mobile header
-
-.MobileHeader {
-  display: none;
-
-  @media screen and (max-width: 900px) {
-    box-sizing: border-box;
-    display: flex;
-    position: absolute;
-    font-size: 1.8rem;
-    padding: 3rem 0rem 0rem 1rem;
-    background-color: variables.$base_background;
-    width: 100%;
-
-    > i {
-      color: variables.$attenuated_color;
-    }
   }
 }
