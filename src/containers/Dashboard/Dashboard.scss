@@ -9,6 +9,11 @@
   position: relative;
   overflow-y: hidden;
 
+  @media screen and (max-width: 900px) {
+    overflow-y: initial;
+    margin-bottom: 2rem;
+  }
+
   > h2 {
     display: none;
 
@@ -24,5 +29,10 @@
     padding: 0 2rem;
     display: flex;
     height: 52%;
+
+    @media screen and (max-width: 900px) {
+      display: block;
+      padding: 0 1rem;
+    }
   }
 }

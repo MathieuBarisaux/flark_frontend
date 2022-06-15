@@ -51,6 +51,8 @@ const Dashboard = (props) => {
             allCategories={allCategories}
             setRefreshAllCategories={setRefreshAllCategories}
             refreshAllCategories={refreshAllCategories}
+            refreshAllTasks={refreshAllTasks}
+            setRefreshAllTasks={setRefreshAllTasks}
           />
 
           <div className="Dashboard__bottom">

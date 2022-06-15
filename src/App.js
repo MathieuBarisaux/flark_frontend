@@ -172,6 +172,10 @@ function App() {
           <TaskForm
             setTaskFormOpen={setTaskFormOpen}
             allCategories={allCategories}
+            refreshAllTasks={refreshAllTasks}
+            setRefreshAllTasks={setRefreshAllTasks}
+            refreshAllCategories={refreshAllCategories}
+            setRefreshAllCategories={setRefreshAllCategories}
           />
         )}
 

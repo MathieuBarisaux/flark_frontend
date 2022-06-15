@@ -10,9 +10,9 @@ const Task = (props) => {
     setRefreshAllTasks,
     refreshAllCategories,
     setRefreshAllCategories,
+    onDashboard,
   } = props;
 
-  // Change achivement status
   const changeAchivementStatus = async () => {
     if (item.achivement === false) {
       item.achivement = "true";
@@ -30,11 +30,38 @@ const Task = (props) => {
     setRefreshAllTasks(!refreshAllTasks);
   };
 
-  // Delete task
   const deleteTask = async () => {
     await axios.delete(`http://localhost:3001/todo/delete?todoID=${item._id}`);
     setRefreshAllTasks(!refreshAllTasks);
     setRefreshAllCategories(!refreshAllCategories);
+  };
+
+  const defineTag = () => {
+    if (item.urgent === true && item.important === true) {
+      return (
+        <div className="Task__tag Task__tag--red">
+          <h5>Urgent & important</h5>
+        </div>
+      );
+    } else if (item.urgent === true && item.important === false) {
+      return (
+        <div className="Task__tag Task__tag--orange">
+          <h5>Urgent</h5>
+        </div>
+      );
+    } else if (item.urgent === false && item.important === true) {
+      return (
+        <div className="Task__tag Task__tag--blue">
+          <h5>Important</h5>
+        </div>
+      );
+    } else {
+      return (
+        <div className="Task__tag Task__tag--green">
+          <h5>Other</h5>
+        </div>
+      );
+    }
   };
 
   return (
@@ -62,6 +89,8 @@ const Task = (props) => {
           ></span>
         </p>
       </div>
+
+      {onDashboard && defineTag()}
 
       <div className="Task__tools">
         <i className="fas fa-ellipsis-v"></i>

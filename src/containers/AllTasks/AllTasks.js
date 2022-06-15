@@ -13,8 +13,8 @@ const AllTasks = (props) => {
     importantTasks,
     otherTasks,
     setTaskFormOpen,
-    setRefreshAllTasks,
     refreshAllTasks,
+    setRefreshAllTasks,
     refreshAllCategories,
     setRefreshAllCategories,
   } = props;

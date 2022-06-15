@@ -116,4 +116,42 @@
       background-color: variables.$overlay_background;
     }
   }
+
+  &__tag {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+
+    h5 {
+      font-size: 0.6rem;
+      font-weight: normal;
+      color: #fff;
+      padding: 0.1rem 0.4rem;
+      border-radius: 1rem;
+    }
+
+    &--red {
+      h5 {
+        background-color: #fe452c;
+      }
+    }
+
+    &--orange {
+      h5 {
+        background-color: #ffa128;
+      }
+    }
+
+    &--blue {
+      h5 {
+        background-color: #56d5e8;
+      }
+    }
+
+    &--green {
+      h5 {
+        background-color: #37da80;
+      }
+    }
+  }
 }

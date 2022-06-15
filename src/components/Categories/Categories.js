@@ -51,6 +51,8 @@ const Categories = (props) => {
               setUpdateColor={setUpdateColor}
               setUpdateIcon={setUpdateIcon}
               setAlertDeleteCategorie={setAlertDeleteCategorie}
+              refreshAllTasks={refreshAllTasks}
+              setRefreshAllTasks={setRefreshAllTasks}
             />
           );
         })}

@@ -16,6 +16,8 @@ const TaskForm = (props) => {
     allCategories,
     refreshAllTasks,
     setRefreshAllTasks,
+    refreshAllCategories,
+    setRefreshAllCategories,
   } = props;
 
   const [TaskContent, setTaskContent] = useState("");
@@ -54,10 +56,10 @@ const TaskForm = (props) => {
       categories: categorySelect,
     };
 
-    console.log(newTask);
     await axios.post("http://localhost:3001/todo/create", newTask);
 
     setRefreshAllTasks(!refreshAllTasks);
+    setRefreshAllCategories(!setRefreshAllCategories);
     setTaskFormOpen(false);
   };
 

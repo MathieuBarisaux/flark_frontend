@@ -53,6 +53,11 @@
   animation: changeSizeNewTask 5s infinite;
   cursor: pointer;
 
+  @media screen and (max-width: 900px) {
+    position: fixed;
+    bottom: 2rem;
+  }
+
   i {
     font-size: 2rem;
     color: variables.$overlay_background;

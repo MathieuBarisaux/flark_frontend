@@ -9,8 +9,23 @@
   padding: 1.5rem;
   box-shadow: variables.$base_shadow;
 
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-right: 0;
+    padding-right: 0rem;
+  }
+
   h4 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
+  }
+
+  &__container {
+    overflow-y: scroll;
+    height: 88%;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
