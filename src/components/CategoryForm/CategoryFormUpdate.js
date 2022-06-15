@@ -20,6 +20,7 @@ const CategoryFormUpdate = (props) => {
     updateColor,
     setUpdateColor,
     updateId,
+    bearerToken,
   } = props;
 
   /********************* Functions ***********************/
@@ -34,7 +35,11 @@ const CategoryFormUpdate = (props) => {
       category_id: updateId,
     };
 
-    await axios.put("http://localhost:3001/category/update", toUpCategory);
+    await axios.put("http://localhost:3001/category/update", toUpCategory, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    });
 
     setOpenCategoryFormUpdate(false);
     setRefreshAllCategories(!refreshAllCategories);

@@ -53,6 +53,7 @@ const Dashboard = (props) => {
             refreshAllCategories={refreshAllCategories}
             refreshAllTasks={refreshAllTasks}
             setRefreshAllTasks={setRefreshAllTasks}
+            bearerToken={bearerToken}
           />
 
           <div className="Dashboard__bottom">
@@ -63,6 +64,7 @@ const Dashboard = (props) => {
                 setRefreshAllTasks={setRefreshAllTasks}
                 refreshAllCategories={refreshAllCategories}
                 setRefreshAllCategories={setRefreshAllCategories}
+                bearerToken={bearerToken}
               />
             )}
 

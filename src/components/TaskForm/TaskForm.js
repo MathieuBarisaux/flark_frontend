@@ -18,6 +18,7 @@ const TaskForm = (props) => {
     setRefreshAllTasks,
     refreshAllCategories,
     setRefreshAllCategories,
+    bearerToken,
   } = props;
 
   const [TaskContent, setTaskContent] = useState("");
@@ -56,10 +57,14 @@ const TaskForm = (props) => {
       categories: categorySelect,
     };
 
-    await axios.post("http://localhost:3001/todo/create", newTask);
+    await axios.post("http://localhost:3001/todo/create", newTask, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    });
 
     setRefreshAllTasks(!refreshAllTasks);
-    setRefreshAllCategories(!setRefreshAllCategories);
+    setRefreshAllCategories(!refreshAllCategories);
     setTaskFormOpen(false);
   };
 

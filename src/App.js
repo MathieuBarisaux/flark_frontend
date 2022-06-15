@@ -7,7 +7,7 @@ import axios from "axios";
 // ** Hooks **
 import { useEffect, useState } from "react";
 
-// ** Dependancies **
+// ** Dependencies **
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // ** Components **
@@ -41,21 +41,29 @@ function App() {
   const [refreshAllCategories, setRefreshAllCategories] = useState(false);
 
   /* Call to server to access all categories */
-  //! CHANGE BACK FOR USER !!!!!
   useEffect(() => {
-    const callServerForAllCategories = async () => {
-      try {
-        setAllCategoriesLoading(true);
-        const response = await axios.get("http://localhost:3001/category/read");
+    if (bearerToken) {
+      const callServerForAllCategories = async () => {
+        try {
+          setAllCategoriesLoading(true);
+          const response = await axios.get(
+            "http://localhost:3001/category/read",
+            {
+              headers: {
+                Authorization: `Bearer ${bearerToken}`,
+              },
+            }
+          );
 
-        setAllCategories(response.data);
-        setAllCategoriesLoading(false);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-    callServerForAllCategories();
-  }, [refreshAllCategories]);
+          setAllCategories(response.data);
+          setAllCategoriesLoading(false);
+        } catch (error) {
+          console.log(error.response);
+        }
+      };
+      callServerForAllCategories();
+    }
+  }, [bearerToken, refreshAllCategories]);
 
   // ** TASKS GESTION **
   const [allTasks, setAllStasks] = useState("");
@@ -65,19 +73,25 @@ function App() {
   const [allTasksLoading, setAllTasksLoading] = useState(true);
 
   useEffect(() => {
-    const callServerForAllTasks = async () => {
-      try {
-        setAllTasksLoading(true);
-        const responses = await axios.get("http://localhost:3001/todo/read");
-        setAllStasks(responses.data);
+    if (bearerToken) {
+      const callServerForAllTasks = async () => {
+        try {
+          setAllTasksLoading(true);
+          const responses = await axios.get("http://localhost:3001/todo/read", {
+            headers: {
+              Authorization: `Bearer ${bearerToken}`,
+            },
+          });
+          setAllStasks(responses.data);
 
-        setAllTasksLoading(false);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-    callServerForAllTasks();
-  }, [refreshAllTasks]);
+          setAllTasksLoading(false);
+        } catch (error) {
+          console.log(error.response);
+        }
+      };
+      callServerForAllTasks();
+    }
+  }, [bearerToken, refreshAllTasks]);
 
   let urgentTasks = [];
   let importantTasks = [];
@@ -176,6 +190,7 @@ function App() {
             setRefreshAllTasks={setRefreshAllTasks}
             refreshAllCategories={refreshAllCategories}
             setRefreshAllCategories={setRefreshAllCategories}
+            bearerToken={bearerToken}
           />
         )}
 

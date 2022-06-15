@@ -12,8 +12,12 @@ import SubmitButton from "../SubmitButton/SubmitButton";
 import IconPicker from "../IconPicker/IconPicker";
 
 const CategoryForm = (props) => {
-  const { setOpenCategoryForm, refreshAllCategories, setRefreshAllCategories } =
-    props;
+  const {
+    setOpenCategoryForm,
+    refreshAllCategories,
+    setRefreshAllCategories,
+    bearerToken,
+  } = props;
 
   // States for form
   const [categoryName, setCategoryName] = useState("");
@@ -31,7 +35,11 @@ const CategoryForm = (props) => {
       category_color: categoryColor,
       category_icon: categoryIcon,
     };
-    await axios.post("http://localhost:3001/category/create", newCategory);
+    await axios.post("http://localhost:3001/category/create", newCategory, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    });
 
     setOpenCategoryForm(false);
     setRefreshAllCategories(!refreshAllCategories);

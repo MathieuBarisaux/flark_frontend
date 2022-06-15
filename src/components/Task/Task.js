@@ -11,6 +11,7 @@ const Task = (props) => {
     refreshAllCategories,
     setRefreshAllCategories,
     onDashboard,
+    bearerToken,
   } = props;
 
   const changeAchivementStatus = async () => {
@@ -25,13 +26,21 @@ const Task = (props) => {
       achivement: item.achivement,
     };
 
-    await axios.put("http://localhost:3001/todo/update", updateValue);
+    await axios.put("http://localhost:3001/todo/update", updateValue, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    });
 
     setRefreshAllTasks(!refreshAllTasks);
   };
 
   const deleteTask = async () => {
-    await axios.delete(`http://localhost:3001/todo/delete?todoID=${item._id}`);
+    await axios.delete(`http://localhost:3001/todo/delete?todoID=${item._id}`, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    });
     setRefreshAllTasks(!refreshAllTasks);
     setRefreshAllCategories(!refreshAllCategories);
   };

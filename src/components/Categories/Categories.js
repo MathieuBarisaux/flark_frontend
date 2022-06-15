@@ -14,6 +14,7 @@ const Categories = (props) => {
     setRefreshAllCategories,
     refreshAllTasks,
     setRefreshAllTasks,
+    bearerToken,
   } = props;
 
   // ** States Modales **
@@ -70,6 +71,7 @@ const Categories = (props) => {
           setRefreshAllCategories={setRefreshAllCategories}
           refreshAllTasks={refreshAllTasks}
           setRefreshAllTasks={setRefreshAllTasks}
+          bearerToken={bearerToken}
         />
       )}
 
@@ -80,6 +82,7 @@ const Categories = (props) => {
           openCategoryForm={allCategories && allCategories}
           refreshAllCategories={refreshAllCategories}
           setRefreshAllCategories={setRefreshAllCategories}
+          bearerToken={bearerToken}
         />
       )}
 
@@ -96,6 +99,7 @@ const Categories = (props) => {
           setUpdateIcon={setUpdateIcon}
           updateColor={updateColor}
           setUpdateColor={setUpdateColor}
+          bearerToken={bearerToken}
         />
       )}
     </div>
