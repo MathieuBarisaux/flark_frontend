@@ -1,0 +1,44 @@
+@use "/src/variables";
+
+.Note {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #fedc9c;
+  color: #a26c11;
+  border-radius: 5px;
+  box-shadow: variables.$base_shadow;
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    h4 {
+      font-size: 1rem;
+    }
+  }
+
+  &__tools {
+    display: flex;
+    height: fit-content;
+
+    i {
+      cursor: pointer;
+      font-size: 0.9rem;
+
+      &:first-child {
+        margin-right: 0.6rem;
+      }
+    }
+  }
+
+  input {
+    background-color: #f4d18f;
+    border: none;
+    font-size: 1rem;
+    color: #a26c11;
+    margin-top: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

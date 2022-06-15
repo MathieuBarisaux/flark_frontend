@@ -1,0 +1,32 @@
+@use "/src/variables";
+
+.Notes {
+  box-sizing: border-box;
+  width: 30%;
+  border-radius: 20px;
+  background-color: variables.$overlay_background;
+  padding: 1.5rem;
+  box-shadow: variables.$base_shadow;
+
+  h4 {
+    font-size: 1.3rem;
+  }
+
+  &__inputs {
+    display: flex;
+
+    input {
+      margin-top: 0.5rem;
+      background-color: variables.$base_background;
+      font-size: 1rem;
+      border-radius: 30px;
+      padding: 1rem;
+      border: none;
+    }
+  }
+
+  &__container {
+    overflow-y: scroll;
+    height: 80%;
+  }
+}

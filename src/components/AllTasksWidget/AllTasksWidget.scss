@@ -1,0 +1,16 @@
+@use "/src/variables";
+
+.AllTasksWidget {
+  box-sizing: border-box;
+  width: 70%;
+  border-radius: 20px;
+  background-color: variables.$overlay_background;
+  margin-right: 2rem;
+  padding: 1.5rem;
+  box-shadow: variables.$base_shadow;
+
+  h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+}

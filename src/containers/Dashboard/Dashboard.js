@@ -3,6 +3,10 @@ import "./Dashboard.scss";
 // ** Components **
 import LoadScreen from "../../components/LoadScreen/LoadScreen";
 import Categories from "../../components/Categories/Categories";
+
+import AllTasksWidget from "../../components/AllTasksWidget/AllTasksWidget";
+import Notes from "../../components/Notes/Notes";
+
 import NewTaskButton from "../../components/NewTaskButton/NewTaskButton";
 
 // ** Dependancies **
@@ -20,6 +24,10 @@ const Dashboard = (props) => {
     setRefreshAllCategories,
     allCategoriesLoading,
     setTaskFormOpen,
+    allTasks,
+    allTasksLoading,
+    refreshAllTasks,
+    setRefreshAllTasks,
   } = props;
 
   const naviguate = useNavigate();
@@ -44,6 +52,20 @@ const Dashboard = (props) => {
             setRefreshAllCategories={setRefreshAllCategories}
             refreshAllCategories={refreshAllCategories}
           />
+
+          <div className="Dashboard__bottom">
+            {!allTasksLoading && (
+              <AllTasksWidget
+                allTasks={allTasks}
+                refreshAllTasks={refreshAllTasks}
+                setRefreshAllTasks={setRefreshAllTasks}
+                refreshAllCategories={refreshAllCategories}
+                setRefreshAllCategories={setRefreshAllCategories}
+              />
+            )}
+
+            <Notes bearerToken={bearerToken} />
+          </div>
 
           <NewTaskButton setTaskFormOpen={setTaskFormOpen} />
         </>

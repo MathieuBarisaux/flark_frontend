@@ -49,7 +49,6 @@ function App() {
         const response = await axios.get("http://localhost:3001/category/read");
 
         setAllCategories(response.data);
-        setAllCategoriesLoading(true);
         setAllCategoriesLoading(false);
       } catch (error) {
         console.log(error.response);
@@ -63,12 +62,16 @@ function App() {
   const [refreshAllTasks, setRefreshAllTasks] = useState(false);
 
   const [taskFormOpen, setTaskFormOpen] = useState(false);
+  const [allTasksLoading, setAllTasksLoading] = useState(true);
 
   useEffect(() => {
     const callServerForAllTasks = async () => {
       try {
+        setAllTasksLoading(true);
         const responses = await axios.get("http://localhost:3001/todo/read");
         setAllStasks(responses.data);
+
+        setAllTasksLoading(false);
       } catch (error) {
         console.log(error.response);
       }
@@ -115,6 +118,10 @@ function App() {
                 setRefreshAllCategories={setRefreshAllCategories}
                 allCategoriesLoading={allCategoriesLoading}
                 setTaskFormOpen={setTaskFormOpen}
+                allTasks={allTasks}
+                allTasksLoading={allTasksLoading}
+                refreshAllTasks={refreshAllTasks}
+                setRefreshAllTasks={setRefreshAllTasks}
               />
             }
           />

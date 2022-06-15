@@ -4,7 +4,7 @@ import "./AllTasks.scss";
 import { useState } from "react";
 
 // ** Components **
-import AllTasksWidget from "../../components/TasksWidget/TasksWidget";
+import TasksWidget from "../../components/TasksWidget/TasksWidget";
 
 const AllTasks = (props) => {
   const {
@@ -77,7 +77,7 @@ const AllTasks = (props) => {
         </div>
 
         <div className="AllTasks__bottom">
-          <AllTasksWidget
+          <TasksWidget
             refreshAllTasks={refreshAllTasks}
             setRefreshAllTasks={setRefreshAllTasks}
             refreshAllCategories={refreshAllCategories}
@@ -87,7 +87,7 @@ const AllTasks = (props) => {
             labelColor={"#FE452C"}
           />
 
-          <AllTasksWidget
+          <TasksWidget
             refreshAllTasks={refreshAllTasks}
             setRefreshAllTasks={setRefreshAllTasks}
             refreshAllCategories={refreshAllCategories}
@@ -97,7 +97,7 @@ const AllTasks = (props) => {
             labelColor={"#FFA128"}
           />
 
-          <AllTasksWidget
+          <TasksWidget
             refreshAllTasks={refreshAllTasks}
             setRefreshAllTasks={setRefreshAllTasks}
             refreshAllCategories={refreshAllCategories}
@@ -107,7 +107,7 @@ const AllTasks = (props) => {
             labelColor={"#52E1F8"}
           />
 
-          <AllTasksWidget
+          <TasksWidget
             refreshAllTasks={refreshAllTasks}
             setRefreshAllTasks={setRefreshAllTasks}
             refreshAllCategories={refreshAllCategories}

@@ -1,5 +1,44 @@
 @use "/src/variables";
 
+@keyframes changeSizeNewTask {
+  0% {
+    width: 70px;
+    height: 70px;
+    box-shadow: 0px 3px 6px rgba(95, 44, 246, 0.5);
+  }
+  30% {
+    width: 90px;
+    height: 90px;
+    box-shadow: 0 4px 7px rgba(95, 44, 246, 0.5);
+  }
+  40% {
+    width: 70px;
+    height: 70px;
+    box-shadow: 0px 3px 6px rgba(95, 44, 246, 0.5);
+  }
+  100% {
+    width: 70px;
+    height: 70px;
+    box-shadow: 0px 3px 6px rgba(95, 44, 246, 0.5);
+  }
+}
+
+@keyframes rotateIconNewTask {
+  0% {
+    transform: rotate(180deg);
+  }
+  30% {
+    transform: rotate(0deg);
+    font-size: 3rem;
+  }
+  40% {
+    font-size: 2rem;
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 .NewTaskButton {
   position: absolute;
   bottom: 3rem;

@@ -1,0 +1,119 @@
+@use "/src/variables";
+
+.Task {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 0;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  @media screen and (max-width: 900px) {
+    margin-right: 1rem;
+  }
+
+  &:not(:last-child) {
+    border-bottom: variables.$base_border;
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+
+    > div {
+      box-sizing: border-box;
+    }
+
+    > p {
+      font-size: 1.1rem;
+      position: relative;
+
+      span {
+        content: " ";
+        position: absolute;
+        top: 0.8rem;
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: variables.$base_color;
+        transition: 0.4s;
+      }
+    }
+  }
+
+  &__validate {
+    width: 0.9rem;
+    height: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    margin-right: 0.6rem;
+    cursor: pointer;
+    transition: 0.3s;
+    flex-shrink: 0;
+
+    > i {
+      color: #fff;
+      font-size: 0.6rem;
+    }
+  }
+
+  @keyframes isOpen {
+    0% {
+      max-height: 0;
+    }
+    100% {
+      max-height: 600%;
+    }
+  }
+
+  &__tools {
+    position: relative;
+    padding-left: 1rem;
+
+    &:hover {
+      ul {
+        animation: isOpen forwards 0.3s;
+        font-size: 0.8rem;
+      }
+
+      li {
+        padding: 1rem;
+        white-space: nowrap;
+        width: fit-content;
+        cursor: pointer;
+        color: variables.$attenuated_color;
+
+        &:hover {
+          color: variables.$base_color;
+          background-color: variables.$base_background;
+        }
+
+        > i {
+          margin-right: 1rem;
+        }
+      }
+    }
+
+    > i {
+      font-size: 1rem;
+      color: variables.$attenuated_color;
+      cursor: pointer;
+    }
+
+    ul {
+      position: absolute;
+      width: fit-content;
+      top: -0.5rem;
+      left: -5.9rem;
+      max-height: 0;
+      z-index: 2;
+      list-style: none;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      overflow-y: hidden;
+      border-radius: 15px;
+      background-color: variables.$overlay_background;
+    }
+  }
+}
