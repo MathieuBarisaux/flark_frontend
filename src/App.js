@@ -153,6 +153,7 @@ function App() {
                 refreshAllTasks={refreshAllTasks}
                 setRefreshAllTasks={setRefreshAllTasks}
                 setTaskFormOpen={setTaskFormOpen}
+                bearerToken={bearerToken}
               />
             }
           />
@@ -195,7 +196,6 @@ function App() {
         )}
 
         {/* Set panel */}
-
         {bearerToken && (
           <Panel tokenChange={tokenChange} setTokenChange={setTokenChange} />
         )}

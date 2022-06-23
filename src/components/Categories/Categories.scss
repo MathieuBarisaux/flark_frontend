@@ -1,47 +1,59 @@
 @use "/src/variables";
 
-.Categories__newCategory {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
+.Categories {
+  &__newCategory {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
 
-  @media screen and (max-width: 900px) {
-    margin-top: 2rem;
-    font-size: 1.2rem;
-    color: variables.$attenuated_color;
-  }
-}
+    @media screen and (max-width: 900px) {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: variables.$attenuated_color;
+    }
 
-.NewCategory__icon {
-  margin-left: 1rem;
-  border-radius: 50%;
-  background-color: variables.$attenuated_color;
-  color: variables.$base_background;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  width: 35px;
-  height: 35px;
+    &__icon {
+      margin-left: 1rem;
+      border-radius: 50%;
+      background-color: variables.$attenuated_color;
+      color: variables.$base_background;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 35px;
+      height: 35px;
 
-  @media screen and (max-width: 900px) {
-    width: 30px;
-    height: 30px;
-    margin-left: 0rem;
-  }
-}
-
-.Categories__container {
-  display: flex;
-  overflow-x: scroll;
-  padding-left: 2rem;
-
-  @media screen and (max-width: 900px) {
-    padding-left: 1rem;
+      @media screen and (max-width: 900px) {
+        width: 30px;
+        height: 30px;
+        margin-left: 0rem;
+      }
+    }
   }
 
-  &::-webkit-scrollbar {
-    display: none;
+  &__container {
+    display: flex;
+    overflow-x: scroll;
+    padding-left: 2rem;
+
+    @media screen and (max-width: 900px) {
+      padding-left: 1rem;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__empty {
+    height: 190px;
+    padding-bottom: 2.4rem;
+    width: 100%;
+
+    p {
+      color: variables.$attenuated_color;
+    }
   }
 }

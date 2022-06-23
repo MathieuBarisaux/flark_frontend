@@ -33,7 +33,7 @@ const Categories = (props) => {
       <div className="Categories__newCategory">
         <h3 className="container">New category</h3>
         <div
-          className="NewCategory__icon"
+          className="Categories__newCategory__icon"
           onClick={() => setOpenCategoryForm(!openCategoryForm)}
         >
           <i className="fas fa-plus"></i>
@@ -41,22 +41,30 @@ const Categories = (props) => {
       </div>
 
       <div className="Categories__container">
-        {allCategories.map((item) => {
-          return (
-            <Category
-              key={item._id}
-              category={item}
-              setOpenCategoryFormUpdate={setOpenCategoryFormUpdate}
-              setUpdateName={setUpdateName}
-              setUpdateId={setUpdateId}
-              setUpdateColor={setUpdateColor}
-              setUpdateIcon={setUpdateIcon}
-              setAlertDeleteCategorie={setAlertDeleteCategorie}
-              refreshAllTasks={refreshAllTasks}
-              setRefreshAllTasks={setRefreshAllTasks}
-            />
-          );
-        })}
+        {allCategories.length > 0 ? (
+          allCategories.map((item) => {
+            return (
+              <Category
+                key={item._id}
+                category={item}
+                setOpenCategoryFormUpdate={setOpenCategoryFormUpdate}
+                setUpdateName={setUpdateName}
+                setUpdateId={setUpdateId}
+                setUpdateColor={setUpdateColor}
+                setUpdateIcon={setUpdateIcon}
+                setAlertDeleteCategorie={setAlertDeleteCategorie}
+                refreshAllTasks={refreshAllTasks}
+                setRefreshAllTasks={setRefreshAllTasks}
+              />
+            );
+          })
+        ) : (
+          <div className="Categories__empty">
+            <p>
+              Create your first category and manage your tasks even better !
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Modales */}

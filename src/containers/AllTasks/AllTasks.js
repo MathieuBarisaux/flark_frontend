@@ -17,6 +17,7 @@ const AllTasks = (props) => {
     setRefreshAllTasks,
     refreshAllCategories,
     setRefreshAllCategories,
+    bearerToken,
   } = props;
 
   let totalTask =
@@ -85,6 +86,7 @@ const AllTasks = (props) => {
             typeTasks={urgentImportantTasks}
             title={"Urgent & important"}
             labelColor={"#FE452C"}
+            bearerToken={bearerToken}
           />
 
           <TasksWidget
@@ -95,6 +97,7 @@ const AllTasks = (props) => {
             typeTasks={urgentTasks}
             title={"Urgent"}
             labelColor={"#FFA128"}
+            bearerToken={bearerToken}
           />
 
           <TasksWidget
@@ -105,6 +108,7 @@ const AllTasks = (props) => {
             typeTasks={importantTasks}
             title={"Important"}
             labelColor={"#52E1F8"}
+            bearerToken={bearerToken}
           />
 
           <TasksWidget
@@ -115,6 +119,7 @@ const AllTasks = (props) => {
             typeTasks={otherTasks}
             title={"Other"}
             labelColor={"#50E192"}
+            bearerToken={bearerToken}
           />
         </div>
       </div>

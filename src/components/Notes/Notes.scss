@@ -38,4 +38,9 @@
       display: none;
     }
   }
+
+  &__empty {
+    padding-top: 1rem;
+    color: variables.$attenuated_color;
+  }
 }

@@ -15,6 +15,7 @@ const TasksWidget = (props) => {
     typeTasks,
     title,
     labelColor,
+    bearerToken,
   } = props;
 
   return (
@@ -35,6 +36,7 @@ const TasksWidget = (props) => {
               setRefreshAllTasks={setRefreshAllTasks}
               refreshAllCategories={refreshAllCategories}
               setRefreshAllCategories={setRefreshAllCategories}
+              bearerToken={bearerToken}
             />
           );
         })}

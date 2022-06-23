@@ -45,6 +45,7 @@ const Task = (props) => {
     setRefreshAllCategories(!refreshAllCategories);
   };
 
+  // Definie tag of task
   const defineTag = () => {
     if (item.urgent === true && item.important === true) {
       return (
@@ -73,21 +74,34 @@ const Task = (props) => {
     }
   };
 
+  // Define style of validator button on tasks
+  const styleOfValidator = () => {
+    let styleInformations = {};
+
+    if (item.categories && item.achivement) {
+      styleInformations = {
+        backgroundColor: `${item.categories.category_color}`,
+      };
+    } else if (item.categories && !item.achivement) {
+      styleInformations = {
+        border: `2px solid ${item.categories.category_color}`,
+      };
+    } else if (!item.categories && item.achivement) {
+      styleInformations = { backgroundColor: "#2f1856" };
+    } else {
+      styleInformations = { border: `2px solid #2f1856` };
+    }
+
+    return styleInformations;
+  };
+
   return (
     <div className="Task">
       <div>
         <div
           className="Task__validate"
           onClick={changeAchivementStatus}
-          style={
-            item.categories && item.achivement
-              ? {
-                  backgroundColor: `${item.categories.category_color}`,
-                }
-              : item.categories && {
-                  border: `2px solid ${item.categories.category_color}`,
-                }
-          }
+          style={styleOfValidator()}
         >
           {item.achivement && <i className="fas fa-check"></i>}
         </div>

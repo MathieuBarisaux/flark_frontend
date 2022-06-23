@@ -4,7 +4,7 @@ import "./UserManagement.scss";
 import { useNavigate } from "react-router-dom";
 
 // ** Picture **
-import robot from "../../img/Saly-26.svg";
+import robot from "../../assets/img/Saly-26-min.webp";
 
 // ** Components **
 import SignUp from "../../components/SignUp/SignUp";

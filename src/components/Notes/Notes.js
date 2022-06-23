@@ -97,7 +97,7 @@ const Notes = ({ bearerToken }) => {
       </form>
 
       <div className="Notes__container">
-        {allNotes &&
+        {allNotes.length > 0 ? (
           allNotes.map((item, index) => {
             return (
               <Note
@@ -110,7 +110,12 @@ const Notes = ({ bearerToken }) => {
                 setRefreshAllNotes={setRefreshAllNotes}
               />
             );
-          })}
+          })
+        ) : (
+          <div className="Notes__empty">
+            <p>Create your first note !</p>
+          </div>
+        )}
       </div>
     </div>
   );

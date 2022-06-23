@@ -25,7 +25,9 @@ const TaskForm = (props) => {
   const [deallineTask, setDeadlineTask] = useState("");
   const [urgentTask, setUrgentTask] = useState(false);
   const [importantTask, setImportantTask] = useState(false);
-  const [categorySelect, setCategorySelect] = useState(allCategories[0]._id);
+  const [categorySelect, setCategorySelect] = useState(
+    allCategories.length > 0 ? allCategories[0]._id : "uncategorized"
+  );
 
   const catchChangeCategory = (event) => {
     const newValue = event.target.value;
@@ -91,13 +93,20 @@ const TaskForm = (props) => {
             <label htmlFor="category">
               Category :
               <select onChange={catchChangeCategory} value={categorySelect}>
-                {allCategories.map((item) => {
-                  return (
-                    <option key={item._id} value={item._id}>
-                      {item.category_name}
-                    </option>
-                  );
-                })}
+                {allCategories.length > 0 ? (
+                  <>
+                    <option value="uncategorized">Uncategorized</option>
+                    {allCategories.map((item) => {
+                      return (
+                        <option key={item._id} value={item._id}>
+                          {item.category_name}
+                        </option>
+                      );
+                    })}
+                  </>
+                ) : (
+                  <option value="uncategorized">Uncategorized</option>
+                )}
               </select>
             </label>
           </div>

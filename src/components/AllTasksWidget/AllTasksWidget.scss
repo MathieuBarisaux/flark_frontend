@@ -28,4 +28,10 @@
       display: none;
     }
   }
+
+  &__empty {
+    height: 100%;
+
+    color: variables.$attenuated_color;
+  }
 }
