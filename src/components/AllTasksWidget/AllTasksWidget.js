@@ -11,7 +11,6 @@ const AllTasksWidget = ({
   setRefreshAllCategories,
   bearerToken,
 }) => {
-  console.log(allTasks);
   return (
     <div className="AllTasksWidget">
       <h4>All Tasks</h4>

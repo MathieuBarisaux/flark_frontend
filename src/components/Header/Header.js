@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 const Header = (props) => {
-  const { pageUser, setPageUser } = props;
+  const { pageUser } = props;
 
   const { pathname } = useLocation();
 
@@ -69,21 +69,20 @@ const Header = (props) => {
           <p>Statistics</p>
         </div>
 
-        <div
-          className={
-            pageUser === "Settings"
-              ? "Header__NavElement Header__NavElement--isActive"
-              : "Header__NavElement"
-          }
-          onClick={() => {
-            setPageUser("Settings");
-          }}
-        >
-          <div>
-            <i className="fas fa-cogs"></i>
+        <Link to={"settings"}>
+          <div
+            className={
+              pathname === "/settings"
+                ? "Header__NavElement Header__NavElement--isActive"
+                : "Header__NavElement"
+            }
+          >
+            <div>
+              <i className="fas fa-cogs"></i>
+            </div>
+            <p>Settings</p>
           </div>
-          <p>Settings</p>
-        </div>
+        </Link>
       </nav>
 
       <div className="Header__NavElement Header__NavElement--help">

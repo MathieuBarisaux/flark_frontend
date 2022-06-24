@@ -20,6 +20,7 @@ import TaskForm from "./components/TaskForm/TaskForm";
 import UserManagement from "./containers/UserManagement/UserManagement";
 import Dashboard from "./containers/Dashboard/Dashboard";
 import AllTasks from "./containers/AllTasks/AllTasks";
+import Settings from "./containers/Settings/Settings";
 
 function App() {
   const [tokenChange, setTokenChange] = useState(false);
@@ -40,7 +41,7 @@ function App() {
 
   const [refreshAllCategories, setRefreshAllCategories] = useState(false);
 
-  /* Call to server to access all categories */
+  /* Call server to access all categories */
   useEffect(() => {
     if (bearerToken) {
       const callServerForAllCategories = async () => {
@@ -111,6 +112,28 @@ function App() {
     }
   }
 
+  // ** User informations **
+  const [userInformations, setUserInformations] = useState(null);
+  const [informationsLoading, setInformationsLoading] = useState(true);
+
+  useEffect(() => {
+    if (bearerToken) {
+      const callServerForInformations = async () => {
+        setInformationsLoading(true);
+
+        const callServer = await axios.get("http://localhost:3001/users/read", {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+          },
+        });
+
+        setUserInformations(callServer.data);
+        setInformationsLoading(false);
+      };
+      callServerForInformations();
+    }
+  }, [bearerToken]);
+
   return (
     <div className="App">
       <Router>
@@ -177,6 +200,16 @@ function App() {
                 setTokenChange={setTokenChange}
                 bearerToken={bearerToken}
                 type={"signin"}
+              />
+            }
+          />
+
+          <Route
+            path="/settings"
+            element={
+              <Settings
+                informationsLoading={informationsLoading}
+                userInformations={userInformations}
               />
             }
           />

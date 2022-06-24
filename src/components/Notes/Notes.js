@@ -97,7 +97,7 @@ const Notes = ({ bearerToken }) => {
       </form>
 
       <div className="Notes__container">
-        {allNotes.length > 0 ? (
+        {allNotes && allNotes.length > 0 ? (
           allNotes.map((item, index) => {
             return (
               <Note

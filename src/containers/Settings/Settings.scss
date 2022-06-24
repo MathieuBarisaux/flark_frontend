@@ -1,0 +1,71 @@
+@use "/src/variables";
+
+.Settings {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 2rem;
+  padding-top: 7rem;
+
+  &__container {
+    background-color: variables.$overlay_background;
+    border-radius: 20px;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  &__profil_picture {
+    margin-top: 2rem;
+    width: 140px;
+    height: 140px;
+    align-self: center;
+    position: relative;
+
+    img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+    }
+
+    &__icon {
+      background-color: variables.$focus_color;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: #fff;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      cursor: pointer;
+    }
+  }
+
+  &__inputs {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: variables.$base_border;
+    display: flex;
+
+    p {
+      font-weight: bold;
+      width: 30%;
+    }
+
+    input {
+      margin-top: 0rem;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: variables.$base_border;
+      border-radius: 10px;
+      background-color: #fff;
+      width: 40%;
+    }
+  }
+}
