@@ -2,18 +2,23 @@ import "./SignIn.scss";
 
 // ** Hooks **
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
 
 // ** Dependancies **
 import axios from "axios";
 import Cookie from "js-cookie";
+import { useNavigate, Link } from "react-router-dom";
 
 // ** Components **
 import InputText from "../InputText/InputText";
 import SubmitButton from "../SubmitButton/SubmitButton";
 
 const SignIn = (props) => {
-  const { tokenChange, setTokenChange } = props;
+  const {
+    tokenChange,
+    userInformationsChange,
+    setUserInformationsChange,
+    setTokenChange,
+  } = props;
 
   const navigate = useNavigate();
 
@@ -40,9 +45,24 @@ const SignIn = (props) => {
         );
 
         if (response.status === 200) {
-          Cookie.set("token", response.data.token, { expires: 360 });
-          Cookie.set("userId", response.data.id, { expires: 360 });
+          const responseData = response.data;
 
+          // ** Set Cookie **
+          Cookie.set("token", responseData.token, { expires: 360 });
+
+          // ** Set local storage **
+          const infosUser = {
+            pseudo: responseData.pseudo,
+            avatar: responseData.avatar,
+            email: responseData.email,
+            newsletter: responseData.newsletter,
+          };
+
+          const infosUserJSON = JSON.stringify(infosUser);
+
+          localStorage.setItem("InfosUser", infosUserJSON);
+
+          setUserInformationsChange(!userInformationsChange);
           setTokenChange(!tokenChange);
           navigate("/");
         }
@@ -51,7 +71,7 @@ const SignIn = (props) => {
       }
     } catch (error) {
       console.log(error.message);
-      setErrorMessage(error.response.data?.message);
+      // setErrorMessage(error.response.data?.message);
     }
   };
 

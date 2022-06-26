@@ -10,10 +10,17 @@ import InputText from "../InputText/InputText";
 // ** Dependancies **
 import axios from "axios";
 import Cookie from "js-cookie";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const SignUp = (props) => {
-  const { tokenChange, setTokenChange } = props;
+  const {
+    tokenChange,
+    setTokenChange,
+    userInformationsChange,
+    setUserInformationsChange,
+  } = props;
+
+  const navigate = useNavigate();
 
   const [step, setStep] = useState(0);
 
@@ -48,15 +55,24 @@ const SignUp = (props) => {
           newUser
         );
 
-        console.log(response);
         if (response.status === 200) {
-          const token = response.data.token;
-          const userId = response.data.id;
+          const responseData = response.data;
 
-          Cookie.set("token", token, { expires: 360 });
-          Cookie.set("userId", userId, { expires: 360 });
+          Cookie.set("token", responseData.token, { expires: 360 });
 
+          // ** Set local storage **
+          const infosUser = {
+            pseudo: responseData.pseudo,
+            email: responseData.email,
+          };
+
+          const infosUserJSON = JSON.stringify(infosUser);
+
+          localStorage.setItem("InfosUser", infosUserJSON);
+
+          setUserInformationsChange(!userInformationsChange);
           setTokenChange(!tokenChange);
+          navigate("/");
         }
       } else {
         console.log("We need more element");

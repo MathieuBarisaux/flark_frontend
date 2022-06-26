@@ -15,7 +15,8 @@ const Panel = (props) => {
 
   const disconnect = () => {
     Cookie.remove("token");
-    Cookie.remove("userId");
+
+    localStorage.removeItem("InfosUser");
 
     setTokenChange(!tokenChange);
     navigate("/signin");

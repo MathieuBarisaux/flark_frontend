@@ -12,7 +12,14 @@ import SignIn from "../../components/SignIn/SignIn";
 import { useEffect } from "react";
 
 const UserManagement = (props) => {
-  const { type, bearerToken, tokenChange, setTokenChange } = props;
+  const {
+    type,
+    bearerToken,
+    tokenChange,
+    setTokenChange,
+    userInformationsChange,
+    setUserInformationsChange,
+  } = props;
 
   const naviguate = useNavigate();
 
@@ -21,8 +28,7 @@ const UserManagement = (props) => {
     if (bearerToken) {
       naviguate("/");
     }
-    // eslint-disable-next-line
-  }, [tokenChange]);
+  }, [tokenChange, bearerToken, naviguate]);
 
   return (
     <div className="UserManagement">
@@ -43,9 +49,19 @@ const UserManagement = (props) => {
         </div>
 
         {type === "signup" ? (
-          <SignUp tokenChange={tokenChange} setTokenChange={setTokenChange} />
+          <SignUp
+            tokenChange={tokenChange}
+            setTokenChange={setTokenChange}
+            userInformationsChange={userInformationsChange}
+            setUserInformationsChange={setUserInformationsChange}
+          />
         ) : (
-          <SignIn tokenChange={tokenChange} setTokenChange={setTokenChange} />
+          <SignIn
+            tokenChange={tokenChange}
+            setTokenChange={setTokenChange}
+            userInformationsChange={userInformationsChange}
+            setUserInformationsChange={setUserInformationsChange}
+          />
         )}
 
         <p className="UserManagement__copyright">© Flark 2022</p>

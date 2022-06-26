@@ -3,18 +3,24 @@ import "./Settings.scss";
 // ** Components **
 import LoadScreen from "../../components/LoadScreen/LoadScreen";
 import InputText from "../../components/InputText/InputText";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Settings = (props) => {
-  const { informationsLoading, userInformations } = props;
+  const { userInformations } = props;
 
-  console.log(userInformations);
+  const [userPseudo, setUserPseudo] = useState("");
+  const [userMail, setUserMail] = useState("");
 
-  const [newPseudo, setNewPseudo] = useState(userInformations.pseudo || " ");
+  useEffect(() => {
+    if (userInformations) {
+      setUserPseudo(userInformations.pseudo);
+      setUserMail(userInformations.email);
+    }
+  }, [userInformations]);
 
   return (
     <div className="Settings">
-      {informationsLoading ? (
+      {!userInformations ? (
         <LoadScreen />
       ) : (
         <div className="Settings__container">
@@ -29,12 +35,12 @@ const Settings = (props) => {
 
           <div className="Settings__inputs">
             <p>Pseudo</p>
-            <InputText value={newPseudo} />
+            <InputText value={userPseudo} setValue={setUserPseudo} />
           </div>
 
           <div className="Settings__inputs">
             <p>Email</p>
-            <InputText value={newPseudo} />
+            <InputText value={userMail} setValue={setUserMail} />
           </div>
         </div>
       )}

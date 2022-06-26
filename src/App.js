@@ -114,25 +114,13 @@ function App() {
 
   // ** User informations **
   const [userInformations, setUserInformations] = useState(null);
-  const [informationsLoading, setInformationsLoading] = useState(true);
+  const [userInformationsChange, setUserInformationsChange] = useState(false);
 
   useEffect(() => {
-    if (bearerToken) {
-      const callServerForInformations = async () => {
-        setInformationsLoading(true);
+    const checkUserInfos = JSON.parse(localStorage.getItem("InfosUser"));
 
-        const callServer = await axios.get("http://localhost:3001/users/read", {
-          headers: {
-            Authorization: `Bearer ${bearerToken}`,
-          },
-        });
-
-        setUserInformations(callServer.data);
-        setInformationsLoading(false);
-      };
-      callServerForInformations();
-    }
-  }, [bearerToken]);
+    setUserInformations(checkUserInfos);
+  }, [userInformationsChange]);
 
   return (
     <div className="App">
@@ -181,6 +169,11 @@ function App() {
             }
           />
 
+          <Route
+            path="/settings"
+            element={<Settings userInformations={userInformations} />}
+          />
+
           {/* User Management */}
           <Route
             path="/signup"
@@ -188,6 +181,8 @@ function App() {
               <UserManagement
                 tokenChange={tokenChange}
                 setTokenChange={setTokenChange}
+                userInformationsChange={userInformationsChange}
+                setUserInformationsChange={setUserInformationsChange}
                 type={"signup"}
               />
             }
@@ -200,16 +195,8 @@ function App() {
                 setTokenChange={setTokenChange}
                 bearerToken={bearerToken}
                 type={"signin"}
-              />
-            }
-          />
-
-          <Route
-            path="/settings"
-            element={
-              <Settings
-                informationsLoading={informationsLoading}
-                userInformations={userInformations}
+                userInformationsChange={userInformationsChange}
+                setUserInformationsChange={setUserInformationsChange}
               />
             }
           />
