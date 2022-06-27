@@ -1,0 +1,30 @@
+@use "/src/variables";
+
+.SettingsAccount {
+  &__remove {
+    color: #f74946;
+    cursor: pointer;
+
+    @media screen and (max-width: 900px) {
+      width: 80%;
+    }
+  }
+
+  &__confirm {
+    display: flex;
+
+    p {
+      margin-right: 2rem;
+      cursor: pointer;
+    }
+  }
+
+  &__disconnect {
+    border-top: variables.$base_border;
+    margin-top: 2rem;
+
+    button {
+      width: 100%;
+    }
+  }
+}

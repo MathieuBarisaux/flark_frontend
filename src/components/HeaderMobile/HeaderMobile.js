@@ -84,18 +84,20 @@ const HeaderMobile = (props) => {
               <p>Statistics</p>
             </div>
 
-            <div
-              className={
-                pathname === "Settings"
-                  ? "Header__NavElement Header__NavElement--isActive"
-                  : "Header__NavElement"
-              }
-            >
-              <div>
-                <i className="fas fa-cogs"></i>
+            <Link to={"/settings"}>
+              <div
+                className={
+                  pathname === "Settings"
+                    ? "Header__NavElement Header__NavElement--isActive"
+                    : "Header__NavElement"
+                }
+              >
+                <div>
+                  <i className="fas fa-cogs"></i>
+                </div>
+                <p>Settings</p>
               </div>
-              <p>Settings</p>
-            </div>
+            </Link>
           </nav>
 
           <div className="Header__logo">

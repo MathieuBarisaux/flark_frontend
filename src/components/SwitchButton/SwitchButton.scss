@@ -1,0 +1,47 @@
+@use "/src/variables";
+
+.SwitchButton {
+  width: 65px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: variables.$focus_color;
+  position: relative;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &--false {
+    background-color: #e9ecf5;
+  }
+
+  &__round {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 38px;
+    transform: translate(0%, -50%);
+    background-color: #fff;
+    box-shadow: variables.$base_shadow;
+    transition: 0.3s;
+
+    &--false {
+      left: 3px;
+    }
+  }
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translate(0%, -50%);
+    font-size: 0.9rem;
+    color: #fff;
+
+    &--false {
+      left: auto;
+      right: 10px;
+      color: variables.$base_color;
+    }
+  }
+}
