@@ -9,11 +9,33 @@ import SettingsAccount from "../../components/SettingsAccount/SettingsAccount";
 // ** Hooks **
 import { useState, useEffect } from "react";
 
+// ** Dependencies **
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const Settings = (props) => {
-  const { userInformations } = props;
+  const {
+    userInformations,
+    tokenChange,
+    setTokenChange,
+    bearerToken,
+    userInformationsChange,
+    setUserInformationsChange,
+  } = props;
 
   const [settingNav, setSettingNav] = useState("informations");
   const [userAvatar, setUserAvatar] = useState("");
+  const [avatarLoad, setAvatarLoad] = useState(false);
+
+  const naviguate = useNavigate();
+
+  // Redirection if token
+  useEffect(() => {
+    if (!bearerToken) {
+      naviguate("/signin");
+    }
+    // eslint-disable-next-line
+  }, [tokenChange, bearerToken]);
 
   useEffect(() => {
     if (userInformations) {
@@ -22,6 +44,48 @@ const Settings = (props) => {
       }
     }
   }, [userInformations]);
+
+  const updatePicture = async (event) => {
+    setAvatarLoad(true);
+    const formDataPicture = new FormData();
+    formDataPicture.append("userPicture", event.target.files[0]);
+
+    try {
+      const callServerToUpdateImage = await axios.put(
+        "http://localhost:3001/users/update",
+        formDataPicture,
+        {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (callServerToUpdateImage.status === 200) {
+        const responseData = callServerToUpdateImage.data;
+
+        // ** Set local storage **
+        const infosUser = {
+          pseudo: responseData.pseudo,
+          avatar: responseData.avatar,
+          email: responseData.email,
+          newsletter: responseData.newsletter,
+        };
+
+        const infosUserJSON = JSON.stringify(infosUser);
+
+        localStorage.setItem("InfosUser", infosUserJSON);
+
+        setUserInformationsChange(!userInformationsChange);
+        setAvatarLoad(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  /************************** Component **************************/
 
   return (
     <div className="Settings">
@@ -32,7 +96,9 @@ const Settings = (props) => {
           <h1>Edit profile</h1>
 
           <div className="Settings__profil_picture">
-            {userAvatar ? (
+            {avatarLoad ? (
+              <LoadScreen />
+            ) : userAvatar ? (
               <img src={userAvatar} alt="User avatar" />
             ) : (
               <img
@@ -43,7 +109,6 @@ const Settings = (props) => {
               />
             )}
 
-            {/* TODOOOOOOOOOOOOOOOOOOOOOOO Check picture */}
             <label htmlFor="file" className="Settings__profil_picture__icon">
               <i className="fas fa-pen"></i>
             </label>
@@ -51,8 +116,7 @@ const Settings = (props) => {
               type="file"
               id="file"
               onChange={(event) => {
-                setUserAvatar(event.target.files[0]);
-                console.log(event.target.files[0]);
+                updatePicture(event);
               }}
             />
           </div>
@@ -87,7 +151,11 @@ const Settings = (props) => {
           ) : settingNav === "password" ? (
             <SettingsPassword />
           ) : (
-            <SettingsAccount />
+            <SettingsAccount
+              tokenChange={tokenChange}
+              setTokenChange={setTokenChange}
+              bearerToken={bearerToken}
+            />
           )}
         </div>
       )}

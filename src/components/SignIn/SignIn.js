@@ -71,7 +71,7 @@ const SignIn = (props) => {
       }
     } catch (error) {
       console.log(error.message);
-      // setErrorMessage(error.response.data?.message);
+      setErrorMessage(error.response.data?.message);
     }
   };
 

@@ -8,8 +8,11 @@ import DatePicker from "sassy-datepicker";
 import Cookie from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
+// ** Functions **
+import upperCaseFirst from "../../Functions/upperCaseFirst";
+
 const Panel = (props) => {
-  const { tokenChange, setTokenChange } = props;
+  const { tokenChange, setTokenChange, userInformations } = props;
 
   const navigate = useNavigate();
 
@@ -26,14 +29,20 @@ const Panel = (props) => {
     <div className="Panel">
       <div className="Panel__userInfos">
         <div className="Panel__userInfos--left">
-          <img
-            src="https://journalducoin-com.exactdn.com/app/uploads/2021/10/singe-record.png?strip=all&lossy=1&quality=66&resize=631%2C631&ssl=1"
-            alt="Profil of user"
-          />
+          {userInformations.avatar ? (
+            <img src={userInformations.avatar} alt="User avatar" />
+          ) : (
+            <img
+              src={
+                "https://res.cloudinary.com/vintedcopy/image/upload/v1655988565/Flark/blank-profile-picture-973460_640_taatmn.png"
+              }
+              alt="User avatar"
+            />
+          )}
           <p>
             Welcome back 👋
             <br />
-            <strong>Mathieu</strong>
+            <strong>{upperCaseFirst(userInformations.pseudo)}</strong>
           </p>
         </div>
 

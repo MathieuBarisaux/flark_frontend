@@ -6,7 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 // ** Hooks **
 import { useState } from "react";
 
-const HeaderMobile = (props) => {
+const HeaderMobile = ({ userInformations }) => {
   const { pathname } = useLocation();
 
   const [openHeaderMobile, setOpenHeaderMobile] = useState(false);
@@ -24,10 +24,16 @@ const HeaderMobile = (props) => {
         <div className="MobileHeader__nav">
           <div className="MobileHeader__nav__top">
             <div className="MobileHeader__nav__picture">
-              <img
-                src="https://journalducoin-com.exactdn.com/app/uploads/2021/10/singe-record.png?strip=all&lossy=1&quality=66&resize=631%2C631&ssl=1"
-                alt="Profil of user"
-              />
+              {userInformations.avatar ? (
+                <img src={userInformations.avatar} alt="User avatar" />
+              ) : (
+                <img
+                  src={
+                    "https://res.cloudinary.com/vintedcopy/image/upload/v1655988565/Flark/blank-profile-picture-973460_640_taatmn.png"
+                  }
+                  alt="User avatar"
+                />
+              )}
             </div>
 
             <div
@@ -38,8 +44,6 @@ const HeaderMobile = (props) => {
             </div>
           </div>
 
-          <h2>?USER?</h2>
-
           <nav>
             <Link to={"/"}>
               <div
@@ -48,6 +52,7 @@ const HeaderMobile = (props) => {
                     ? "Header__NavElement Header__NavElement--isActive"
                     : "Header__NavElement"
                 }
+                onClick={() => setOpenHeaderMobile(false)}
               >
                 <div>
                   <i className="fas fa-home"></i>
@@ -63,6 +68,7 @@ const HeaderMobile = (props) => {
                     ? "Header__NavElement Header__NavElement--isActive"
                     : "Header__NavElement"
                 }
+                onClick={() => setOpenHeaderMobile(false)}
               >
                 <div>
                   <i className="fas fa-tasks"></i>
@@ -77,6 +83,7 @@ const HeaderMobile = (props) => {
                   ? "Header__NavElement Header__NavElement--isActive"
                   : "Header__NavElement"
               }
+              onClick={() => setOpenHeaderMobile(false)}
             >
               <div>
                 <i className="fas fa-chart-pie"></i>
@@ -91,6 +98,7 @@ const HeaderMobile = (props) => {
                     ? "Header__NavElement Header__NavElement--isActive"
                     : "Header__NavElement"
                 }
+                onClick={() => setOpenHeaderMobile(false)}
               >
                 <div>
                   <i className="fas fa-cogs"></i>

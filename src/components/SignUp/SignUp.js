@@ -31,6 +31,7 @@ const SignUp = (props) => {
   const [password, setPassword] = useState("");
 
   const precedentStep = () => {
+    setErrorMessage("");
     setStep(step - 1);
   };
 
@@ -83,6 +84,21 @@ const SignUp = (props) => {
     }
   };
 
+  const checkMail = (input) => {
+    // We define the good mail format
+    const mailFormatRegexp =
+      /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
+
+    // We test if input format is ok
+    if (mailFormatRegexp.exec(input) == null) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  /************************** Component **************************/
+
   return (
     <div className="SignUp">
       <div className="SignUp__welcome">
@@ -124,7 +140,14 @@ const SignUp = (props) => {
                 {email.length > 5 && (
                   <i
                     className="fas fa-arrow-circle-down"
-                    onClick={nextStep}
+                    onClick={() => {
+                      setErrorMessage("");
+                      if (checkMail(email) === true) {
+                        nextStep();
+                      } else {
+                        setErrorMessage("Please enter a good email format");
+                      }
+                    }}
                   ></i>
                 )}
               </div>

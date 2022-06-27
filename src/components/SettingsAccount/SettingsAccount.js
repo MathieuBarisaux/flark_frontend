@@ -3,11 +3,55 @@ import "./SettingsAccount.scss";
 // ** Components **
 import SubmitButton from "../SubmitButton/SubmitButton";
 
+// ** Dependancies **
+import Cookie from "js-cookie";
+import { useNavigate } from "react-router-dom";
+
 // ** Hooks **
 import { useState } from "react";
+import axios from "axios";
 
-const SettingsAccount = () => {
+const SettingsAccount = ({ tokenChange, setTokenChange, bearerToken }) => {
   const [removeConfirm, setRemoveConfirm] = useState(false);
+
+  const navigate = useNavigate();
+
+  // ** Disconnect user **
+  const disconnectUser = () => {
+    Cookie.remove("token");
+
+    localStorage.removeItem("InfosUser");
+
+    setTokenChange(!tokenChange);
+    navigate("/signin");
+  };
+
+  // ** Remove user **
+  const removeUser = async () => {
+    try {
+      const callServerToDelete = await axios.delete(
+        "http://localhost:3001/users/delete",
+        {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+          },
+        }
+      );
+
+      if (callServerToDelete.status === 200) {
+        Cookie.remove("token");
+
+        localStorage.removeItem("InfosUser");
+
+        setTokenChange(!tokenChange);
+        navigate("/signin");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  /************************** Component **************************/
 
   return (
     <div className="SettingsAccount">
@@ -31,7 +75,9 @@ const SettingsAccount = () => {
           <>
             <p>Are you sure ? 😢</p>
             <div className="SettingsAccount__confirm">
-              <p className="SettingsAccount__remove">Yes</p>
+              <p className="SettingsAccount__remove" onClick={removeUser}>
+                Yes
+              </p>
               <p onClick={() => setRemoveConfirm(false)}>No</p>
             </div>
           </>
@@ -39,7 +85,11 @@ const SettingsAccount = () => {
       </div>
 
       <div className="SettingsAccount__disconnect">
-        <SubmitButton title={"Disconnect"} color={"red"} />
+        <SubmitButton
+          title={"Disconnect"}
+          color={"red"}
+          onclick={() => disconnectUser()}
+        />
       </div>
     </div>
   );

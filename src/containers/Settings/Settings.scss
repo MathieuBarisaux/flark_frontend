@@ -16,6 +16,8 @@
     overflow-x: initial;
     padding: 0 1rem;
     padding-top: 6.5rem;
+    min-height: fit-content;
+    max-height: none;
   }
 
   &__container {
@@ -25,6 +27,10 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
+
+    @media screen and (max-width: 900px) {
+      margin-bottom: 2rem;
+    }
   }
 
   h1 {

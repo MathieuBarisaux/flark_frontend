@@ -4,9 +4,10 @@
   &__remove {
     color: #f74946;
     cursor: pointer;
+    min-width: max-content;
 
     @media screen and (max-width: 900px) {
-      width: 80%;
+      min-width: 60%;
     }
   }
 

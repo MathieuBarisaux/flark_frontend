@@ -12,6 +12,8 @@
   @media screen and (max-width: 900px) {
     overflow-y: initial;
     margin-bottom: 2rem;
+    min-height: fit-content;
+    max-height: none;
   }
 
   > h2 {

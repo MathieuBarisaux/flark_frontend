@@ -15,6 +15,10 @@ import { useNavigate } from "react-router-dom";
 // ** Hooks **
 import { useEffect } from "react";
 
+// ** Functions **
+import upperCaseFirst from "../../Functions/upperCaseFirst";
+import { useState } from "react";
+
 const Dashboard = (props) => {
   const {
     bearerToken,
@@ -28,9 +32,12 @@ const Dashboard = (props) => {
     allTasksLoading,
     refreshAllTasks,
     setRefreshAllTasks,
+    userInformations,
   } = props;
 
   const naviguate = useNavigate();
+
+  const [userPseudo, setUserPseudo] = useState("");
 
   // Redirection if token
   useEffect(() => {
@@ -40,13 +47,20 @@ const Dashboard = (props) => {
     // eslint-disable-next-line
   }, [tokenChange, bearerToken]);
 
+  useEffect(() => {
+    if (userInformations) {
+      setUserPseudo(upperCaseFirst(userInformations.pseudo));
+    }
+  }, [userInformations]);
+
   return (
     <div className="Dashboard">
       {allCategoriesLoading ? (
         <LoadScreen />
       ) : (
         <>
-          <h2>What's up, ?USER?</h2>
+          <h2>What's up, {userPseudo} ? 👋</h2>
+
           <Categories
             allCategories={allCategories}
             setRefreshAllCategories={setRefreshAllCategories}

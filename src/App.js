@@ -127,7 +127,7 @@ function App() {
       <Router>
         {bearerToken && (
           <>
-            <Header /> <HeaderMobile />
+            <Header /> <HeaderMobile userInformations={userInformations} />
           </>
         )}
 
@@ -147,6 +147,7 @@ function App() {
                 allTasksLoading={allTasksLoading}
                 refreshAllTasks={refreshAllTasks}
                 setRefreshAllTasks={setRefreshAllTasks}
+                userInformations={userInformations}
               />
             }
           />
@@ -171,7 +172,16 @@ function App() {
 
           <Route
             path="/settings"
-            element={<Settings userInformations={userInformations} />}
+            element={
+              <Settings
+                userInformations={userInformations}
+                tokenChange={tokenChange}
+                setTokenChange={setTokenChange}
+                bearerToken={bearerToken}
+                userInformationsChange={userInformationsChange}
+                setUserInformationsChange={setUserInformationsChange}
+              />
+            }
           />
 
           {/* User Management */}
@@ -217,7 +227,11 @@ function App() {
 
         {/* Set panel */}
         {bearerToken && (
-          <Panel tokenChange={tokenChange} setTokenChange={setTokenChange} />
+          <Panel
+            tokenChange={tokenChange}
+            setTokenChange={setTokenChange}
+            userInformations={userInformations}
+          />
         )}
       </Router>
     </div>
