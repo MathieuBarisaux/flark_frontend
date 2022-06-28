@@ -56,18 +56,20 @@ const Header = (props) => {
           </div>
         </Link>
 
-        <div
-          className={
-            pageUser === "Statistics"
-              ? "Header__NavElement Header__NavElement--isActive"
-              : "Header__NavElement"
-          }
-        >
-          <div>
-            <i className="fas fa-chart-pie"></i>
+        <Link to="/statistics">
+          <div
+            className={
+              pathname === "/statistics"
+                ? "Header__NavElement Header__NavElement--isActive"
+                : "Header__NavElement"
+            }
+          >
+            <div>
+              <i className="fas fa-chart-pie"></i>
+            </div>
+            <p>Statistics</p>
           </div>
-          <p>Statistics</p>
-        </div>
+        </Link>
 
         <Link to={"settings"}>
           <div

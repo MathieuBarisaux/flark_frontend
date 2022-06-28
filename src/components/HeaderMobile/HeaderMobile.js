@@ -77,24 +77,26 @@ const HeaderMobile = ({ userInformations }) => {
               </div>
             </Link>
 
-            <div
-              className={
-                pathname === "/statistics"
-                  ? "Header__NavElement Header__NavElement--isActive"
-                  : "Header__NavElement"
-              }
-              onClick={() => setOpenHeaderMobile(false)}
-            >
-              <div>
-                <i className="fas fa-chart-pie"></i>
+            <Link to="/statistics">
+              <div
+                className={
+                  pathname === "/statistics"
+                    ? "Header__NavElement Header__NavElement--isActive"
+                    : "Header__NavElement"
+                }
+                onClick={() => setOpenHeaderMobile(false)}
+              >
+                <div>
+                  <i className="fas fa-chart-pie"></i>
+                </div>
+                <p>Statistics</p>
               </div>
-              <p>Statistics</p>
-            </div>
+            </Link>
 
             <Link to={"/settings"}>
               <div
                 className={
-                  pathname === "Settings"
+                  pathname === "/settings"
                     ? "Header__NavElement Header__NavElement--isActive"
                     : "Header__NavElement"
                 }

@@ -20,6 +20,7 @@ import TaskForm from "./components/TaskForm/TaskForm";
 import UserManagement from "./containers/UserManagement/UserManagement";
 import Dashboard from "./containers/Dashboard/Dashboard";
 import AllTasks from "./containers/AllTasks/AllTasks";
+import Statistics from "./containers/Statistics/Statistics";
 import Settings from "./containers/Settings/Settings";
 
 function App() {
@@ -169,6 +170,8 @@ function App() {
               />
             }
           />
+
+          <Route path="/statistics" element={<Statistics />} />
 
           <Route
             path="/settings"
