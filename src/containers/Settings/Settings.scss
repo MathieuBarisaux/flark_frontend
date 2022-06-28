@@ -125,10 +125,26 @@
     }
   }
 
+  @keyframes popUp {
+    0% {
+      margin-top: 1rem;
+    }
+    100% {
+      margin-top: 0rem;
+    }
+  }
+
   &__button {
     margin-top: 2rem;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+
+    > p {
+      font-size: 0.8rem;
+      align-self: center;
+      font-style: italic;
+      color: red;
+    }
 
     button {
       margin-top: 0rem;

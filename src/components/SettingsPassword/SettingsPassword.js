@@ -7,10 +7,72 @@ import SubmitButton from "../SubmitButton/SubmitButton";
 // ** Hooks **
 import { useState } from "react";
 
-const SettingsPassword = () => {
+// ** Dependencies **
+import axios from "axios";
+import Cookie from "js-cookie";
+
+const SettingsPassword = ({ bearerToken, tokenChange, setTokenChange }) => {
   const [actualPassword, setActualPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [verifyNewPassword, setVerifyNewPassword] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [updateValidate, setUpdateValidate] = useState(false);
+
+  // Verify all informations and if they are OK, submit form and change token
+  const submitChangePassword = async () => {
+    setErrorMessage("");
+
+    if (actualPassword && newPassword && verifyNewPassword) {
+      if (newPassword.length > 5) {
+        if (newPassword === verifyNewPassword) {
+          try {
+            const data = {
+              password: actualPassword,
+              newPassword: newPassword,
+            };
+
+            const callServerToChangePassword = await axios.put(
+              "http://localhost:3001/users/update-password",
+              data,
+              {
+                headers: {
+                  Authorization: `Bearer ${bearerToken}`,
+                  "Content-Type": "multipart/form-data",
+                },
+              }
+            );
+
+            if (callServerToChangePassword.status === 200) {
+              Cookie.set("token", callServerToChangePassword.data.token, {
+                expires: 360,
+              });
+
+              setTokenChange(!tokenChange);
+              setUpdateValidate(true);
+
+              setActualPassword("");
+              setNewPassword("");
+              setVerifyNewPassword("");
+
+              setTimeout(() => setUpdateValidate(false), 3000);
+            }
+          } catch (error) {
+            console.log(error.response);
+            setErrorMessage(error.response.data?.message);
+          }
+        } else {
+          setErrorMessage("Your confirmation password is not good.");
+        }
+      } else {
+        setErrorMessage(
+          "For your security, choose a password with more thant 5 letters"
+        );
+      }
+    } else {
+      setErrorMessage("You must complete all the fields of the form");
+    }
+  };
 
   return (
     <div className="SettingsPassword">
@@ -47,7 +109,15 @@ const SettingsPassword = () => {
       </div>
 
       <div className="Settings__button">
-        <SubmitButton title={"Update password"} />
+        <p>{errorMessage}</p>
+        {updateValidate ? (
+          <SubmitButton title={"Success ✓"} />
+        ) : (
+          <SubmitButton
+            title={"Update password"}
+            onclick={() => submitChangePassword()}
+          />
+        )}
       </div>
     </div>
   );

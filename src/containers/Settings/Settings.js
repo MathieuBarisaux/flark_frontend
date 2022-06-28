@@ -147,9 +147,18 @@ const Settings = (props) => {
           </nav>
 
           {settingNav === "informations" ? (
-            <SettingsInformations userInformations={userInformations} />
+            <SettingsInformations
+              userInformations={userInformations}
+              bearerToken={bearerToken}
+              userInformationsChange={userInformationsChange}
+              setUserInformationsChange={setUserInformationsChange}
+            />
           ) : settingNav === "password" ? (
-            <SettingsPassword />
+            <SettingsPassword
+              tokenChange={tokenChange}
+              setTokenChange={setTokenChange}
+              bearerToken={bearerToken}
+            />
           ) : (
             <SettingsAccount
               tokenChange={tokenChange}
