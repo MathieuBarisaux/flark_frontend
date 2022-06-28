@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 const Header = (props) => {
-  const { pageUser } = props;
+  const { setHelpCenterOpen } = props;
 
   const { pathname } = useLocation();
 
@@ -87,7 +87,10 @@ const Header = (props) => {
         </Link>
       </nav>
 
-      <div className="Header__NavElement Header__NavElement--help">
+      <div
+        className="Header__NavElement Header__NavElement--help"
+        onClick={() => setHelpCenterOpen(true)}
+      >
         <div>
           <i className="far fa-question-circle"></i>
         </div>

@@ -15,6 +15,7 @@ import Header from "./components/Header/Header";
 import HeaderMobile from "./components/HeaderMobile/HeaderMobile";
 import Panel from "./components/Panel/Panel";
 import TaskForm from "./components/TaskForm/TaskForm";
+import HelpCenter from "./components/HelpCenter/HelpCenter";
 
 // ** Containers **
 import UserManagement from "./containers/UserManagement/UserManagement";
@@ -123,12 +124,16 @@ function App() {
     setUserInformations(checkUserInfos);
   }, [userInformationsChange]);
 
+  // ** Help Center **
+  const [helpCenterOpen, setHelpCenterOpen] = useState(false);
+
   return (
     <div className="App">
       <Router>
         {bearerToken && (
           <>
-            <Header /> <HeaderMobile userInformations={userInformations} />
+            <Header setHelpCenterOpen={setHelpCenterOpen} />
+            <HeaderMobile userInformations={userInformations} />
           </>
         )}
 
@@ -214,6 +219,9 @@ function App() {
             }
           />
         </Routes>
+
+        {/* Set Help Center*/}
+        {helpCenterOpen && <HelpCenter setHelpCenterOpen={setHelpCenterOpen} />}
 
         {/* Set modales */}
         {taskFormOpen && (

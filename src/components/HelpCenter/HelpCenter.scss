@@ -1,0 +1,144 @@
+@use "/src/variables";
+
+@keyframes openBlur {
+  0% {
+    backdrop-filter: blur(0px);
+  }
+  100% {
+    backdrop-filter: blur(2px);
+  }
+}
+
+.HelpCenter {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  z-index: 10;
+  background: transparent;
+  animation: 2s openBlur forwards;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  &__container {
+    background-color: variables.$overlay_background;
+    box-shadow: 0 5px 30px rgb(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 360px;
+
+    video {
+      margin-top: 2rem;
+      height: 410px;
+      width: 410px;
+      box-shadow: 0 5px 30px rgb(0, 0, 0, 0.1);
+      object-fit: cover;
+      border-radius: 20px;
+    }
+  }
+
+  &__select {
+    h4 {
+      margin: 1rem 0;
+      font-weight: normal;
+    }
+
+    p {
+      padding: 1rem 0;
+      border-bottom: variables.$base_border;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1.1rem;
+
+      i {
+        font-size: 1.5rem;
+      }
+
+      &:first-child {
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  &__close {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: variables.$base_border;
+    border-radius: 50%;
+    align-self: flex-end;
+    cursor: pointer;
+
+    > i {
+      font-size: 2rem;
+    }
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-top: 2rem;
+    font-style: italic;
+  }
+
+  &__tips {
+    &__content {
+      display: flex;
+      align-items: center;
+
+      i {
+        font-size: 3rem;
+        cursor: pointer;
+
+        &:first-child {
+          margin-right: 3rem;
+        }
+
+        &:last-child {
+          margin-left: 3rem;
+        }
+      }
+    }
+  }
+
+  &__empty {
+    width: 4.5rem;
+  }
+
+  &__rounds {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  &__round {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: variables.$base_border;
+    box-sizing: border-box;
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+
+    &--bold {
+      background-color: variables.$attenuated_color;
+    }
+  }
+}
