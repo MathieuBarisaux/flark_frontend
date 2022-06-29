@@ -106,19 +106,36 @@
       background: none;
       border-radius: 50%;
       -webkit-appearance: none;
-      width: 65px;
-      height: 85px;
+      width: 60px;
+      height: 60px;
       cursor: pointer;
+      position: relative;
 
       &::-webkit-color-swatch {
         border-radius: 50%;
         border: none;
         flex-shrink: 0;
+        width: 60px !important;
+        height: 60px !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      &::-webkit-color-swatch-wrapper {
+        width: 60px !important;
+        height: 60px !important;
+        border-radius: 50%;
+        border: none;
       }
     }
   }
 
   button {
     width: 100%;
+
+    @media screen and (max-width: 900px) {
+      margin-top: 0rem;
+    }
   }
 }
