@@ -36,11 +36,14 @@ const Task = (props) => {
   };
 
   const deleteTask = async () => {
-    await axios.delete(`http://localhost:3001/todo/delete?todoID=${item._id}`, {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-      },
-    });
+    await axios.delete(
+      `https://flark.herokuapp.com/todo/delete?todoID=${item._id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${bearerToken}`,
+        },
+      }
+    );
     setRefreshAllTasks(!refreshAllTasks);
     setRefreshAllCategories(!refreshAllCategories);
   };

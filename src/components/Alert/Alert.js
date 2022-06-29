@@ -21,7 +21,7 @@ const Alert = (props) => {
   const deleteCategory = async () => {
     try {
       await axios.delete(
-        `http://localhost:3001/category/delete?category_id=${updateId}`,
+        `https://flark.herokuapp.com/category/delete?category_id=${updateId}`,
         {
           headers: {
             Authorization: `Bearer ${bearerToken}`,
