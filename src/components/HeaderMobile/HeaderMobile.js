@@ -6,7 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 // ** Hooks **
 import { useState } from "react";
 
-const HeaderMobile = ({ userInformations }) => {
+const HeaderMobile = ({ userInformations, setHelpCenterOpen }) => {
   const { pathname } = useLocation();
 
   const [openHeaderMobile, setOpenHeaderMobile] = useState(false);
@@ -108,6 +108,19 @@ const HeaderMobile = ({ userInformations }) => {
                 <p>Settings</p>
               </div>
             </Link>
+
+            <div
+              className="Header__NavElement Header__NavElement--help"
+              onClick={() => {
+                setOpenHeaderMobile(false);
+                setHelpCenterOpen(true);
+              }}
+            >
+              <div>
+                <i className="far fa-question-circle"></i>
+              </div>
+              <p>Help center</p>
+            </div>
           </nav>
 
           <div className="Header__logo">

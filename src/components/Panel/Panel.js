@@ -5,25 +5,49 @@ import PriorityTodos from "./priorityTodos/priorityTodos";
 
 // ** Dependancies **
 import DatePicker from "sassy-datepicker";
-import Cookie from "js-cookie";
-import { useNavigate } from "react-router-dom";
 
 // ** Functions **
 import upperCaseFirst from "../../Functions/upperCaseFirst";
 
+// ** Hooks **
+import { useState } from "react";
+import { useEffect } from "react";
+
 const Panel = (props) => {
-  const { tokenChange, setTokenChange, userInformations } = props;
+  const {
+    userInformations,
+    urgentTasks,
+    urgentImportantTasks,
+    importantTasks,
+    otherTasks,
+  } = props;
 
-  const navigate = useNavigate();
+  const [favoriteTasks, setFavoriteTasks] = useState("urgentImportant");
 
-  const disconnect = () => {
-    Cookie.remove("token");
+  useEffect(() => {
+    const checkLocalStorage = localStorage.getItem("favoriteTasks");
 
-    localStorage.removeItem("InfosUser");
+    setFavoriteTasks(checkLocalStorage);
+  }, []);
 
-    setTokenChange(!tokenChange);
-    navigate("/signin");
-  };
+  const favoriteTypes = [
+    {
+      type: "urgentImportant",
+      name: "Urgent & important",
+    },
+    {
+      type: "urgent",
+      name: "Urgent",
+    },
+    {
+      type: "important",
+      name: "Important",
+    },
+    {
+      type: "other",
+      name: "Other",
+    },
+  ];
 
   return (
     <div className="Panel">
@@ -51,14 +75,39 @@ const Panel = (props) => {
             <i className="fas fa-angle-down"></i>
           </div>
           <ul>
-            <p onClick={disconnect}>Disconnect</p>
+            <p>Choose your favorite priority :</p>
+
+            {favoriteTypes.map((item, index) => {
+              return (
+                <p
+                  onClick={() => {
+                    setFavoriteTasks(item.type);
+                    localStorage.setItem("favoriteTasks", item.type);
+                  }}
+                  key={index}
+                >
+                  {favoriteTasks === item.type && (
+                    <i className="fas fa-check"></i>
+                  )}
+                  {item.name}
+                </p>
+              );
+            })}
           </ul>
         </div>
       </div>
 
       <div className="Panel__prioritiesTodos">
         <DatePicker />
-        <PriorityTodos title="Urgent" />
+
+        <PriorityTodos
+          title="Urgent"
+          urgentTasks={urgentTasks}
+          urgentImportantTasks={urgentImportantTasks}
+          importantTasks={importantTasks}
+          otherTasks={otherTasks}
+          favoriteTasks={favoriteTasks}
+        />
       </div>
     </div>
   );

@@ -10,6 +10,11 @@ const helpContent = [
       "https://res.cloudinary.com/vintedcopy/video/upload/v1656458314/Flark/Help_center/Enregistrement_de_l_e%CC%81cran_2022-06-29_a%CC%80_01.15.13_1_qlev7g.mp4",
   },
   {
+    title: "Customize your interface",
+    video:
+      "https://res.cloudinary.com/vintedcopy/video/upload/v1656499398/Flark/Help_center/Enregistrement_de_l_e%CC%81cran_2022-06-29_a%CC%80_12.41.11_1_ayaju5.mp4",
+  },
+  {
     title: "Change your personnal information",
     video:
       "https://res.cloudinary.com/vintedcopy/video/upload/v1656458703/Flark/Help_center/Enregistrement_de_l_e%CC%81cran_2022-06-29_a%CC%80_01.22.44_1_ccvqlm.mp4",

@@ -45,7 +45,7 @@
       max-height: 0;
     }
     100% {
-      max-height: 400%;
+      max-height: 850%;
     }
   }
 
@@ -57,7 +57,7 @@
 
     &:hover {
       ul {
-        animation: openUserMenu 0.6s forwards;
+        animation: openUserMenu 0.4s forwards;
       }
     }
 
@@ -82,16 +82,35 @@
       position: absolute;
       background-color: variables.$overlay_background;
       box-shadow: 0 4px 10px rgb(0, 0, 0, 0.1);
-      border-radius: 10px;
+      border-radius: 15px;
       max-height: 0;
       overflow: hidden;
 
       p {
-        background-color: #eb2a2a;
-        padding: 0.5rem 2rem;
-        margin: 2rem 1rem;
-        border-radius: 10px;
-        color: #fff;
+        padding: 1rem 2rem;
+
+        &:first-child {
+          color: variables.$attenuated_color;
+          white-space: nowrap;
+          font-style: italic;
+          padding: 1rem;
+          margin-top: 1rem;
+          margin-right: 4rem;
+        }
+
+        &:not(:first-child) {
+          padding-left: 3rem;
+          padding-right: 2rem;
+        }
+
+        &:last-child {
+          margin-bottom: 1rem;
+        }
+      }
+
+      i {
+        color: #74c77a;
+        margin-right: 1rem;
       }
     }
   }

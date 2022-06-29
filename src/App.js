@@ -133,7 +133,10 @@ function App() {
         {bearerToken && (
           <>
             <Header setHelpCenterOpen={setHelpCenterOpen} />
-            <HeaderMobile userInformations={userInformations} />
+            <HeaderMobile
+              userInformations={userInformations}
+              setHelpCenterOpen={setHelpCenterOpen}
+            />
           </>
         )}
 
@@ -242,6 +245,10 @@ function App() {
             tokenChange={tokenChange}
             setTokenChange={setTokenChange}
             userInformations={userInformations}
+            urgentTasks={urgentTasks}
+            urgentImportantTasks={urgentImportantTasks}
+            importantTasks={importantTasks}
+            otherTasks={otherTasks}
           />
         )}
       </Router>
