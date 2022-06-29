@@ -3,9 +3,6 @@ import "./TasksWidget.scss";
 // ** Components **
 import Task from "../Task/Task";
 
-// ** Dependencies **
-import axios from "axios";
-
 const TasksWidget = (props) => {
   const {
     refreshAllTasks,

@@ -1,8 +1,5 @@
 import "./AllTasks.scss";
 
-// ** Hooks **
-import { useState } from "react";
-
 // ** Components **
 import TasksWidget from "../../components/TasksWidget/TasksWidget";
 
@@ -19,12 +16,6 @@ const AllTasks = (props) => {
     setRefreshAllCategories,
     bearerToken,
   } = props;
-
-  let totalTask =
-    urgentImportantTasks.length +
-    urgentTasks.length +
-    importantTasks.length +
-    otherTasks.length;
 
   return (
     <div className="AllTasks">
