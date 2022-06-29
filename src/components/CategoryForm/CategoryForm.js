@@ -35,11 +35,15 @@ const CategoryForm = (props) => {
       category_color: categoryColor,
       category_icon: categoryIcon,
     };
-    await axios.post("http://localhost:3001/category/create", newCategory, {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-      },
-    });
+    await axios.post(
+      "https://flark.herokuapp.com/category/create",
+      newCategory,
+      {
+        headers: {
+          Authorization: `Bearer ${bearerToken}`,
+        },
+      }
+    );
 
     setOpenCategoryForm(false);
     setRefreshAllCategories(!refreshAllCategories);

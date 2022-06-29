@@ -27,7 +27,9 @@ const Panel = (props) => {
   useEffect(() => {
     const checkLocalStorage = localStorage.getItem("favoriteTasks");
 
-    setFavoriteTasks(checkLocalStorage);
+    if (checkLocalStorage) {
+      setFavoriteTasks(checkLocalStorage);
+    }
   }, []);
 
   const favoriteTypes = [

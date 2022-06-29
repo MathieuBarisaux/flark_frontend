@@ -29,7 +29,7 @@ const Note = ({
       };
 
       const callServerToUpdate = await axios.put(
-        "http://localhost:3001/note/update",
+        "https://flark.herokuapp.com/note/update",
         data,
         {
           headers: {

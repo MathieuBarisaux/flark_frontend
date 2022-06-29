@@ -27,7 +27,7 @@ const ContactUs = ({ bearerToken }) => {
       };
 
       const callServer = await axios.post(
-        "http://localhost:3001/contact",
+        "https://flark.herokuapp.com/contact",
         data,
         {
           headers: {
@@ -39,6 +39,8 @@ const ContactUs = ({ bearerToken }) => {
       if (callServer.status === 200) {
         setSendOk(true);
 
+        setUserObject("");
+        setUserMessage("");
         setTimeout(() => setSendOk(false), 3000);
       }
     } catch (error) {

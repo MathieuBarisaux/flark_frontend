@@ -18,7 +18,7 @@ const Notes = ({ bearerToken }) => {
     if (bearerToken) {
       try {
         const responseServer = await axios.get(
-          "http://localhost:3001/note/read-all",
+          "https://flark.herokuapp.com/note/read-all",
           {
             headers: {
               Authorization: `Bearer ${bearerToken}`,
@@ -41,7 +41,7 @@ const Notes = ({ bearerToken }) => {
         const data = { content: noteText };
 
         const postOnServer = await axios.post(
-          "http://localhost:3001/note/create",
+          "https://flark.herokuapp.com/note/create",
           data,
           {
             headers: {
@@ -63,7 +63,7 @@ const Notes = ({ bearerToken }) => {
   const deleteNote = async (noteId) => {
     try {
       const callServerToDelete = await axios.delete(
-        `http://localhost:3001/note/delete-one?noteId=${noteId}`,
+        `https://flark.herokuapp.com/note/delete-one?noteId=${noteId}`,
         {
           headers: {
             Authorization: `Bearer ${bearerToken}`,

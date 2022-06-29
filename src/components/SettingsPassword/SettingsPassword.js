@@ -33,7 +33,7 @@ const SettingsPassword = ({ bearerToken, tokenChange, setTokenChange }) => {
             };
 
             const callServerToChangePassword = await axios.put(
-              "http://localhost:3001/users/update-password",
+              "https://flark.herokuapp.com/users/update-password",
               data,
               {
                 headers: {

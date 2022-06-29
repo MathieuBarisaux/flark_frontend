@@ -35,11 +35,15 @@ const CategoryFormUpdate = (props) => {
       category_id: updateId,
     };
 
-    await axios.put("http://localhost:3001/category/update", toUpCategory, {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-      },
-    });
+    await axios.put(
+      "https://flark.herokuapp.com/category/update",
+      toUpCategory,
+      {
+        headers: {
+          Authorization: `Bearer ${bearerToken}`,
+        },
+      }
+    );
 
     setOpenCategoryFormUpdate(false);
     setRefreshAllCategories(!refreshAllCategories);

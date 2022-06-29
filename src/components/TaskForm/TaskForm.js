@@ -59,7 +59,7 @@ const TaskForm = (props) => {
       categories: categorySelect,
     };
 
-    await axios.post("http://localhost:3001/todo/create", newTask, {
+    await axios.post("https://flark.herokuapp.com/todo/create", newTask, {
       headers: {
         Authorization: `Bearer ${bearerToken}`,
       },

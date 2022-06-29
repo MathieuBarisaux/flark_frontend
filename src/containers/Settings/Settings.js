@@ -52,7 +52,7 @@ const Settings = (props) => {
 
     try {
       const callServerToUpdateImage = await axios.put(
-        "http://localhost:3001/users/update",
+        "https://flark.herokuapp.com/users/update",
         formDataPicture,
         {
           headers: {

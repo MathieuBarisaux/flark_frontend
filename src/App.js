@@ -50,7 +50,7 @@ function App() {
         try {
           setAllCategoriesLoading(true);
           const response = await axios.get(
-            "http://localhost:3001/category/read",
+            "https://flark.herokuapp.com/category/read",
             {
               headers: {
                 Authorization: `Bearer ${bearerToken}`,
@@ -80,11 +80,14 @@ function App() {
       const callServerForAllTasks = async () => {
         try {
           setAllTasksLoading(true);
-          const responses = await axios.get("http://localhost:3001/todo/read", {
-            headers: {
-              Authorization: `Bearer ${bearerToken}`,
-            },
-          });
+          const responses = await axios.get(
+            "https://flark.herokuapp.com/todo/read",
+            {
+              headers: {
+                Authorization: `Bearer ${bearerToken}`,
+              },
+            }
+          );
           setAllStasks(responses.data);
 
           setAllTasksLoading(false);

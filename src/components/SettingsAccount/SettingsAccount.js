@@ -30,7 +30,7 @@ const SettingsAccount = ({ tokenChange, setTokenChange, bearerToken }) => {
   const removeUser = async () => {
     try {
       const callServerToDelete = await axios.delete(
-        "http://localhost:3001/users/delete",
+        "https://flark.herokuapp.com/users/delete",
         {
           headers: {
             Authorization: `Bearer ${bearerToken}`,

@@ -44,7 +44,7 @@ const SettingsInformations = ({
       };
 
       const callServer = await axios.put(
-        "http://localhost:3001/users/update",
+        "https://flark.herokuapp.com/users/update",
         data,
         {
           headers: {

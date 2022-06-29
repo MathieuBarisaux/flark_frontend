@@ -26,7 +26,7 @@ const Task = (props) => {
       achivement: item.achivement,
     };
 
-    await axios.put("http://localhost:3001/todo/update", updateValue, {
+    await axios.put("https://flark.herokuapp.com/todo/update", updateValue, {
       headers: {
         Authorization: `Bearer ${bearerToken}`,
       },
