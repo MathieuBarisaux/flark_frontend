@@ -6,7 +6,10 @@ import helpContent from "../../assets/data/helpContent";
 // ** Hooks **
 import { useState } from "react";
 
-const HelpCenter = ({ setHelpCenterOpen }) => {
+// ** Components **
+import ContactUs from "../ContactUs/ContactUs";
+
+const HelpCenter = ({ setHelpCenterOpen, bearerToken }) => {
   const [navHelp, setNavHelp] = useState(-1);
 
   return (
@@ -31,10 +34,12 @@ const HelpCenter = ({ setHelpCenterOpen }) => {
             <p onClick={() => setNavHelp(0)}>
               Tutorials <i className="fas fa-angle-right"></i>
             </p>
-            <p>
+            <p onClick={() => setNavHelp(-2)}>
               Contact-us <i className="fas fa-angle-right"></i>
             </p>
           </div>
+        ) : navHelp === -2 ? (
+          <ContactUs bearerToken={bearerToken} />
         ) : (
           <>
             {helpContent.map((item, index) => {

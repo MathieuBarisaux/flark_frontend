@@ -224,7 +224,12 @@ function App() {
         </Routes>
 
         {/* Set Help Center*/}
-        {helpCenterOpen && <HelpCenter setHelpCenterOpen={setHelpCenterOpen} />}
+        {helpCenterOpen && (
+          <HelpCenter
+            setHelpCenterOpen={setHelpCenterOpen}
+            bearerToken={bearerToken}
+          />
+        )}
 
         {/* Set modales */}
         {taskFormOpen && (

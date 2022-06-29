@@ -1,0 +1,39 @@
+@use "../../variables";
+
+.ContactUs {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  > p {
+    color: variables.$attenuated_color;
+    font-style: italic;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+  }
+
+  input,
+  textarea {
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 10px;
+    border: variables.$base_border;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  textarea {
+    margin-top: 1rem;
+    resize: none;
+    color: variables.$base_color;
+    font-family: "Nunito", sans-serif;
+
+    &::placeholder {
+      color: variables.$attenuated_color;
+    }
+  }
+
+  button {
+    align-self: flex-end;
+  }
+}

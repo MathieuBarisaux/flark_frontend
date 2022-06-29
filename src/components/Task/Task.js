@@ -118,9 +118,9 @@ const Task = (props) => {
       <div className="Task__tools">
         <i className="fas fa-ellipsis-v"></i>
         <ul>
-          <li>
+          {/* <li>
             <i className="fas fa-eraser"></i> Modify
-          </li>
+          </li> */}
           <li onClick={deleteTask}>
             <i className="fas fa-trash"></i> Delete
           </li>
