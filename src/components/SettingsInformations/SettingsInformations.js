@@ -58,7 +58,6 @@ const SettingsInformations = ({
         setUpdateValidate(true);
 
         // ** Set new local storage **
-        console.log(callServer);
         const responseData = callServer.data;
 
         const infosUser = {

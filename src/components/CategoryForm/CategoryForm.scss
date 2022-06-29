@@ -40,6 +40,7 @@
     box-sizing: border-box;
     position: fixed;
     height: 100vh;
+    height: -webkit-fill-available;
     max-height: 100vh;
     min-width: 100%;
     width: 100%;
@@ -112,6 +113,7 @@
       &::-webkit-color-swatch {
         border-radius: 50%;
         border: none;
+        flex-shrink: 0;
       }
     }
   }
