@@ -32,7 +32,7 @@ const Settings = (props) => {
   // Redirection if token
   useEffect(() => {
     if (!bearerToken) {
-      naviguate("/signin");
+      naviguate("/signup");
     }
     // eslint-disable-next-line
   }, [tokenChange, bearerToken]);

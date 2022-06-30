@@ -23,7 +23,7 @@ const SettingsAccount = ({ tokenChange, setTokenChange, bearerToken }) => {
     localStorage.removeItem("InfosUser");
 
     setTokenChange(!tokenChange);
-    navigate("/signin");
+    navigate("/signup");
   };
 
   // ** Remove user **
@@ -44,7 +44,7 @@ const SettingsAccount = ({ tokenChange, setTokenChange, bearerToken }) => {
         localStorage.removeItem("InfosUser");
 
         setTokenChange(!tokenChange);
-        navigate("/signin");
+        navigate("/signup");
       }
     } catch (error) {
       console.log(error);

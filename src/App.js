@@ -130,6 +130,8 @@ function App() {
   // ** Help Center **
   const [helpCenterOpen, setHelpCenterOpen] = useState(false);
 
+  console.log(bearerToken);
+
   return (
     <div className="App">
       <Router>
@@ -207,6 +209,7 @@ function App() {
                 setTokenChange={setTokenChange}
                 userInformationsChange={userInformationsChange}
                 setUserInformationsChange={setUserInformationsChange}
+                bearerToken={bearerToken}
                 type={"signup"}
               />
             }

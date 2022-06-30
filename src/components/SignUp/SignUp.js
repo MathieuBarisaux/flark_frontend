@@ -84,6 +84,7 @@ const SignUp = (props) => {
     }
   };
 
+  // ** Check if mail is ok **
   const checkMail = (input) => {
     // We define the good mail format
     const mailFormatRegexp =
