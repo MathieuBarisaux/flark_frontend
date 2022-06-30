@@ -30,6 +30,8 @@ const UserManagement = (props) => {
     }
   }, [tokenChange, bearerToken, naviguate]);
 
+  /********************* Component ***********************/
+
   return (
     <div className="UserManagement">
       <div className="UserManagement__left">

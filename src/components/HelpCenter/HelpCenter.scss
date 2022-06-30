@@ -89,23 +89,6 @@
     }
   }
 
-  &__close {
-    width: 60px;
-    height: 60px;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: variables.$base_border;
-    border-radius: 50%;
-    align-self: flex-end;
-    cursor: pointer;
-
-    > i {
-      font-size: 2rem;
-    }
-  }
-
   h3 {
     font-size: 1.3rem;
     text-align: center;

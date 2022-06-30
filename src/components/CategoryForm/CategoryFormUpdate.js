@@ -7,6 +7,7 @@ import axios from "axios";
 import InputText from "../InputText/InputText";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import IconPicker from "../IconPicker/IconPicker";
+import CloseModale from "../CloseModale/CloseModale";
 
 const CategoryFormUpdate = (props) => {
   const {
@@ -53,14 +54,7 @@ const CategoryFormUpdate = (props) => {
 
   return (
     <div className="CategoryForm">
-      <div
-        className="CategoryForm__close"
-        onClick={() => {
-          setOpenCategoryFormUpdate(false);
-        }}
-      >
-        <i className="fas fa-times"></i>
-      </div>
+      <CloseModale setValue={setOpenCategoryFormUpdate} />
 
       <form onSubmit={updateCategory}>
         <div className="CategoryForm__input">

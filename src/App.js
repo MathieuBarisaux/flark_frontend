@@ -25,6 +25,9 @@ import Statistics from "./containers/Statistics/Statistics";
 import Settings from "./containers/Settings/Settings";
 
 function App() {
+  /********************* Functions ***********************/
+
+  // ** Manage token **
   const [tokenChange, setTokenChange] = useState(false);
   const [bearerToken, setBearerToken] = useState(null);
 
@@ -68,13 +71,14 @@ function App() {
     }
   }, [bearerToken, refreshAllCategories]);
 
-  // ** TASKS GESTION **
+  // ** Manage tasks **
   const [allTasks, setAllStasks] = useState("");
   const [refreshAllTasks, setRefreshAllTasks] = useState(false);
 
   const [taskFormOpen, setTaskFormOpen] = useState(false);
   const [allTasksLoading, setAllTasksLoading] = useState(true);
 
+  /* Call server to access all tasks */
   useEffect(() => {
     if (bearerToken) {
       const callServerForAllTasks = async () => {
@@ -99,6 +103,7 @@ function App() {
     }
   }, [bearerToken, refreshAllTasks]);
 
+  /* Divide tasks by type */
   let urgentTasks = [];
   let importantTasks = [];
   let urgentImportantTasks = [];
@@ -117,7 +122,7 @@ function App() {
     }
   }
 
-  // ** User informations **
+  // ** Manage user informations **
   const [userInformations, setUserInformations] = useState(null);
   const [userInformationsChange, setUserInformationsChange] = useState(false);
 
@@ -130,7 +135,7 @@ function App() {
   // ** Help Center **
   const [helpCenterOpen, setHelpCenterOpen] = useState(false);
 
-  console.log(bearerToken);
+  /********************* Component ***********************/
 
   return (
     <div className="App">

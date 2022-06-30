@@ -45,6 +45,7 @@ const Settings = (props) => {
     }
   }, [userInformations]);
 
+  /* Call server to update profil picture */
   const updatePicture = async (event) => {
     setAvatarLoad(true);
     const formDataPicture = new FormData();

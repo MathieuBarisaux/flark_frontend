@@ -6,6 +6,7 @@ import { useState } from "react";
 // ** Components **
 import SubmitButton from "../SubmitButton/SubmitButton";
 import InputText from "../InputText/InputText";
+import CloseModale from "../CloseModale/CloseModale";
 
 // ** Dependencies **
 import axios from "axios";
@@ -28,6 +29,8 @@ const TaskForm = (props) => {
   const [categorySelect, setCategorySelect] = useState(
     allCategories.length > 0 ? allCategories[0]._id : "uncategorized"
   );
+
+  /********************* Functions ***********************/
 
   const catchChangeCategory = (event) => {
     const newValue = event.target.value;
@@ -70,16 +73,11 @@ const TaskForm = (props) => {
     setTaskFormOpen(false);
   };
 
+  /********************* Component ***********************/
+
   return (
     <div className="TaskForm">
-      <div
-        className="TaskForm__close"
-        onClick={() => {
-          setTaskFormOpen(false);
-        }}
-      >
-        <i className="fas fa-times"></i>
-      </div>
+      <CloseModale setValue={setTaskFormOpen} />
 
       <form onSubmit={submitNewTask}>
         <div className="TaskForm__inputs">

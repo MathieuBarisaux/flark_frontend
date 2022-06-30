@@ -29,7 +29,6 @@ const Dashboard = (props) => {
     allCategoriesLoading,
     setTaskFormOpen,
     allTasks,
-    allTasksLoading,
     refreshAllTasks,
     setRefreshAllTasks,
     userInformations,
@@ -71,16 +70,14 @@ const Dashboard = (props) => {
           />
 
           <div className="Dashboard__bottom">
-            {!allTasksLoading && (
-              <AllTasksWidget
-                allTasks={allTasks}
-                refreshAllTasks={refreshAllTasks}
-                setRefreshAllTasks={setRefreshAllTasks}
-                refreshAllCategories={refreshAllCategories}
-                setRefreshAllCategories={setRefreshAllCategories}
-                bearerToken={bearerToken}
-              />
-            )}
+            <AllTasksWidget
+              allTasks={allTasks}
+              refreshAllTasks={refreshAllTasks}
+              setRefreshAllTasks={setRefreshAllTasks}
+              refreshAllCategories={refreshAllCategories}
+              setRefreshAllCategories={setRefreshAllCategories}
+              bearerToken={bearerToken}
+            />
 
             <Notes bearerToken={bearerToken} />
           </div>

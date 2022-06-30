@@ -8,6 +8,7 @@ import { useState } from "react";
 
 // ** Components **
 import ContactUs from "../ContactUs/ContactUs";
+import CloseModale from "../CloseModale/CloseModale";
 
 const HelpCenter = ({ setHelpCenterOpen, bearerToken }) => {
   const [navHelp, setNavHelp] = useState(-1);
@@ -15,12 +16,7 @@ const HelpCenter = ({ setHelpCenterOpen, bearerToken }) => {
   return (
     <div className="HelpCenter">
       <div className="HelpCenter__container">
-        <div
-          className="HelpCenter__close"
-          onClick={() => setHelpCenterOpen(false)}
-        >
-          <i className="fas fa-times"></i>
-        </div>
+        <CloseModale setValue={setHelpCenterOpen} />
 
         <h2>Help Center</h2>
 

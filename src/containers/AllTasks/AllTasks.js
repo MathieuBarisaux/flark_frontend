@@ -17,6 +17,8 @@ const AllTasks = (props) => {
     bearerToken,
   } = props;
 
+  /********************* Component ***********************/
+
   return (
     <div className="AllTasks">
       <div className="AllTasks__container">
