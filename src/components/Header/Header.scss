@@ -2,8 +2,9 @@
 
 header {
   min-width: fit-content;
+  min-width: 230px;
   width: 10%;
-  max-width: 280px;
+  max-width: 290px;
   padding: 0 2rem;
   height: 100vh;
   background-color: variables.$overlay_background;

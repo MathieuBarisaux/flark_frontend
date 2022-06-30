@@ -41,6 +41,7 @@
     box-sizing: border-box;
     height: 100vh;
     max-height: 100vh;
+    height: -webkit-fill-available;
     top: 0;
     transform: none;
     left: 0;
