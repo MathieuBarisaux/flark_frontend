@@ -18,7 +18,7 @@ const HelpCenter = ({ setHelpCenterOpen, bearerToken }) => {
       <div className="HelpCenter__container">
         <CloseModale setValue={setHelpCenterOpen} />
 
-        <h2>Help Center</h2>
+        <h2>{navHelp === -2 ? "Contact-us" : "Help Center"}</h2>
 
         {navHelp === -1 ? (
           <div className="HelpCenter__select">
