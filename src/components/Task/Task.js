@@ -3,6 +3,9 @@ import "./Task.scss";
 // ** Dependencies **
 import axios from "axios";
 
+// ** Gobal variable **
+import { serverUrl } from "../../assets/constants/globalVariables";
+
 const Task = (props) => {
   const {
     item,
@@ -26,7 +29,7 @@ const Task = (props) => {
       achivement: item.achivement,
     };
 
-    await axios.put("https://flark.herokuapp.com/todo/update", updateValue, {
+    await axios.put(`${serverUrl}/todo/update`, updateValue, {
       headers: {
         Authorization: `Bearer ${bearerToken}`,
       },
@@ -36,14 +39,11 @@ const Task = (props) => {
   };
 
   const deleteTask = async () => {
-    await axios.delete(
-      `https://flark.herokuapp.com/todo/delete?todoID=${item._id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${bearerToken}`,
-        },
-      }
-    );
+    await axios.delete(`${serverUrl}/todo/delete?todoID=${item._id}`, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    });
     setRefreshAllTasks(!refreshAllTasks);
     setRefreshAllCategories(!refreshAllCategories);
   };

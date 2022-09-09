@@ -11,6 +11,9 @@ import { useState } from "react";
 import axios from "axios";
 import Cookie from "js-cookie";
 
+// ** Global variable **
+import { serverUrl } from "../../assets/constants/globalVariables";
+
 const SettingsPassword = ({ bearerToken, tokenChange, setTokenChange }) => {
   const [actualPassword, setActualPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -33,7 +36,7 @@ const SettingsPassword = ({ bearerToken, tokenChange, setTokenChange }) => {
             };
 
             const callServerToChangePassword = await axios.put(
-              "https://flark.herokuapp.com/users/update-password",
+              `${serverUrl}/users/update-password`,
               data,
               {
                 headers: {

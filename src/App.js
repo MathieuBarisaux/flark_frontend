@@ -1,9 +1,5 @@
 import "./App.scss";
 
-// ** Dependancies **
-import Cookie from "js-cookie";
-import axios from "axios";
-
 // ** Hooks **
 import { useEffect, useState } from "react";
 
@@ -24,23 +20,20 @@ import AllTasks from "./containers/AllTasks/AllTasks";
 import Statistics from "./containers/Statistics/Statistics";
 import Settings from "./containers/Settings/Settings";
 
-function App() {
-  /********************* Functions ***********************/
+// ** Functions **
+import checkIfTokenExist from "./Functions/checkIfTokenExist";
+import fetchData from "./Functions/fetchData";
 
+function App() {
   // ** Manage token **
   const [tokenChange, setTokenChange] = useState(false);
   const [bearerToken, setBearerToken] = useState(null);
 
   useEffect(() => {
-    const checkCookieToken = Cookie.get("token");
-
-    if (checkCookieToken) {
-      setBearerToken(checkCookieToken);
-    } else {
-      setBearerToken(null);
-    }
+    setBearerToken(checkIfTokenExist());
   }, [tokenChange]);
 
+  // ** Manage categories **
   const [allCategories, setAllCategories] = useState([]);
   const [allCategoriesLoading, setAllCategoriesLoading] = useState(false);
 
@@ -49,25 +42,12 @@ function App() {
   /* Call server to access all categories */
   useEffect(() => {
     if (bearerToken) {
-      const callServerForAllCategories = async () => {
-        try {
-          setAllCategoriesLoading(true);
-          const response = await axios.get(
-            "https://flark.herokuapp.com/category/read",
-            {
-              headers: {
-                Authorization: `Bearer ${bearerToken}`,
-              },
-            }
-          );
-
-          setAllCategories(response.data);
-          setAllCategoriesLoading(false);
-        } catch (error) {
-          console.log(error.response);
-        }
-      };
-      callServerForAllCategories();
+      fetchData(
+        "/category/read",
+        setAllCategories,
+        bearerToken,
+        setAllCategoriesLoading
+      );
     }
   }, [bearerToken, refreshAllCategories]);
 
@@ -81,25 +61,7 @@ function App() {
   /* Call server to access all tasks */
   useEffect(() => {
     if (bearerToken) {
-      const callServerForAllTasks = async () => {
-        try {
-          setAllTasksLoading(true);
-          const responses = await axios.get(
-            "https://flark.herokuapp.com/todo/read",
-            {
-              headers: {
-                Authorization: `Bearer ${bearerToken}`,
-              },
-            }
-          );
-          setAllStasks(responses.data);
-
-          setAllTasksLoading(false);
-        } catch (error) {
-          console.log(error.response);
-        }
-      };
-      callServerForAllTasks();
+      fetchData("/todo/read", setAllStasks, bearerToken, setAllTasksLoading);
     }
   }, [bearerToken, refreshAllTasks]);
 
@@ -136,7 +98,6 @@ function App() {
   const [helpCenterOpen, setHelpCenterOpen] = useState(false);
 
   /********************* Component ***********************/
-
   return (
     <div className="App">
       <Router>

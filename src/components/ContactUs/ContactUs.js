@@ -10,6 +10,9 @@ import InputText from "../InputText/InputText";
 // ** Hooks **
 import { useState } from "react";
 
+// ** Global variable **
+import { serverUrl } from "../../assets/constants/globalVariables";
+
 const ContactUs = ({ bearerToken }) => {
   const [userObject, setUserObject] = useState("");
   const [userMessage, setUserMessage] = useState("");
@@ -26,15 +29,11 @@ const ContactUs = ({ bearerToken }) => {
         userMessage: userMessage,
       };
 
-      const callServer = await axios.post(
-        "https://flark.herokuapp.com/contact",
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${bearerToken}`,
-          },
-        }
-      );
+      const callServer = await axios.post(`${serverUrl}/contact`, data, {
+        headers: {
+          Authorization: `Bearer ${bearerToken}`,
+        },
+      });
 
       if (callServer.status === 200) {
         setSendOk(true);

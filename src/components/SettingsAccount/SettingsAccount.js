@@ -11,6 +11,9 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
+// ** Gobal variable **
+import { serverUrl } from "../../assets/constants/globalVariables";
+
 const SettingsAccount = ({ tokenChange, setTokenChange, bearerToken }) => {
   const [removeConfirm, setRemoveConfirm] = useState(false);
 
@@ -30,7 +33,7 @@ const SettingsAccount = ({ tokenChange, setTokenChange, bearerToken }) => {
   const removeUser = async () => {
     try {
       const callServerToDelete = await axios.delete(
-        "https://flark.herokuapp.com/users/delete",
+        `${serverUrl}/users/delete`,
         {
           headers: {
             Authorization: `Bearer ${bearerToken}`,

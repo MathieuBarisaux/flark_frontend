@@ -12,6 +12,9 @@ import { useNavigate, Link } from "react-router-dom";
 import InputText from "../InputText/InputText";
 import SubmitButton from "../SubmitButton/SubmitButton";
 
+// ** Global variable **
+import { serverUrl } from "../../assets/constants/globalVariables";
+
 const SignIn = (props) => {
   const {
     tokenChange,
@@ -40,7 +43,7 @@ const SignIn = (props) => {
         };
 
         const response = await axios.post(
-          "https://flark.herokuapp.com/users/signin",
+          `${serverUrl}/users/signin`,
           dataUser
         );
 

@@ -11,6 +11,9 @@ import CloseModale from "../CloseModale/CloseModale";
 // ** Dependencies **
 import axios from "axios";
 
+// ** Global variable **
+import { serverUrl } from "../../assets/constants/globalVariables";
+
 const TaskForm = (props) => {
   const {
     setTaskFormOpen,
@@ -62,7 +65,7 @@ const TaskForm = (props) => {
       categories: categorySelect,
     };
 
-    await axios.post("https://flark.herokuapp.com/todo/create", newTask, {
+    await axios.post(`${serverUrl}/todo/create`, newTask, {
       headers: {
         Authorization: `Bearer ${bearerToken}`,
       },

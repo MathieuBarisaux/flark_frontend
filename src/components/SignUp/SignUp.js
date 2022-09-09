@@ -12,6 +12,12 @@ import axios from "axios";
 import Cookie from "js-cookie";
 import { useNavigate, Link } from "react-router-dom";
 
+// ** Global variable **
+import { serverUrl } from "../../assets/constants/globalVariables";
+
+// ** Function **
+import checkMail from "../../Functions/checkMail";
+
 const SignUp = (props) => {
   const {
     tokenChange,
@@ -51,10 +57,7 @@ const SignUp = (props) => {
           password: password,
         };
 
-        const response = await axios.post(
-          "https://flark.herokuapp.com/users/signup",
-          newUser
-        );
+        const response = await axios.post(`${serverUrl}/users/signup`, newUser);
 
         if (response.status === 200) {
           const responseData = response.data;
@@ -81,20 +84,6 @@ const SignUp = (props) => {
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data?.message);
-    }
-  };
-
-  // ** Check if mail is ok **
-  const checkMail = (input) => {
-    // We define the good mail format
-    const mailFormatRegexp =
-      /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
-
-    // We test if input format is ok
-    if (mailFormatRegexp.exec(input) == null) {
-      return false;
-    } else {
-      return true;
     }
   };
 

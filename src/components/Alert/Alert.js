@@ -6,6 +6,9 @@ import SubmitButton from "../SubmitButton/SubmitButton";
 // ** Dependencies **
 import axios from "axios";
 
+// ** Global variable **
+import { serverUrl } from "../../assets/constants/globalVariables";
+
 const Alert = (props) => {
   const {
     setAlertDeleteCategorie,
@@ -21,7 +24,7 @@ const Alert = (props) => {
   const deleteCategory = async () => {
     try {
       await axios.delete(
-        `https://flark.herokuapp.com/category/delete?category_id=${updateId}`,
+        `${serverUrl}/category/delete?category_id=${updateId}`,
         {
           headers: {
             Authorization: `Bearer ${bearerToken}`,

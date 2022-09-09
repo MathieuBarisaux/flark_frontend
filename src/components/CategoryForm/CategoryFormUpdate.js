@@ -9,6 +9,9 @@ import SubmitButton from "../SubmitButton/SubmitButton";
 import IconPicker from "../IconPicker/IconPicker";
 import CloseModale from "../CloseModale/CloseModale";
 
+// ** Global variable **
+import { serverUrl } from "../../assets/constants/globalVariables";
+
 const CategoryFormUpdate = (props) => {
   const {
     setOpenCategoryFormUpdate,
@@ -36,15 +39,11 @@ const CategoryFormUpdate = (props) => {
       category_id: updateId,
     };
 
-    await axios.put(
-      "https://flark.herokuapp.com/category/update",
-      toUpCategory,
-      {
-        headers: {
-          Authorization: `Bearer ${bearerToken}`,
-        },
-      }
-    );
+    await axios.put(`${serverUrl}/category/update`, toUpCategory, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    });
 
     setOpenCategoryFormUpdate(false);
     setRefreshAllCategories(!refreshAllCategories);

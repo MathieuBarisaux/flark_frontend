@@ -11,6 +11,9 @@ import { useState, useEffect } from "react";
 // ** Dependencies **
 import axios from "axios";
 
+// ** Global variable **
+import { serverUrl } from "../../assets/constants/globalVariables";
+
 const SettingsInformations = ({
   userInformations,
   userInformationsChange,
@@ -43,16 +46,12 @@ const SettingsInformations = ({
         newsletter: userNewsletter,
       };
 
-      const callServer = await axios.put(
-        "https://flark.herokuapp.com/users/update",
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${bearerToken}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const callServer = await axios.put(`${serverUrl}/users/update`, data, {
+        headers: {
+          Authorization: `Bearer ${bearerToken}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       if (callServer.status === 200) {
         setUpdateValidate(true);

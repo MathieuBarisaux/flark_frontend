@@ -13,6 +13,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// ** Global variable **
+import { serverUrl } from "../../assets/constants/globalVariables";
+
 const Settings = (props) => {
   const {
     userInformations,
@@ -53,7 +56,7 @@ const Settings = (props) => {
 
     try {
       const callServerToUpdateImage = await axios.put(
-        "https://flark.herokuapp.com/users/update",
+        `${serverUrl}/users/update`,
         formDataPicture,
         {
           headers: {

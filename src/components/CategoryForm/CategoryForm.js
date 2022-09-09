@@ -12,6 +12,9 @@ import SubmitButton from "../SubmitButton/SubmitButton";
 import IconPicker from "../IconPicker/IconPicker";
 import CloseModale from "../CloseModale/CloseModale";
 
+// ** Global variable **
+import { serverUrl } from "../../assets/constants/globalVariables";
+
 const CategoryForm = (props) => {
   const {
     setOpenCategoryForm,
@@ -36,15 +39,11 @@ const CategoryForm = (props) => {
       category_color: categoryColor,
       category_icon: categoryIcon,
     };
-    await axios.post(
-      "https://flark.herokuapp.com/category/create",
-      newCategory,
-      {
-        headers: {
-          Authorization: `Bearer ${bearerToken}`,
-        },
-      }
-    );
+    await axios.post(`${serverUrl}/category/create`, newCategory, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    });
 
     setOpenCategoryForm(false);
     setRefreshAllCategories(!refreshAllCategories);

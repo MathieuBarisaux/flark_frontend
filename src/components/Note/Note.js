@@ -9,6 +9,9 @@ import { useState } from "react";
 // ** Dependencies **
 import axios from "axios";
 
+// ** Global Variable **
+import { serverUrl } from "../../assets/constants/globalVariables";
+
 const Note = ({
   note,
   index,
@@ -29,7 +32,7 @@ const Note = ({
       };
 
       const callServerToUpdate = await axios.put(
-        "https://flark.herokuapp.com/note/update",
+        `${serverUrl}/note/update`,
         data,
         {
           headers: {
