@@ -6,7 +6,7 @@ describe("CheckEnv Unit Test Suite", () => {
   });
 
   it("should be true", () => {
-    process.env.NODE_ENV = "prod";
+    process.env.NODE_ENV = "dev";
     expect(checkEnv()).toBe(true);
   });
 });
