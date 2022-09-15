@@ -18,15 +18,14 @@ import { serverUrl } from "../../assets/constants/globalVariables";
 // ** Function **
 import checkMail from "../../Functions/checkMail";
 
+// ** Redux **
+import { useDispatch } from "react-redux";
+
 const SignUp = (props) => {
-  const {
-    tokenChange,
-    setTokenChange,
-    userInformationsChange,
-    setUserInformationsChange,
-  } = props;
+  const { userInformationsChange, setUserInformationsChange } = props;
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [step, setStep] = useState(0);
 
@@ -75,7 +74,7 @@ const SignUp = (props) => {
           localStorage.setItem("InfosUser", infosUserJSON);
 
           setUserInformationsChange(!userInformationsChange);
-          setTokenChange(!tokenChange);
+          dispatch({ type: "changeToken" });
           navigate("/");
         }
       } else {

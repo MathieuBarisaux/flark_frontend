@@ -11,24 +11,23 @@ import SignUp from "../../components/SignUp/SignUp";
 import SignIn from "../../components/SignIn/SignIn";
 import { useEffect } from "react";
 
+// ** Redux **
+import { useSelector } from "react-redux";
+
 const UserManagement = (props) => {
-  const {
-    type,
-    bearerToken,
-    tokenChange,
-    setTokenChange,
-    userInformationsChange,
-    setUserInformationsChange,
-  } = props;
+  const { type, userInformationsChange, setUserInformationsChange } = props;
 
   const naviguate = useNavigate();
+  const { userToken, userTokenChange } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
 
   // Redirection auto if token
   useEffect(() => {
-    if (bearerToken) {
+    if (userToken) {
       naviguate("/");
     }
-  }, [tokenChange, bearerToken, naviguate]);
+  }, [userTokenChange, userToken, naviguate]);
 
   /********************* Component ***********************/
 
@@ -52,15 +51,11 @@ const UserManagement = (props) => {
 
         {type === "signup" ? (
           <SignUp
-            tokenChange={tokenChange}
-            setTokenChange={setTokenChange}
             userInformationsChange={userInformationsChange}
             setUserInformationsChange={setUserInformationsChange}
           />
         ) : (
           <SignIn
-            tokenChange={tokenChange}
-            setTokenChange={setTokenChange}
             userInformationsChange={userInformationsChange}
             setUserInformationsChange={setUserInformationsChange}
           />

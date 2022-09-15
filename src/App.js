@@ -24,14 +24,27 @@ import Settings from "./containers/Settings/Settings";
 import checkIfTokenExist from "./Functions/checkIfTokenExist";
 import fetchData from "./Functions/fetchData";
 
+// ** Redux **
+import { useDispatch, useSelector } from "react-redux";
+
 function App() {
+  /*************************************************** TEST ****************************************************/
+  const dispatch = useDispatch();
+  const { userToken, userTokenChange } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
+
   // ** Manage token **
   const [tokenChange, setTokenChange] = useState(false);
   const [bearerToken, setBearerToken] = useState(null);
 
   useEffect(() => {
     setBearerToken(checkIfTokenExist());
-  }, [tokenChange]);
+    dispatch({ type: "setToken", payload: checkIfTokenExist() });
+    // eslint-disable-next-line
+  }, [tokenChange, userTokenChange]);
+
+  /**************************************************************************************************************/
 
   // ** Manage categories **
   const [allCategories, setAllCategories] = useState([]);
@@ -41,15 +54,15 @@ function App() {
 
   /* Call server to access all categories */
   useEffect(() => {
-    if (bearerToken) {
+    if (userToken) {
       fetchData(
         "/category/read",
         setAllCategories,
-        bearerToken,
+        userToken,
         setAllCategoriesLoading
       );
     }
-  }, [bearerToken, refreshAllCategories]);
+  }, [userToken, refreshAllCategories]);
 
   // ** Manage tasks **
   const [allTasks, setAllStasks] = useState("");
@@ -60,10 +73,10 @@ function App() {
 
   /* Call server to access all tasks */
   useEffect(() => {
-    if (bearerToken) {
-      fetchData("/todo/read", setAllStasks, bearerToken, setAllTasksLoading);
+    if (userToken) {
+      fetchData("/todo/read", setAllStasks, userToken, setAllTasksLoading);
     }
-  }, [bearerToken, refreshAllTasks]);
+  }, [userToken, refreshAllTasks]);
 
   /* Divide tasks by type */
   let urgentTasks = [];
@@ -101,7 +114,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {bearerToken && (
+        {userToken && (
           <>
             <Header setHelpCenterOpen={setHelpCenterOpen} />
             <HeaderMobile
@@ -217,7 +230,7 @@ function App() {
         )}
 
         {/* Set panel */}
-        {bearerToken && (
+        {userToken && (
           <Panel
             tokenChange={tokenChange}
             setTokenChange={setTokenChange}

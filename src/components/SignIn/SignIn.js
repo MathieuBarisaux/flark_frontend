@@ -15,15 +15,14 @@ import SubmitButton from "../SubmitButton/SubmitButton";
 // ** Global variable **
 import { serverUrl } from "../../assets/constants/globalVariables";
 
+// ** Redux **
+import { useDispatch } from "react-redux";
+
 const SignIn = (props) => {
-  const {
-    tokenChange,
-    userInformationsChange,
-    setUserInformationsChange,
-    setTokenChange,
-  } = props;
+  const { userInformationsChange, setUserInformationsChange } = props;
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // States form
   const [email, setEmail] = useState("");
@@ -66,7 +65,7 @@ const SignIn = (props) => {
           localStorage.setItem("InfosUser", infosUserJSON);
 
           setUserInformationsChange(!userInformationsChange);
-          setTokenChange(!tokenChange);
+          dispatch({ type: "changeToken" });
           navigate("/");
         }
       } else {
