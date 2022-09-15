@@ -12,14 +12,20 @@ import axios from "axios";
 // ** Global Variable **
 import { serverUrl } from "../../assets/constants/globalVariables";
 
+// ** Redux **
+import { useSelector } from "react-redux";
+
 const Note = ({
   note,
   index,
   deleteNote,
-  bearerToken,
   refreshAllNotes,
   setRefreshAllNotes,
 }) => {
+  const { userToken } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
+
   const [textNoteForUpdate, setTextNoteForUpdate] = useState("");
 
   const updateNote = async (event) => {
@@ -36,7 +42,7 @@ const Note = ({
         data,
         {
           headers: {
-            Authorization: `Bearer ${bearerToken}`,
+            Authorization: `Bearer ${userToken}`,
           },
         }
       );

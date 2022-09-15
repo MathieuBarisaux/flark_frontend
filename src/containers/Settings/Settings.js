@@ -16,15 +16,19 @@ import { useNavigate } from "react-router-dom";
 // ** Global variable **
 import { serverUrl } from "../../assets/constants/globalVariables";
 
+// ** Redux **
+import { useSelector } from "react-redux";
+
 const Settings = (props) => {
   const {
     userInformations,
-    tokenChange,
-    setTokenChange,
-    bearerToken,
     userInformationsChange,
     setUserInformationsChange,
   } = props;
+
+  const { userToken, userTokenChange } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
 
   const [settingNav, setSettingNav] = useState("informations");
   const [userAvatar, setUserAvatar] = useState("");
@@ -34,11 +38,11 @@ const Settings = (props) => {
 
   // Redirection if token
   useEffect(() => {
-    if (!bearerToken) {
+    if (!userToken) {
       naviguate("/signup");
     }
     // eslint-disable-next-line
-  }, [tokenChange, bearerToken]);
+  }, [userTokenChange, userToken]);
 
   useEffect(() => {
     if (userInformations) {
@@ -60,7 +64,7 @@ const Settings = (props) => {
         formDataPicture,
         {
           headers: {
-            Authorization: `Bearer ${bearerToken}`,
+            Authorization: `Bearer ${userToken}`,
             "Content-Type": "multipart/form-data",
           },
         }
@@ -153,22 +157,13 @@ const Settings = (props) => {
           {settingNav === "informations" ? (
             <SettingsInformations
               userInformations={userInformations}
-              bearerToken={bearerToken}
               userInformationsChange={userInformationsChange}
               setUserInformationsChange={setUserInformationsChange}
             />
           ) : settingNav === "password" ? (
-            <SettingsPassword
-              tokenChange={tokenChange}
-              setTokenChange={setTokenChange}
-              bearerToken={bearerToken}
-            />
+            <SettingsPassword />
           ) : (
-            <SettingsAccount
-              tokenChange={tokenChange}
-              setTokenChange={setTokenChange}
-              bearerToken={bearerToken}
-            />
+            <SettingsAccount />
           )}
         </div>
       )}

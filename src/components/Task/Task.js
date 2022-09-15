@@ -6,6 +6,9 @@ import axios from "axios";
 // ** Gobal variable **
 import { serverUrl } from "../../assets/constants/globalVariables";
 
+// ** Redux **
+import { useSelector } from "react-redux";
+
 const Task = (props) => {
   const {
     item,
@@ -14,8 +17,11 @@ const Task = (props) => {
     refreshAllCategories,
     setRefreshAllCategories,
     onDashboard,
-    bearerToken,
   } = props;
+
+  const { userToken } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
 
   const changeAchivementStatus = async () => {
     if (item.achivement === false) {
@@ -31,7 +37,7 @@ const Task = (props) => {
 
     await axios.put(`${serverUrl}/todo/update`, updateValue, {
       headers: {
-        Authorization: `Bearer ${bearerToken}`,
+        Authorization: `Bearer ${userToken}`,
       },
     });
 
@@ -41,7 +47,7 @@ const Task = (props) => {
   const deleteTask = async () => {
     await axios.delete(`${serverUrl}/todo/delete?todoID=${item._id}`, {
       headers: {
-        Authorization: `Bearer ${bearerToken}`,
+        Authorization: `Bearer ${userToken}`,
       },
     });
     setRefreshAllTasks(!refreshAllTasks);

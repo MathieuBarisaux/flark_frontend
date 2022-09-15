@@ -13,6 +13,7 @@ import axios from "axios";
 
 // ** Global variable **
 import { serverUrl } from "../../assets/constants/globalVariables";
+import { useSelector } from "react-redux";
 
 const TaskForm = (props) => {
   const {
@@ -22,8 +23,11 @@ const TaskForm = (props) => {
     setRefreshAllTasks,
     refreshAllCategories,
     setRefreshAllCategories,
-    bearerToken,
   } = props;
+
+  const { userToken } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
 
   const [TaskContent, setTaskContent] = useState("");
   const [deallineTask, setDeadlineTask] = useState("");
@@ -67,7 +71,7 @@ const TaskForm = (props) => {
 
     await axios.post(`${serverUrl}/todo/create`, newTask, {
       headers: {
-        Authorization: `Bearer ${bearerToken}`,
+        Authorization: `Bearer ${userToken}`,
       },
     });
 

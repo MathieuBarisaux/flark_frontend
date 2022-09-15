@@ -4,7 +4,7 @@ const initialState = {
   userTokenChange: false,
 };
 
-const userManagementReducer = (state = initialState, action) => {
+const tokenManagementReducer = (state = initialState, action) => {
   switch (action.type) {
     case "setToken": {
       return {
@@ -26,4 +26,4 @@ const userManagementReducer = (state = initialState, action) => {
   }
 };
 
-export default userManagementReducer;
+export default tokenManagementReducer;

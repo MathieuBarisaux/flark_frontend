@@ -13,16 +13,16 @@ import NewTaskButton from "../../components/NewTaskButton/NewTaskButton";
 import { useNavigate } from "react-router-dom";
 
 // ** Hooks **
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // ** Functions **
 import upperCaseFirst from "../../Functions/upperCaseFirst";
-import { useState } from "react";
+
+// ** Redux **
+import { useSelector } from "react-redux";
 
 const Dashboard = (props) => {
   const {
-    bearerToken,
-    tokenChange,
     allCategories,
     refreshAllCategories,
     setRefreshAllCategories,
@@ -34,17 +34,21 @@ const Dashboard = (props) => {
     userInformations,
   } = props;
 
+  const { userToken, userTokenChange } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
+
   const naviguate = useNavigate();
 
   const [userPseudo, setUserPseudo] = useState("");
 
   // Redirection if token
   useEffect(() => {
-    if (!bearerToken) {
+    if (!userToken) {
       naviguate("/signup");
     }
     // eslint-disable-next-line
-  }, [tokenChange, bearerToken]);
+  }, [userTokenChange, userToken]);
 
   useEffect(() => {
     if (userInformations) {
@@ -66,7 +70,6 @@ const Dashboard = (props) => {
             refreshAllCategories={refreshAllCategories}
             refreshAllTasks={refreshAllTasks}
             setRefreshAllTasks={setRefreshAllTasks}
-            bearerToken={bearerToken}
           />
 
           <div className="Dashboard__bottom">
@@ -76,10 +79,9 @@ const Dashboard = (props) => {
               setRefreshAllTasks={setRefreshAllTasks}
               refreshAllCategories={refreshAllCategories}
               setRefreshAllCategories={setRefreshAllCategories}
-              bearerToken={bearerToken}
             />
 
-            <Notes bearerToken={bearerToken} />
+            <Notes />
           </div>
 
           <NewTaskButton setTaskFormOpen={setTaskFormOpen} />

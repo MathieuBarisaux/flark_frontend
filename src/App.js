@@ -35,14 +35,10 @@ function App() {
   }));
 
   // ** Manage token **
-  const [tokenChange, setTokenChange] = useState(false);
-  const [bearerToken, setBearerToken] = useState(null);
-
   useEffect(() => {
-    setBearerToken(checkIfTokenExist());
     dispatch({ type: "setToken", payload: checkIfTokenExist() });
     // eslint-disable-next-line
-  }, [tokenChange, userTokenChange]);
+  }, [userTokenChange]);
 
   /**************************************************************************************************************/
 
@@ -129,8 +125,6 @@ function App() {
             path="/"
             element={
               <Dashboard
-                bearerToken={bearerToken}
-                tokenChange={tokenChange}
                 allCategories={allCategories}
                 refreshAllCategories={refreshAllCategories}
                 setRefreshAllCategories={setRefreshAllCategories}
@@ -158,7 +152,6 @@ function App() {
                 refreshAllTasks={refreshAllTasks}
                 setRefreshAllTasks={setRefreshAllTasks}
                 setTaskFormOpen={setTaskFormOpen}
-                bearerToken={bearerToken}
               />
             }
           />
@@ -170,9 +163,6 @@ function App() {
             element={
               <Settings
                 userInformations={userInformations}
-                tokenChange={tokenChange}
-                setTokenChange={setTokenChange}
-                bearerToken={bearerToken}
                 userInformationsChange={userInformationsChange}
                 setUserInformationsChange={setUserInformationsChange}
               />
@@ -184,11 +174,8 @@ function App() {
             path="/signup"
             element={
               <UserManagement
-                tokenChange={tokenChange}
-                setTokenChange={setTokenChange}
                 userInformationsChange={userInformationsChange}
                 setUserInformationsChange={setUserInformationsChange}
-                bearerToken={bearerToken}
                 type={"signup"}
               />
             }
@@ -197,9 +184,6 @@ function App() {
             path="/signin"
             element={
               <UserManagement
-                tokenChange={tokenChange}
-                setTokenChange={setTokenChange}
-                bearerToken={bearerToken}
                 type={"signin"}
                 userInformationsChange={userInformationsChange}
                 setUserInformationsChange={setUserInformationsChange}
@@ -209,12 +193,7 @@ function App() {
         </Routes>
 
         {/* Set Help Center*/}
-        {helpCenterOpen && (
-          <HelpCenter
-            setHelpCenterOpen={setHelpCenterOpen}
-            bearerToken={bearerToken}
-          />
-        )}
+        {helpCenterOpen && <HelpCenter setHelpCenterOpen={setHelpCenterOpen} />}
 
         {/* Set modales */}
         {taskFormOpen && (
@@ -225,15 +204,12 @@ function App() {
             setRefreshAllTasks={setRefreshAllTasks}
             refreshAllCategories={refreshAllCategories}
             setRefreshAllCategories={setRefreshAllCategories}
-            bearerToken={bearerToken}
           />
         )}
 
         {/* Set panel */}
         {userToken && (
           <Panel
-            tokenChange={tokenChange}
-            setTokenChange={setTokenChange}
             userInformations={userInformations}
             urgentTasks={urgentTasks}
             urgentImportantTasks={urgentImportantTasks}

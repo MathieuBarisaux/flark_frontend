@@ -15,13 +15,16 @@ import CloseModale from "../CloseModale/CloseModale";
 // ** Global variable **
 import { serverUrl } from "../../assets/constants/globalVariables";
 
+// ** Redux **
+import { useSelector } from "react-redux";
+
 const CategoryForm = (props) => {
-  const {
-    setOpenCategoryForm,
-    refreshAllCategories,
-    setRefreshAllCategories,
-    bearerToken,
-  } = props;
+  const { setOpenCategoryForm, refreshAllCategories, setRefreshAllCategories } =
+    props;
+
+  const { userToken } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
 
   // States for form
   const [categoryName, setCategoryName] = useState("");
@@ -41,7 +44,7 @@ const CategoryForm = (props) => {
     };
     await axios.post(`${serverUrl}/category/create`, newCategory, {
       headers: {
-        Authorization: `Bearer ${bearerToken}`,
+        Authorization: `Bearer ${userToken}`,
       },
     });
 

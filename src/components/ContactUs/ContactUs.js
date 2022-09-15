@@ -13,7 +13,14 @@ import { useState } from "react";
 // ** Global variable **
 import { serverUrl } from "../../assets/constants/globalVariables";
 
-const ContactUs = ({ bearerToken }) => {
+// ** Redux **
+import { useSelector } from "react-redux";
+
+const ContactUs = () => {
+  const { userToken } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
+
   const [userObject, setUserObject] = useState("");
   const [userMessage, setUserMessage] = useState("");
 
@@ -31,7 +38,7 @@ const ContactUs = ({ bearerToken }) => {
 
       const callServer = await axios.post(`${serverUrl}/contact`, data, {
         headers: {
-          Authorization: `Bearer ${bearerToken}`,
+          Authorization: `Bearer ${userToken}`,
         },
       });
 

@@ -14,7 +14,16 @@ import Cookie from "js-cookie";
 // ** Global variable **
 import { serverUrl } from "../../assets/constants/globalVariables";
 
-const SettingsPassword = ({ bearerToken, tokenChange, setTokenChange }) => {
+// ** Redux **
+import { useSelector, useDispatch } from "react-redux";
+
+const SettingsPassword = () => {
+  const { userToken } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
+
+  const dispatch = useDispatch();
+
   const [actualPassword, setActualPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [verifyNewPassword, setVerifyNewPassword] = useState("");
@@ -40,7 +49,7 @@ const SettingsPassword = ({ bearerToken, tokenChange, setTokenChange }) => {
               data,
               {
                 headers: {
-                  Authorization: `Bearer ${bearerToken}`,
+                  Authorization: `Bearer ${userToken}`,
                   "Content-Type": "multipart/form-data",
                 },
               }
@@ -51,7 +60,7 @@ const SettingsPassword = ({ bearerToken, tokenChange, setTokenChange }) => {
                 expires: 360,
               });
 
-              setTokenChange(!tokenChange);
+              dispatch({ type: "changeToken" });
               setUpdateValidate(true);
 
               setActualPassword("");

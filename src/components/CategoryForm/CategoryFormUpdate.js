@@ -12,6 +12,9 @@ import CloseModale from "../CloseModale/CloseModale";
 // ** Global variable **
 import { serverUrl } from "../../assets/constants/globalVariables";
 
+// ** Redux **
+import { useSelector } from "react-redux";
+
 const CategoryFormUpdate = (props) => {
   const {
     setOpenCategoryFormUpdate,
@@ -24,8 +27,11 @@ const CategoryFormUpdate = (props) => {
     updateColor,
     setUpdateColor,
     updateId,
-    bearerToken,
   } = props;
+
+  const { userToken } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
 
   /********************* Functions ***********************/
 
@@ -41,7 +47,7 @@ const CategoryFormUpdate = (props) => {
 
     await axios.put(`${serverUrl}/category/update`, toUpCategory, {
       headers: {
-        Authorization: `Bearer ${bearerToken}`,
+        Authorization: `Bearer ${userToken}`,
       },
     });
 

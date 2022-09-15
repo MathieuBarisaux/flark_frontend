@@ -14,7 +14,14 @@ import fetchData from "../../Functions/fetchData";
 // ** Global variable **
 import { serverUrl } from "../../assets/constants/globalVariables";
 
-const Notes = ({ bearerToken }) => {
+// ** Redux **
+import { useSelector } from "react-redux";
+
+const Notes = () => {
+  const { userToken } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
+
   const [noteText, setNoteText] = useState("");
 
   const [allNotes, setAllNotes] = useState(null);
@@ -32,7 +39,7 @@ const Notes = ({ bearerToken }) => {
           data,
           {
             headers: {
-              Authorization: `Bearer ${bearerToken}`,
+              Authorization: `Bearer ${userToken}`,
             },
           }
         );
@@ -53,7 +60,7 @@ const Notes = ({ bearerToken }) => {
         `${serverUrl}/note/delete-one?noteId=${noteId}`,
         {
           headers: {
-            Authorization: `Bearer ${bearerToken}`,
+            Authorization: `Bearer ${userToken}`,
           },
         }
       );
@@ -67,11 +74,11 @@ const Notes = ({ bearerToken }) => {
   };
 
   useEffect(() => {
-    if (bearerToken) {
-      fetchData("/note/read-all", setAllNotes, bearerToken);
+    if (userToken) {
+      fetchData("/note/read-all", setAllNotes, userToken);
     }
     // eslint-disable-next-line
-  }, [bearerToken, refreshAllNotes]);
+  }, [userToken, refreshAllNotes]);
 
   return (
     <div className="Notes">
@@ -94,7 +101,6 @@ const Notes = ({ bearerToken }) => {
                 key={item._id}
                 index={index}
                 deleteNote={deleteNote}
-                bearerToken={bearerToken}
                 refreshAllNotes={refreshAllNotes}
                 setRefreshAllNotes={setRefreshAllNotes}
               />

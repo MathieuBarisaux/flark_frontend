@@ -14,12 +14,18 @@ import axios from "axios";
 // ** Global variable **
 import { serverUrl } from "../../assets/constants/globalVariables";
 
+// ** Redux **
+import { useSelector } from "react-redux";
+
 const SettingsInformations = ({
   userInformations,
   userInformationsChange,
   setUserInformationsChange,
-  bearerToken,
 }) => {
+  const { userToken } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
+
   const [userPseudo, setUserPseudo] = useState("");
   const [userMail, setUserMail] = useState("");
   const [userNewsletter, setUserNewsletter] = useState(false);
@@ -48,7 +54,7 @@ const SettingsInformations = ({
 
       const callServer = await axios.put(`${serverUrl}/users/update`, data, {
         headers: {
-          Authorization: `Bearer ${bearerToken}`,
+          Authorization: `Bearer ${userToken}`,
           "Content-Type": "multipart/form-data",
         },
       });

@@ -9,7 +9,6 @@ const AllTasksWidget = ({
   setRefreshAllTasks,
   refreshAllCategories,
   setRefreshAllCategories,
-  bearerToken,
 }) => {
   return (
     <div className="AllTasksWidget">
@@ -27,7 +26,6 @@ const AllTasksWidget = ({
                 refreshAllCategories={refreshAllCategories}
                 setRefreshAllCategories={setRefreshAllCategories}
                 onDashboard={true}
-                bearerToken={bearerToken}
               />
             );
           })

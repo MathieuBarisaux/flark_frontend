@@ -10,7 +10,7 @@ import { useState } from "react";
 import ContactUs from "../ContactUs/ContactUs";
 import CloseModale from "../CloseModale/CloseModale";
 
-const HelpCenter = ({ setHelpCenterOpen, bearerToken }) => {
+const HelpCenter = ({ setHelpCenterOpen }) => {
   const [navHelp, setNavHelp] = useState(-1);
 
   return (
@@ -35,7 +35,7 @@ const HelpCenter = ({ setHelpCenterOpen, bearerToken }) => {
             </p>
           </div>
         ) : navHelp === -2 ? (
-          <ContactUs bearerToken={bearerToken} />
+          <ContactUs />
         ) : (
           <>
             {helpContent.map((item, index) => {

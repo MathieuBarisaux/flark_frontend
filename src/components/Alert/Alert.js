@@ -9,6 +9,9 @@ import axios from "axios";
 // ** Global variable **
 import { serverUrl } from "../../assets/constants/globalVariables";
 
+// ** Redux **
+import { useSelector } from "react-redux";
+
 const Alert = (props) => {
   const {
     setAlertDeleteCategorie,
@@ -18,8 +21,11 @@ const Alert = (props) => {
     setRefreshAllCategories,
     refreshAllTasks,
     setRefreshAllTasks,
-    bearerToken,
   } = props;
+
+  const { userToken } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
 
   const deleteCategory = async () => {
     try {
@@ -27,7 +33,7 @@ const Alert = (props) => {
         `${serverUrl}/category/delete?category_id=${updateId}`,
         {
           headers: {
-            Authorization: `Bearer ${bearerToken}`,
+            Authorization: `Bearer ${userToken}`,
           },
         }
       );
