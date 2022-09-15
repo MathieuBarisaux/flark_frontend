@@ -55,7 +55,7 @@ const Panel = (props) => {
     <div className="Panel">
       <div className="Panel__userInfos">
         <div className="Panel__userInfos--left">
-          {userInformations.avatar ? (
+          {userInformations && userInformations.avatar ? (
             <img src={userInformations.avatar} alt="User avatar" />
           ) : (
             <img
@@ -68,7 +68,9 @@ const Panel = (props) => {
           <p>
             Welcome back 👋
             <br />
-            <strong>{upperCaseFirst(userInformations.pseudo)}</strong>
+            <strong>
+              {userInformations && upperCaseFirst(userInformations.pseudo)}
+            </strong>
           </p>
         </div>
 

@@ -5,19 +5,25 @@ import SubmitButton from "../SubmitButton/SubmitButton";
 
 // ** Dependancies **
 import Cookie from "js-cookie";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 // ** Hooks **
 import { useState } from "react";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 // ** Gobal variable **
 import { serverUrl } from "../../assets/constants/globalVariables";
 
-const SettingsAccount = ({ tokenChange, setTokenChange, bearerToken }) => {
+const SettingsAccount = () => {
   const [removeConfirm, setRemoveConfirm] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { userToken } = useSelector((state) => ({
+    ...state.tokenManagementReducer,
+  }));
 
   // ** Disconnect user **
   const disconnectUser = () => {
@@ -25,7 +31,7 @@ const SettingsAccount = ({ tokenChange, setTokenChange, bearerToken }) => {
 
     localStorage.removeItem("InfosUser");
 
-    setTokenChange(!tokenChange);
+    dispatch({ type: "changeToken" });
     navigate("/signup");
   };
 
@@ -36,7 +42,7 @@ const SettingsAccount = ({ tokenChange, setTokenChange, bearerToken }) => {
         `${serverUrl}/users/delete`,
         {
           headers: {
-            Authorization: `Bearer ${bearerToken}`,
+            Authorization: `Bearer ${userToken}`,
           },
         }
       );
@@ -46,7 +52,7 @@ const SettingsAccount = ({ tokenChange, setTokenChange, bearerToken }) => {
 
         localStorage.removeItem("InfosUser");
 
-        setTokenChange(!tokenChange);
+        dispatch({ type: "changeToken" });
         navigate("/signup");
       }
     } catch (error) {
