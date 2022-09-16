@@ -14,9 +14,7 @@ import { useEffect } from "react";
 // ** Redux **
 import { useSelector } from "react-redux";
 
-const UserManagement = (props) => {
-  const { type, userInformationsChange, setUserInformationsChange } = props;
-
+const UserManagement = ({ type }) => {
   const naviguate = useNavigate();
   const { userToken, userTokenChange } = useSelector((state) => ({
     ...state.tokenManagementReducer,
@@ -49,17 +47,7 @@ const UserManagement = (props) => {
           <p>Flark</p>
         </div>
 
-        {type === "signup" ? (
-          <SignUp
-            userInformationsChange={userInformationsChange}
-            setUserInformationsChange={setUserInformationsChange}
-          />
-        ) : (
-          <SignIn
-            userInformationsChange={userInformationsChange}
-            setUserInformationsChange={setUserInformationsChange}
-          />
-        )}
+        {type === "signup" ? <SignUp /> : <SignIn />}
 
         <p className="UserManagement__copyright">© Flark 2022</p>
       </div>

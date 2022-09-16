@@ -6,8 +6,15 @@ import { Link, useLocation } from "react-router-dom";
 // ** Hooks **
 import { useState } from "react";
 
-const HeaderMobile = ({ userInformations, setHelpCenterOpen }) => {
+// ** Redux **
+import { useSelector } from "react-redux";
+
+const HeaderMobile = ({ setHelpCenterOpen }) => {
   const { pathname } = useLocation();
+
+  const { userInformations } = useSelector((state) => ({
+    ...state.userInformationsReducer,
+  }));
 
   const [openHeaderMobile, setOpenHeaderMobile] = useState(false);
 

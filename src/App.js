@@ -30,9 +30,11 @@ import { useDispatch, useSelector } from "react-redux";
 function App() {
   /*************************************************** TEST ****************************************************/
   const dispatch = useDispatch();
-  const { userToken, userTokenChange } = useSelector((state) => ({
-    ...state.tokenManagementReducer,
-  }));
+  const { userToken, userTokenChange, userInformationsChange } = useSelector(
+    (state) => ({
+      ...state.tokenManagementReducer,
+    })
+  );
 
   // ** Manage token **
   useEffect(() => {
@@ -94,13 +96,11 @@ function App() {
   }
 
   // ** Manage user informations **
-  const [userInformations, setUserInformations] = useState(null);
-  const [userInformationsChange, setUserInformationsChange] = useState(false);
-
   useEffect(() => {
     const checkUserInfos = JSON.parse(localStorage.getItem("InfosUser"));
 
-    setUserInformations(checkUserInfos);
+    dispatch({ type: "setUserInformations", payload: checkUserInfos });
+    // eslint-disable-next-line
   }, [userInformationsChange]);
 
   // ** Help Center **
@@ -113,10 +113,7 @@ function App() {
         {userToken && (
           <>
             <Header setHelpCenterOpen={setHelpCenterOpen} />
-            <HeaderMobile
-              userInformations={userInformations}
-              setHelpCenterOpen={setHelpCenterOpen}
-            />
+            <HeaderMobile setHelpCenterOpen={setHelpCenterOpen} />
           </>
         )}
 
@@ -134,7 +131,6 @@ function App() {
                 allTasksLoading={allTasksLoading}
                 refreshAllTasks={refreshAllTasks}
                 setRefreshAllTasks={setRefreshAllTasks}
-                userInformations={userInformations}
               />
             }
           />
@@ -158,38 +154,11 @@ function App() {
 
           <Route path="/statistics" element={<Statistics />} />
 
-          <Route
-            path="/settings"
-            element={
-              <Settings
-                userInformations={userInformations}
-                userInformationsChange={userInformationsChange}
-                setUserInformationsChange={setUserInformationsChange}
-              />
-            }
-          />
+          <Route path="/settings" element={<Settings />} />
 
           {/* User Management */}
-          <Route
-            path="/signup"
-            element={
-              <UserManagement
-                userInformationsChange={userInformationsChange}
-                setUserInformationsChange={setUserInformationsChange}
-                type={"signup"}
-              />
-            }
-          />
-          <Route
-            path="/signin"
-            element={
-              <UserManagement
-                type={"signin"}
-                userInformationsChange={userInformationsChange}
-                setUserInformationsChange={setUserInformationsChange}
-              />
-            }
-          />
+          <Route path="/signup" element={<UserManagement type={"signup"} />} />
+          <Route path="/signin" element={<UserManagement type={"signin"} />} />
         </Routes>
 
         {/* Set Help Center*/}
@@ -210,7 +179,6 @@ function App() {
         {/* Set panel */}
         {userToken && (
           <Panel
-            userInformations={userInformations}
             urgentTasks={urgentTasks}
             urgentImportantTasks={urgentImportantTasks}
             importantTasks={importantTasks}

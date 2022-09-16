@@ -10,17 +10,18 @@ import DatePicker from "sassy-datepicker";
 import upperCaseFirst from "../../Functions/upperCaseFirst";
 
 // ** Hooks **
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+
+// ** Redux **
+import { useSelector } from "react-redux";
 
 const Panel = (props) => {
-  const {
-    userInformations,
-    urgentTasks,
-    urgentImportantTasks,
-    importantTasks,
-    otherTasks,
-  } = props;
+  const { urgentTasks, urgentImportantTasks, importantTasks, otherTasks } =
+    props;
+
+  const { userInformations } = useSelector((state) => ({
+    ...state.userInformationsReducer,
+  }));
 
   const [favoriteTasks, setFavoriteTasks] = useState("urgentImportant");
 
@@ -105,7 +106,6 @@ const Panel = (props) => {
         <DatePicker />
 
         <PriorityTodos
-          title="Urgent"
           urgentTasks={urgentTasks}
           urgentImportantTasks={urgentImportantTasks}
           importantTasks={importantTasks}

@@ -21,9 +21,7 @@ import checkMail from "../../Functions/checkMail";
 // ** Redux **
 import { useDispatch } from "react-redux";
 
-const SignUp = (props) => {
-  const { userInformationsChange, setUserInformationsChange } = props;
-
+const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -73,7 +71,7 @@ const SignUp = (props) => {
 
           localStorage.setItem("InfosUser", infosUserJSON);
 
-          setUserInformationsChange(!userInformationsChange);
+          dispatch("userInformationsChange");
           dispatch({ type: "changeToken" });
           navigate("/");
         }

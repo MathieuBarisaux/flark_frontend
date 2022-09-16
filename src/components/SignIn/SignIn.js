@@ -18,9 +18,7 @@ import { serverUrl } from "../../assets/constants/globalVariables";
 // ** Redux **
 import { useDispatch } from "react-redux";
 
-const SignIn = (props) => {
-  const { userInformationsChange, setUserInformationsChange } = props;
-
+const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -64,7 +62,7 @@ const SignIn = (props) => {
 
           localStorage.setItem("InfosUser", infosUserJSON);
 
-          setUserInformationsChange(!userInformationsChange);
+          dispatch("userInformationsChange");
           dispatch({ type: "changeToken" });
           navigate("/");
         }

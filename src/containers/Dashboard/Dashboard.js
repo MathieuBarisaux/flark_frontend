@@ -13,7 +13,7 @@ import NewTaskButton from "../../components/NewTaskButton/NewTaskButton";
 import { useNavigate } from "react-router-dom";
 
 // ** Hooks **
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 // ** Functions **
 import upperCaseFirst from "../../Functions/upperCaseFirst";
@@ -31,16 +31,16 @@ const Dashboard = (props) => {
     allTasks,
     refreshAllTasks,
     setRefreshAllTasks,
-    userInformations,
   } = props;
 
-  const { userToken, userTokenChange } = useSelector((state) => ({
-    ...state.tokenManagementReducer,
-  }));
+  const { userToken, userTokenChange, userInformations } = useSelector(
+    (state) => ({
+      ...state.tokenManagementReducer,
+      ...state.userInformationsReducer,
+    })
+  );
 
   const naviguate = useNavigate();
-
-  const [userPseudo, setUserPseudo] = useState("");
 
   // Redirection if token
   useEffect(() => {
@@ -50,19 +50,16 @@ const Dashboard = (props) => {
     // eslint-disable-next-line
   }, [userTokenChange, userToken]);
 
-  useEffect(() => {
-    if (userInformations) {
-      setUserPseudo(upperCaseFirst(userInformations.pseudo));
-    }
-  }, [userInformations]);
-
   return (
     <div className="Dashboard">
       {allCategoriesLoading ? (
         <LoadScreen />
       ) : (
         <>
-          <h2>What's up, {userPseudo} ? 👋</h2>
+          <h2>
+            What's up,{" "}
+            {userInformations && upperCaseFirst(userInformations.pseudo)} ? 👋
+          </h2>
 
           <Categories
             allCategories={allCategories}

@@ -17,18 +17,17 @@ import { useNavigate } from "react-router-dom";
 import { serverUrl } from "../../assets/constants/globalVariables";
 
 // ** Redux **
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-const Settings = (props) => {
-  const {
-    userInformations,
-    userInformationsChange,
-    setUserInformationsChange,
-  } = props;
+const Settings = () => {
+  const dispatch = useDispatch();
 
-  const { userToken, userTokenChange } = useSelector((state) => ({
-    ...state.tokenManagementReducer,
-  }));
+  const { userToken, userTokenChange, userInformations } = useSelector(
+    (state) => ({
+      ...state.tokenManagementReducer,
+      ...state.userInformationsChange,
+    })
+  );
 
   const [settingNav, setSettingNav] = useState("informations");
   const [userAvatar, setUserAvatar] = useState("");
@@ -85,7 +84,7 @@ const Settings = (props) => {
 
         localStorage.setItem("InfosUser", infosUserJSON);
 
-        setUserInformationsChange(!userInformationsChange);
+        dispatch({ type: "userInformationsChange" });
         setAvatarLoad(false);
       }
     } catch (error) {
@@ -155,11 +154,7 @@ const Settings = (props) => {
           </nav>
 
           {settingNav === "informations" ? (
-            <SettingsInformations
-              userInformations={userInformations}
-              userInformationsChange={userInformationsChange}
-              setUserInformationsChange={setUserInformationsChange}
-            />
+            <SettingsInformations />
           ) : settingNav === "password" ? (
             <SettingsPassword />
           ) : (

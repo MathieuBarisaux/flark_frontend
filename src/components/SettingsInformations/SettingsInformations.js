@@ -15,15 +15,14 @@ import axios from "axios";
 import { serverUrl } from "../../assets/constants/globalVariables";
 
 // ** Redux **
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-const SettingsInformations = ({
-  userInformations,
-  userInformationsChange,
-  setUserInformationsChange,
-}) => {
-  const { userToken } = useSelector((state) => ({
+const SettingsInformations = () => {
+  const dispatch = useDispatch();
+
+  const { userToken, userInformations } = useSelector((state) => ({
     ...state.tokenManagementReducer,
+    ...state.userInformationsReducer,
   }));
 
   const [userPseudo, setUserPseudo] = useState("");
@@ -76,7 +75,7 @@ const SettingsInformations = ({
 
         localStorage.setItem("InfosUser", infosUserJSON);
 
-        setUserInformationsChange(!userInformationsChange);
+        dispatch({ type: "userInformationsChange" });
 
         setTimeout(() => setUpdateValidate(false), 3000);
       }
