@@ -24,6 +24,15 @@
   }
 }
 
+@keyframes turn360 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .SubmitButton {
   margin-top: 2rem;
   width: fit-content;
@@ -45,4 +54,9 @@
     background-color: #f74946;
     animation: neonEffectRed 2s infinite;
   }
+}
+
+.fa-spinner {
+  color: #fff;
+  animation: 1s turn360 infinite;
 }

@@ -31,7 +31,7 @@ const HeaderMobile = ({ setHelpCenterOpen }) => {
         <div className="MobileHeader__nav">
           <div className="MobileHeader__nav__top">
             <div className="MobileHeader__nav__picture">
-              {userInformations.avatar ? (
+              {userInformations && userInformations.avatar ? (
                 <img src={userInformations.avatar} alt="User avatar" />
               ) : (
                 <img

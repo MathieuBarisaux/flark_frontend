@@ -19,19 +19,19 @@ import { serverUrl } from "../../assets/constants/globalVariables";
 // ** Redux **
 import { useSelector, useDispatch } from "react-redux";
 
+// ** Verification **
+const imageMimeType = /image\/(png|jpg|jpeg)/i;
+
 const Settings = () => {
   const dispatch = useDispatch();
 
-  const { userToken, userTokenChange, userInformations } = useSelector(
-    (state) => ({
+  const { userToken, userTokenChange, userInformations, userAvatarLoad } =
+    useSelector((state) => ({
       ...state.tokenManagementReducer,
-      ...state.userInformationsChange,
-    })
-  );
+      ...state.userInformationsReducer,
+    }));
 
   const [settingNav, setSettingNav] = useState("informations");
-  const [userAvatar, setUserAvatar] = useState("");
-  const [avatarLoad, setAvatarLoad] = useState(false);
 
   const naviguate = useNavigate();
 
@@ -43,17 +43,9 @@ const Settings = () => {
     // eslint-disable-next-line
   }, [userTokenChange, userToken]);
 
-  useEffect(() => {
-    if (userInformations) {
-      if (userInformations.avatar) {
-        setUserAvatar(userInformations.avatar);
-      }
-    }
-  }, [userInformations]);
-
   /* Call server to update profil picture */
   const updatePicture = async (event) => {
-    setAvatarLoad(true);
+    dispatch({ type: "userAvatarLoad", payload: true });
     const formDataPicture = new FormData();
     formDataPicture.append("userPicture", event.target.files[0]);
 
@@ -85,7 +77,8 @@ const Settings = () => {
         localStorage.setItem("InfosUser", infosUserJSON);
 
         dispatch({ type: "userInformationsChange" });
-        setAvatarLoad(false);
+
+        dispatch({ type: "userAvatarLoad", payload: false });
       }
     } catch (error) {
       console.log(error);
@@ -103,10 +96,10 @@ const Settings = () => {
           <h1>Edit profile</h1>
 
           <div className="Settings__profil_picture">
-            {avatarLoad ? (
+            {userAvatarLoad ? (
               <LoadScreen />
-            ) : userAvatar ? (
-              <img src={userAvatar} alt="User avatar" />
+            ) : userInformations && userInformations.avatar ? (
+              <img src={userInformations.avatar} alt="User avatar" />
             ) : (
               <img
                 src={
@@ -122,8 +115,18 @@ const Settings = () => {
             <input
               type="file"
               id="file"
+              accept=".png, .jpg, .jpeg"
               onChange={(event) => {
-                updatePicture(event);
+                const file = event.target.files[0];
+
+                if (file) {
+                  if (!file.type.match(imageMimeType)) {
+                    console.log("Image type is not valid");
+                    return;
+                  } else {
+                    updatePicture(event);
+                  }
+                }
               }}
             />
           </div>

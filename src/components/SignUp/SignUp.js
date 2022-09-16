@@ -71,7 +71,7 @@ const SignUp = () => {
 
           localStorage.setItem("InfosUser", infosUserJSON);
 
-          dispatch("userInformationsChange");
+          dispatch({ type: "userInformationsChange" });
           dispatch({ type: "changeToken" });
           navigate("/");
         }

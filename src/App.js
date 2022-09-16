@@ -33,6 +33,7 @@ function App() {
   const { userToken, userTokenChange, userInformationsChange } = useSelector(
     (state) => ({
       ...state.tokenManagementReducer,
+      ...state.userInformationsReducer,
     })
   );
 
@@ -47,7 +48,6 @@ function App() {
   // ** Manage categories **
   const [allCategories, setAllCategories] = useState([]);
   const [allCategoriesLoading, setAllCategoriesLoading] = useState(false);
-
   const [refreshAllCategories, setRefreshAllCategories] = useState(false);
 
   /* Call server to access all categories */

@@ -26,52 +26,59 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   // SignIn function
   const handleSubmitForSigIn = async (event) => {
     event.preventDefault();
-    setErrorMessage("");
 
-    try {
-      if (email && password) {
-        const dataUser = {
-          email: email,
-          password: password,
-        };
+    if (!isLoading) {
+      setIsLoading(true);
+      setErrorMessage("");
 
-        const response = await axios.post(
-          `${serverUrl}/users/signin`,
-          dataUser
-        );
-
-        if (response.status === 200) {
-          const responseData = response.data;
-
-          // ** Set Cookie **
-          Cookie.set("token", responseData.token, { expires: 360 });
-
-          // ** Set local storage **
-          const infosUser = {
-            pseudo: responseData.pseudo,
-            avatar: responseData.avatar,
-            email: responseData.email,
-            newsletter: responseData.newsletter,
+      try {
+        if (email && password) {
+          const dataUser = {
+            email: email,
+            password: password,
           };
 
-          const infosUserJSON = JSON.stringify(infosUser);
+          const response = await axios.post(
+            `${serverUrl}/users/signin`,
+            dataUser
+          );
 
-          localStorage.setItem("InfosUser", infosUserJSON);
+          if (response.status === 200) {
+            const responseData = response.data;
 
-          dispatch("userInformationsChange");
-          dispatch({ type: "changeToken" });
-          navigate("/");
+            // ** Set Cookie **
+            Cookie.set("token", responseData.token, { expires: 360 });
+
+            // ** Set local storage **
+            const infosUser = {
+              pseudo: responseData.pseudo,
+              avatar: responseData.avatar,
+              email: responseData.email,
+              newsletter: responseData.newsletter,
+            };
+
+            const infosUserJSON = JSON.stringify(infosUser);
+
+            localStorage.setItem("InfosUser", infosUserJSON);
+
+            dispatch({ type: "userInformationsChange" });
+            dispatch({ type: "changeToken" });
+            navigate("/");
+          }
+        } else {
+          setErrorMessage("We need more element to connect you ;)");
         }
-      } else {
-        setErrorMessage("We need more element to connect you ;)");
+      } catch (error) {
+        console.log(error.message);
+        setErrorMessage(error.response.data?.message);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (error) {
-      console.log(error.message);
-      setErrorMessage(error.response.data?.message);
     }
   };
 
@@ -93,7 +100,7 @@ const SignIn = () => {
         setValue={setPassword}
       />
 
-      <SubmitButton title={"Connect"} color={"purple"} />
+      <SubmitButton title={"Connect"} color={"purple"} isLoading={isLoading} />
       {errorMessage && <p>{errorMessage}</p>}
 
       <Link to={"/signup"}>

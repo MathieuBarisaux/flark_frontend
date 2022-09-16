@@ -1,6 +1,7 @@
 const inititalState = {
   userInformations: null,
   userInformationsChange: false,
+  userAvatarLoad: false,
 };
 
 const userInformationsReducer = (state = inititalState, action) => {
@@ -16,6 +17,13 @@ const userInformationsReducer = (state = inititalState, action) => {
       return {
         ...state,
         userInformationsChange: !state.userInformationsChange,
+      };
+    }
+
+    case "userAvatarLoad": {
+      return {
+        ...state,
+        userAvatarLoad: action.payload,
       };
     }
 

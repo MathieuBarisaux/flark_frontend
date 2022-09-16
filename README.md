@@ -37,6 +37,8 @@ To create Flark, i use :
 
 - [React.js](https://reactjs.org/)
 - [Create Reat App](https://create-react-app.dev/)
+- [Redux](https://redux.js.org/)
+- [React-Redux](https://react-redux.js.org/)
 - [axios](https://github.com/axios/axios)
 - [js-cookie](https://github.com/js-cookie/js-cookie)
 - [SASS](https://sass-lang.com/)
