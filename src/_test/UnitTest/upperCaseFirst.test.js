@@ -1,4 +1,4 @@
-import upperCaseFirst from "../Functions/upperCaseFirst";
+import upperCaseFirst from "../../Functions/upperCaseFirst";
 
 describe("Test upperCaseFirst Unit function", () => {
   it("should return Thomas", () => {

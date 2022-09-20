@@ -2,7 +2,7 @@
 import Cookie from "js-cookie";
 
 // ** Function **
-import checkIfTokenExist from "../Functions/checkIfTokenExist";
+import checkIfTokenExist from "../../Functions/checkIfTokenExist";
 
 let actualTokenRegister;
 

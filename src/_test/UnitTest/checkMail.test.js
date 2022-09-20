@@ -1,4 +1,4 @@
-import checkMail from "../Functions/checkMail";
+import checkMail from "../../Functions/checkMail";
 
 describe("CheckMail Unit Test Suite", () => {
   it("should be true", () => {

@@ -6,6 +6,7 @@ const SubmitButton = (props) => {
   return (
     <button
       type="submit"
+      disabled={isLoading ? true : false}
       className={
         color === "red"
           ? "SubmitButton SubmitButton--red"

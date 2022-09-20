@@ -74,7 +74,6 @@ const SignIn = () => {
           setErrorMessage("We need more element to connect you ;)");
         }
       } catch (error) {
-        console.log(error.message);
         setErrorMessage(error.response.data?.message);
       } finally {
         setIsLoading(false);
@@ -98,10 +97,11 @@ const SignIn = () => {
         placeholder={"Password"}
         value={password}
         setValue={setPassword}
+        required
       />
 
       <SubmitButton title={"Connect"} color={"purple"} isLoading={isLoading} />
-      {errorMessage && <p>{errorMessage}</p>}
+      {<p data-testid={"error-message"}>{errorMessage}</p>}
 
       <Link to={"/signup"}>
         <p className="SignIn__link">
